@@ -12,6 +12,31 @@
 
     <!-- Custom CSS -->
     <style>
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #sliderWrapper {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            /* 100% per slide * number of slides */
+            transition: transform 1s ease-in-out;
+        }
+
+        .slide-bg {
+            flex: 0 0 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
         .hero-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
@@ -207,6 +232,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -16,6 +17,7 @@ use App\Http\Controllers\HomeController;
 
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/cms', [AdminController::class, 'test'])->name('cms');
 
 // About Us page
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -34,4 +36,3 @@ Route::get('/clients', [HomeController::class, 'clients'])->name('clients');
 
 // Contact page
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-

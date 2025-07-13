@@ -4,8 +4,18 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="hero-bg min-h-screen flex items-center justify-center text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<section class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+    <!-- Sliding Background -->
+    <div class="slider-container">
+        <div id="sliderWrapper" class="w-full h-full flex">
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80');"></div>
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=2070&q=80');"></div>
+            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=2070&q=80');"></div>
+        </div>
+    </div>
+
+    <!-- Foreground Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Building Qatar's Future with<br>
             <span class="text-red-500">Excellence and Innovation</span>
@@ -272,3 +282,17 @@
     </div>
 </section>
 @endsection
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const totalSlides = sliderWrapper.children.length;
+        let index = 0;
+
+        setInterval(() => {
+            index = (index + 1) % totalSlides;
+            sliderWrapper.style.transform = `translateX(-${index * 100}%)`;
+        }, 5000);
+    });
+</script>
+@endpush
