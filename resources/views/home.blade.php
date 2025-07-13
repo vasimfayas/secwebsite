@@ -1,0 +1,274 @@
+@extends('layouts.app')
+
+@section('title', 'Shannon Engineering Company - Building Qatar\'s Future with Excellence and Innovation')
+
+@section('content')
+<!-- Hero Section -->
+<section class="hero-bg min-h-screen flex items-center justify-center text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Building Qatar's Future with<br>
+            <span class="text-red-500">Excellence and Innovation</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Grade A Construction Company Operating in the GCC and Middle East
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-block">
+                Explore Our Projects
+            </a>
+            <a href="{{ route('contact') }}" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
+                Contact Us Today
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Shannon Engineering -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
+                    About Shannon Engineering
+                </h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Shannon Engineering Company (SEC) is a Grade A Construction Company operating in the GCC and Middle East. </p>
+                <p class="text-lg text-gray-600 mb-8">
+                    With a commitment to quality, innovation, and client satisfaction, we have established ourselves as a trusted partner in Qatar's development journey.
+                </p>
+                <a href="{{ route('about') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold inline-block">
+                    Learn More About Us
+                </a>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Modern construction site"
+                    class="rounded-lg shadow-xl w-full h-96 object-cover">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Services -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
+                Our Services
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                We provide comprehensive construction and engineering solutions across various sectors
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Residential Construction -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Residential Construction</h3>
+                <p class="text-gray-600">
+                    Luxury villas, apartment complexes, and residential communities built to the highest standards of quality and comfort.
+                </p>
+            </div>
+
+            <!-- Commercial Development -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Commercial Development</h3>
+                <p class="text-gray-600">
+                    Shopping malls, office buildings, hotels, and retail spaces designed for functionality, aesthetics, and business success.
+                </p>
+            </div>
+
+            <!-- Industrial Facilities -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Industrial Facilities</h3>
+                <p class="text-gray-600">
+                    Factories, warehouses, and industrial complexes engineered for efficiency, safety, and operational excellence.
+                </p>
+            </div>
+
+            <!-- Medical Buildings -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Medical Buildings</h3>
+                <p class="text-gray-600">
+                    Hospitals, clinics, and healthcare facilities constructed with precision to support modern medical services.
+                </p>
+            </div>
+
+            <!-- Mosque Construction -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Mosque Construction</h3>
+                <p class="text-gray-600">
+                    Beautiful and functional mosques that serve as spiritual centers for communities, combining traditional elements with modern engineering.
+                </p>
+            </div>
+
+            <!-- Engineering Solutions -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Engineering Solutions</h3>
+                <p class="text-gray-600">
+                    Comprehensive engineering services including structural design, MEP systems, and project management.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
+                Featured Projects
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Explore some of our landmark projects that showcase our expertise and commitment to excellence
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Lulu Abu Sidra Mall -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2077&q=80"
+                    alt="Lulu Abu Sidra Mall"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lulu Abu Sidra Mall</h3>
+                    <p class="text-gray-600 mb-4">
+                        A state-of-the-art shopping mall featuring retail spaces, dining options, and entertainment facilities.
+                    </p>
+                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Lexus Showroom -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1562141961-d80459d5c4b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Lexus Showroom"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lexus Showroom</h3>
+                    <p class="text-gray-600 mb-4">
+                        A premium automotive showroom featuring modern architecture and sophisticated design elements.
+                    </p>
+                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Al Iman Emergency Hospital -->
+            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+                    alt="Al Iman Emergency Hospital"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Al Iman Emergency Hospital</h3>
+                    <p class="text-gray-600 mb-4">
+                        A specialized emergency medical facility designed to provide rapid response healthcare services.
+                    </p>
+                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">
+                View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Construction workers on site"
+                    class="rounded-lg shadow-xl w-full h-96 object-cover">
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-8 section-title">
+                    Why Choose Us
+                </h2>
+
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Expertise & Experience</h3>
+                        <p class="text-gray-600">
+                            With years of experience in the construction industry, our team brings unparalleled expertise to every project we undertake.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality & Precision</h3>
+                        <p class="text-gray-600">
+                            We maintain the highest standards of quality and precision in all our construction and engineering work.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Timely Delivery</h3>
+                        <p class="text-gray-600">
+                            We understand the importance of timelines and ensure that all our projects are completed on schedule.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Client Satisfaction</h3>
+                        <p class="text-gray-600">
+                            Our client-centric approach ensures that we meet and exceed expectations, resulting in high levels of client satisfaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-20 bg-red-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold mb-6">
+            Ready to Start Your Next Project?
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+            Contact us today to discuss how Shannon Engineering Company can bring your vision to life.
+        </p>
+        <a href="{{ route('contact') }}" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
+            Contact Us
+        </a>
+    </div>
+</section>
+@endsection
