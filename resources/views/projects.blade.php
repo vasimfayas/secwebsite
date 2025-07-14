@@ -143,7 +143,7 @@
             <!-- Residential -->
             @foreach($categories as $cat)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="{{asset($cat->card_img) }}"
+                <img src="{{asset('storage/' .$cat->card_img) }}"
                     alt="Residential Projects"
                     class="w-full h-48 object-cover">
                 <div class="p-6">
