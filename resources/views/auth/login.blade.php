@@ -36,7 +36,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center bg-login-image">
-                                <img src="{{ asset('images/logo/secLogo.jpeg') }}" alt="SEC Logo" style="width: 60%;">
+                                <img src="{{ asset('images/logo/secLOGO.jpeg') }}" alt="SEC Logo" style="width: 60%;">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
