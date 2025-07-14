@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,7 +28,8 @@ class HomeController extends Controller
      */
     public function projects()
     {
-        return view('projects');
+        $categories = ProjectCategory::get();
+        return view('projects', compact('categories'));
     }
 
     /**
@@ -62,4 +64,3 @@ class HomeController extends Controller
         return view('contact');
     }
 }
-

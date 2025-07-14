@@ -1,4 +1,5 @@
 @extends('layouts.master')
 @section('content')
-<div>dwada</div>
+<div>@livewire('project.add-project')</div>
+
 @endsection

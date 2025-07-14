@@ -24,13 +24,13 @@
                 Our most significant achievements in construction and engineering
             </p>
         </div>
-        
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <!-- Lulu Abu Sidra Mall -->
             <div class="project-card bg-white rounded-lg shadow-xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2077&q=80" 
-                     alt="Lulu Abu Sidra Mall" 
-                     class="w-full h-64 object-cover">
+                <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2077&q=80"
+                    alt="Lulu Abu Sidra Mall"
+                    class="w-full h-64 object-cover">
                 <div class="p-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Lulu Abu Sidra Mall</h3>
                     <p class="text-gray-600 mb-6">
@@ -57,12 +57,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Lexus Showroom -->
             <div class="project-card bg-white rounded-lg shadow-xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1562141961-d80459d5c4b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Lexus Showroom" 
-                     class="w-full h-64 object-cover">
+                <img src="https://images.unsplash.com/photo-1562141961-d80459d5c4b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Lexus Showroom"
+                    class="w-full h-64 object-cover">
                 <div class="p-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Lexus Showroom</h3>
                     <p class="text-gray-600 mb-6">
@@ -90,13 +90,13 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Al Iman Emergency Hospital -->
         <div class="project-card bg-white rounded-lg shadow-xl overflow-hidden mb-16">
             <div class="grid grid-cols-1 lg:grid-cols-2">
-                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" 
-                     alt="Al Iman Emergency Hospital" 
-                     class="w-full h-64 lg:h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+                    alt="Al Iman Emergency Hospital"
+                    class="w-full h-64 lg:h-full object-cover">
                 <div class="p-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Al Iman Emergency Hospital</h3>
                     <p class="text-gray-600 mb-6">
@@ -138,27 +138,28 @@
                 We deliver excellence across multiple sectors
             </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Residential -->
+            @foreach($categories as $cat)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Residential Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="{{asset($cat->card_img) }}"
+                    alt="Residential Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Residential Projects</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">{{$cat->category}}</h3>
                     <p class="text-gray-600 mb-4">
-                        Luxury villas, apartment complexes, and residential communities built to the highest standards.
+                        {{$cat->description}}
                     </p>
                     <div class="text-red-600 font-semibold">15+ Projects Completed</div>
                 </div>
             </div>
-            
+            @endforeach
             <!-- Commercial -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Commercial Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Commercial Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Projects</h3>
                     <p class="text-gray-600 mb-4">
@@ -167,12 +168,12 @@
                     <div class="text-red-600 font-semibold">25+ Projects Completed</div>
                 </div>
             </div>
-            
+
             <!-- Industrial -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Industrial Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Industrial Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Industrial Projects</h3>
                     <p class="text-gray-600 mb-4">
@@ -181,12 +182,12 @@
                     <div class="text-red-600 font-semibold">12+ Projects Completed</div>
                 </div>
             </div>
-            
+
             <!-- Healthcare -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" 
-                     alt="Healthcare Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+                    alt="Healthcare Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Healthcare Projects</h3>
                     <p class="text-gray-600 mb-4">
@@ -195,12 +196,12 @@
                     <div class="text-red-600 font-semibold">8+ Projects Completed</div>
                 </div>
             </div>
-            
+
             <!-- Religious -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1564769625392-651b2c0e7b8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Religious Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1564769625392-651b2c0e7b8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Religious Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Religious Projects</h3>
                     <p class="text-gray-600 mb-4">
@@ -209,12 +210,12 @@
                     <div class="text-red-600 font-semibold">10+ Projects Completed</div>
                 </div>
             </div>
-            
+
             <!-- Infrastructure -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                     alt="Infrastructure Projects" 
-                     class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Infrastructure Projects"
+                    class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Infrastructure Projects</h3>
                     <p class="text-gray-600 mb-4">
@@ -242,4 +243,3 @@
     </div>
 </section>
 @endsection
-

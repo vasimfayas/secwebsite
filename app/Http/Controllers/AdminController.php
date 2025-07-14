@@ -10,4 +10,16 @@ class AdminController extends Controller
     {
         return view('admin.test');
     }
+    public function existingprojects()
+    {
+        return view('admin.projectview');
+    }
+    public function category()
+    {
+        return view('admin.category');
+    }
+    public function addproject()
+    {
+        return view('admin.project');
+    }
 }

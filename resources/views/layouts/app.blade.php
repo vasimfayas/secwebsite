@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Shannon Engineering Company - Building Qatar\'s Future')</title>
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
-
+    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -112,7 +112,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="{{ route('home') }}" class="flex items-center">
-                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 50px;">
+                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 60px;">
                     </a>
                 </div>
 
@@ -206,9 +206,13 @@
                     <div class="text-gray-300 text-sm space-y-2">
                         <p>Al Gassar Tower 19th Floor, West Bay, </p>
                         <p>P.O.Box : 24041</p>
-                        <p>Doha, Qatar</p>
-                        <p>+974 44355656</p>
-                        <p>info@shannoneng.com</p>
+                        <p>Doha, Qatar</p> <br>
+                        <a href="tel:+974 44355656">
+                            <p>+974 44355656</p>
+                        </a>
+                        <a href="mailto:info@shannoneng.com">
+                            <p>info@shannoneng.com</p>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -33,17 +33,17 @@
                             <input type="text" id="last_name" name="last_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
                         </div>
                     </div>
-                    
+
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                         <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
                     </div>
-                    
+
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                         <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
                     </div>
-                    
+
                     <div>
                         <label for="project_type" class="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
                         <select id="project_type" name="project_type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
@@ -57,24 +57,24 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
-                    
+
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
                         <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Tell us about your project requirements, timeline, and any specific needs..."></textarea>
                     </div>
-                    
+
                     <button type="submit" class="w-full btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg">
                         Send Message
                     </button>
                 </form>
             </div>
-            
+
             <!-- Contact Information -->
             <div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 section-title">
                     Contact Information
                 </h2>
-                
+
                 <div class="space-y-8">
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -86,12 +86,14 @@
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Office Location</h3>
                             <p class="text-gray-600">
-                                Doha, Qatar<br>
+                                Al Gassar Tower 19th Floor, West Bay, <br>
+
+                                P.O.Box : 24041<br>
                                 State of Qatar
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,12 +103,11 @@
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Phone</h3>
                             <p class="text-gray-600">
-                                +974 XXXX XXXX<br>
-                                Available 24/7 for emergencies
+                                +974 44355656<br>
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,12 +117,11 @@
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Email</h3>
                             <p class="text-gray-600">
-                                info@shannonengineering.qa<br>
-                                projects@shannonengineering.qa
+                                info@shannoneng.com<br>
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="flex items-start">
                         <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,13 +131,13 @@
                         <div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Business Hours</h3>
                             <p class="text-gray-600">
-                                Sunday - Thursday: 8:00 AM - 6:00 PM<br>
-                                Friday - Saturday: Closed
+                                Saturday - Thursday: 8:00 AM - 5:00 PM<br>
+                                Friday : Closed
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Why Choose Us -->
                 <div class="mt-12 p-6 bg-gray-50 rounded-lg">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Why Choose Shannon Engineering?</h3>
@@ -184,18 +184,10 @@
                 Located in the heart of Doha, Qatar
             </p>
         </div>
-        
+
         <div class="bg-white rounded-lg shadow-lg p-8">
-            <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-                <div class="text-center">
-                    <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <p class="text-gray-600">Interactive Map</p>
-                    <p class="text-sm text-gray-500">Shannon Engineering Company Office</p>
-                    <p class="text-sm text-gray-500">Doha, Qatar</p>
-                </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d225.41106954520936!2d51.52275248400357!3d25.31840841393234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c53d25c33753%3A0x87b86508c9b9d5a7!2sAl%20Fardan%20Tower%20(Formerly%20Al%20Ghassar%20Tower)!5e0!3m2!1sen!2sqa!4v1752481099240!5m2!1sen!2sqa" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
@@ -211,14 +203,13 @@
             Contact Shannon Engineering Company today and let's discuss how we can bring your construction project to life with excellence and innovation.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+974XXXXXXXX" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
+            <a href="tel:+97444355656" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
                 Call Now
             </a>
-            <a href="mailto:info@shannonengineering.qa" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
+            <a href="mailto:info@shannoneng.com" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
                 Send Email
             </a>
         </div>
     </div>
 </section>
 @endsection
-

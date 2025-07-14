@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -15,9 +16,20 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+//Auth paths
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/category', [AdminController::class, 'category'])->name('admin.category');
+    Route::get('/project', [AdminController::class, 'addproject'])->name('admin.project');
+    Route::get('/project/view', [AdminController::class, 'existingprojects'])->name('admin.list');
+});
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/cms', [AdminController::class, 'test'])->name('cms');
+
 
 // About Us page
 Route::get('/about', [HomeController::class, 'about'])->name('about');
