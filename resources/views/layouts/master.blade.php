@@ -42,6 +42,7 @@
     @include('partials.logout-modal')
     @include('partials.scripts')
 
+
 </body>
 
 </html>

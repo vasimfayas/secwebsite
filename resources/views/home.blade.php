@@ -159,65 +159,88 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
-                Featured Projects
-            </h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                 Explore some of our landmark projects that showcase our expertise and commitment to excellence
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Lulu Abu Sidra Mall -->
-            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1555636222-cae831e670b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2077&q=80"
-                    alt="Lulu Abu Sidra Mall"
-                    class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lulu Abu Sidra Mall</h3>
-                    <p class="text-gray-600 mb-4">
-                        A state-of-the-art shopping mall featuring retail spaces, dining options, and entertainment facilities.
-                    </p>
-                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+        <!-- Scrollable Container -->
+        <div x-data="{ scroll: $refs.projects }" class="relative">
+            <!-- Arrow Left -->
+            <button @click="scroll.scrollBy({ left: -300, behavior: 'smooth' })"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <!-- Cards -->
+            <div x-ref="projects"
+                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide">
+                @php
+                $projects = [
+                [
+                'title' => 'Lulu Abu Sidra Mall',
+                'desc' => 'A state-of-the-art shopping mall featuring retail spaces, dining options, and entertainment facilities.',
+                'img' => 'https://images.unsplash.com/photo-1555636222-cae831e670b3?auto=format&fit=crop&w=2077&q=80'
+                ],
+                [
+                'title' => 'Lexus Showroom',
+                'desc' => 'A premium automotive showroom featuring modern architecture and sophisticated design elements.',
+                'img' => 'https://images.unsplash.com/photo-1562141961-d80459d5c4b8?auto=format&fit=crop&w=2070&q=80'
+                ],
+                [
+                'title' => 'Al Iman Emergency Hospital',
+                'desc' => 'A specialized emergency medical facility designed to provide rapid response healthcare services.',
+                'img' => 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=2073&q=80'
+                ],
+                [
+                'title' => 'Marina Business Tower',
+                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
+                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
+                ],[
+                'title' => 'Marina Business Tower',
+                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
+                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
+                ],[
+                'title' => 'Marina Business Tower',
+                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
+                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
+                ]
+                ];
+                @endphp
+
+                @foreach($projects as $project)
+                <div class="min-w-[300px] snap-center bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ $project['img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
+                        <p class="text-gray-600 mb-4">{{ $project['desc'] }}</p>
+                        <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+                    </div>
                 </div>
+                @endforeach
             </div>
 
-            <!-- Lexus Showroom -->
-            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1562141961-d80459d5c4b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Lexus Showroom"
-                    class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Lexus Showroom</h3>
-                    <p class="text-gray-600 mb-4">
-                        A premium automotive showroom featuring modern architecture and sophisticated design elements.
-                    </p>
-                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Al Iman Emergency Hospital -->
-            <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
-                    alt="Al Iman Emergency Hospital"
-                    class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Al Iman Emergency Hospital</h3>
-                    <p class="text-gray-600 mb-4">
-                        A specialized emergency medical facility designed to provide rapid response healthcare services.
-                    </p>
-                    <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
-                </div>
-            </div>
+            <!-- Arrow Right -->
+            <button @click="scroll.scrollBy({ left: 300, behavior: 'smooth' })"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
         </div>
 
-        <div class="text-center">
-            <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">
+        <div class="text-center mt-12">
+            <a href="{{ route('projects') }}"
+                class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block transition-all duration-300">
                 View All Projects
             </a>
         </div>
     </div>
 </section>
+
 
 <!-- Why Choose Us -->
 <section class="py-20 bg-white">

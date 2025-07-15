@@ -8,7 +8,9 @@
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <!-- Custom CSS -->
     <style>

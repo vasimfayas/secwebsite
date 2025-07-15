@@ -102,12 +102,12 @@
         }
 
         100% {
-            transform: translateX(-33.333%);
+            transform: translateX(-33.5%);
         }
     }
 
     .animate-scroll {
-        animation: scroll 40s linear infinite;
+        animation: scroll 35s linear infinite;
         display: flex;
     }
 
