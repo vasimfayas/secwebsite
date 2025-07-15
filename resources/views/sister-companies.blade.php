@@ -25,20 +25,29 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ([
-            'flameLogo.png',
-            'sidra.jpg',
-            'marble.jpg',
-            'acting.jpg'
-            ] as $logo)
-            <div class="bg-gray-50 p-6 rounded-xl shadow-md flex items-center justify-center h-56 transition-transform hover:scale-105 duration-300">
-                <img src="{{ asset('images/logo/' . $logo) }}"
-                    alt="Company Logo"
-                    class="max-h-32 object-contain" />
+        @php
+        $logos = [
+        ['file' => 'flameLogo.png', 'name' => 'Elctrical Solutions'],
+        ['file' => 'sidra.jpg', 'name' => 'MEP Solutions'],
+        ['file' => 'marble.jpg', 'name' => 'Marble Advisory'],
+        ['file' => 'acting.jpg', 'name' => 'Construction Equipments and Machinery Supplier'],
+        ];
+        @endphp
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 items-center">
+            @foreach ($logos as $logo)
+            <div class="w-full bg-white p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center">
+                <div class="h-24 w-full flex items-center justify-center">
+                    <img src="{{ asset('images/logo/' . $logo['file']) }}"
+                        alt="{{ $logo['name'] }}"
+                        class="h-full w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out" />
+                </div>
+                <p class="mt-4 text-sm text-gray-700 font-medium text-center">{{ $logo['name'] }}</p>
             </div>
             @endforeach
         </div>
+
+
     </div>
 </section>
 
