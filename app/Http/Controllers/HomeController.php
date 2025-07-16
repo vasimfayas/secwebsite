@@ -40,6 +40,11 @@ class HomeController extends Controller
         $projects = Project::where('category_id', $cat)->get();
         return view('project-list', compact('category', 'projects'));
     }
+
+    public function detailprojects()
+    {
+        return view('project-detail');
+    }
     /**
      * Display the sister companies page
      */

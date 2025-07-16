@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title',' Projects - Shannon Engineering Company')
+@section('title', $category->category . ' Projects - Shannon Engineering Company')
 
 @section('content')
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title">
-                {{$category->category }} Projects
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-4">
+                {{ $category->category }} Projects
             </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                'Explore our completed projects in the sector.'
+            <p class="text-lg text-gray-600 max-w-xl mx-auto">
+                Explore our delivered and under construction projects in this category.
             </p>
         </div>
 
@@ -20,19 +20,35 @@
             No projects found under this category at the moment.
         </div>
         @else
-        <!-- Project Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($projects as $project)
-            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group">
-                <div class="overflow-hidden h-48">
-                    <img src="{{ asset($project->card_img.'') }}" alt="{{ $project->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+            <div class="bg-white rounded-2xl overflow-hidden shadow group transition-all duration-300 hover:shadow-lg">
+                <!-- Image -->
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ asset($project->card_img) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $project->title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ $project->description }}</p>
-                    <a href="" class="text-red-600 hover:text-red-700 font-semibold">
-                        View Project →
-                    </a>
+
+                <!-- Content -->
+                <div class="p-5 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">{{ $project->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-1">{{ $project->location }}</p>
+                        <p class="text-sm text-gray-500 mb-2"><strong>Size:</strong> {{ $project->size }}</p>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $project->description }}</p>
+                        <span class="inline-block px-3 py-1 text-xs font-medium rounded-full 
+                            {{ strtolower($project->status) == 'ongoing' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700' }}">
+                            {{ strtolower($project->status) == 'ongoing' ? 'Under Construction' : 'Delivered' }}
+                        </span>
+                        <div class="pt-4 mt-auto">
+                            <a href="" class="inline-block text-red-600 hover:text-red-700 font-semibold">
+                                View Project →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+
                 </div>
             </div>
             @endforeach

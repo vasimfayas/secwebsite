@@ -24,6 +24,7 @@ class AddProject extends Component
         } else {
             // Set defaults for new form
             $this->data['status'] = 'ongoing';
+            $this->data['card_img'] = null;
             $this->data['visible'] = 1;
             $this->data['featured'] = 1;
         }
@@ -71,6 +72,7 @@ class AddProject extends Component
 
             session()->flash('success', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
             $this->reset(['data', 'projectId']);
+            $this->mount();
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Warning: ' . $e->getMessage());

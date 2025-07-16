@@ -37,6 +37,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 // Projects page
 Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
 Route::get('/projects/{cat}', [HomeController::class, 'listprojects'])->name('listprojects');
+Route::get('/projects/det/{id}', [HomeController::class, 'detailprojects'])->name('detailprojects');
 
 // Sister Companies page
 Route::get('/sister-companies', [HomeController::class, 'sisterCompanies'])->name('sister-companies');
