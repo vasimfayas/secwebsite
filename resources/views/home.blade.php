@@ -3,14 +3,36 @@
 @section('title', 'Shannon Engineering Company - Building Qatar\'s Future with Excellence and Innovation')
 
 @section('content')
+
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+<section
+    x-data="{
+        currentSlide: 0,
+        slides: 3,
+        goToSlide(index) {
+            this.currentSlide = index;
+            this.moveSlide();
+        },
+        nextSlide() {
+            this.currentSlide = (this.currentSlide + 1) % this.slides;
+            this.moveSlide();
+        },
+        moveSlide() {
+            document.getElementById('sliderWrapper').style.transform = `translateX(-${this.currentSlide * 100}%)`;
+        },
+        init() {
+            setInterval(() => this.nextSlide(), 8000);
+        }
+    }"
+    x-init="init"
+    class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
     <!-- Sliding Background -->
     <div class="slider-container">
-        <div id="sliderWrapper" class="w-full h-full flex">
+        <div id="sliderWrapper" class="w-full h-full flex transition-transform duration-1000 ease-in-out">
+            <div class="slide-bg" style="background-image: url('/images/home/1.jpg');"></div>
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80');"></div>
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=2070&q=80');"></div>
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=2070&q=80');"></div>
+
         </div>
     </div>
 
@@ -32,7 +54,22 @@
             </a>
         </div>
     </div>
+
+    <!-- Dot Navigation -->
+    <div class="absolute bottom-6 w-full flex justify-center space-x-3 z-20">
+        <template x-for="index in slides" :key="index">
+            <button
+                @click="goToSlide(index - 1)"
+                class="w-3 h-3 rounded-full border-2 border-white"
+                :class="{
+                    'bg-white': currentSlide === (index - 1),
+                    'bg-transparent': currentSlide !== (index - 1)
+                }">
+            </button>
+        </template>
+    </div>
 </section>
+
 
 <!-- About Shannon Engineering -->
 <section class="py-20 bg-gray-50">
@@ -165,58 +202,38 @@
             </p>
         </div>
 
+        @if(count($featuredprojects) === 0)
+        <div class="text-center text-gray-500 text-lg py-20">
+            No featured projects available at the moment. Please check back later.
+        </div>
+        @else
         <!-- Scrollable Container -->
-        <div x-data="{ scroll: $refs.projects }" class="relative">
+        <div
+            x-data="{ scroll: $refs.projects }"
+            class="relative">
+
             <!-- Arrow Left -->
+            @if(count($featuredprojects) > 3)
             <button @click="scroll.scrollBy({ left: -300, behavior: 'smooth' })"
                 class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
                 <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
+            @endif
 
             <!-- Cards -->
-            <div x-ref="projects"
-                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide">
-                @php
-                $projects = [
-                [
-                'title' => 'Lulu Abu Sidra Mall',
-                'desc' => 'A state-of-the-art shopping mall featuring retail spaces, dining options, and entertainment facilities.',
-                'img' => 'https://images.unsplash.com/photo-1555636222-cae831e670b3?auto=format&fit=crop&w=2077&q=80'
-                ],
-                [
-                'title' => 'Lexus Showroom',
-                'desc' => 'A premium automotive showroom featuring modern architecture and sophisticated design elements.',
-                'img' => 'https://images.unsplash.com/photo-1562141961-d80459d5c4b8?auto=format&fit=crop&w=2070&q=80'
-                ],
-                [
-                'title' => 'Al Iman Emergency Hospital',
-                'desc' => 'A specialized emergency medical facility designed to provide rapid response healthcare services.',
-                'img' => 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=2073&q=80'
-                ],
-                [
-                'title' => 'Marina Business Tower',
-                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
-                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
-                ],[
-                'title' => 'Marina Business Tower',
-                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
-                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
-                ],[
-                'title' => 'Marina Business Tower',
-                'desc' => 'An iconic office building equipped with modern commercial infrastructure and LEED-certified design.',
-                'img' => 'https://images.unsplash.com/photo-1617107086276-3c9dfbad816b?auto=format&fit=crop&w=2073&q=80'
-                ]
-                ];
-                @endphp
+            <div
+                x-ref="projects"
+                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
+                {{ count($featuredprojects) === 1 ? 'justify-center' : '' }}">
 
-                @foreach($projects as $project)
+                @foreach($featuredprojects as $project)
                 <div class="min-w-[300px] snap-center bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="{{ $project['img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
+                    <img src="{{ $project['card_img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
-                        <p class="text-gray-600 mb-4">{{ $project['desc'] }}</p>
+                        <p class="text-gray-600 mb-4">{{ $project['description'] }}</p>
                         <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
                     </div>
                 </div>
@@ -224,12 +241,14 @@
             </div>
 
             <!-- Arrow Right -->
+            @if(count($featuredprojects) > 3)
             <button @click="scroll.scrollBy({ left: 300, behavior: 'smooth' })"
                 class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
                 <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </button>
+            @endif
         </div>
 
         <div class="text-center mt-12">
@@ -238,8 +257,10 @@
                 View All Projects
             </a>
         </div>
+        @endif
     </div>
 </section>
+
 
 
 <!-- Why Choose Us -->
@@ -305,17 +326,3 @@
     </div>
 </section>
 @endsection
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sliderWrapper = document.getElementById('sliderWrapper');
-        const totalSlides = sliderWrapper.children.length;
-        let index = 0;
-
-        setInterval(() => {
-            index = (index + 1) % totalSlides;
-            sliderWrapper.style.transform = `translateX(-${index * 100}%)`;
-        }, 5000);
-    });
-</script>
-@endpush

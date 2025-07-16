@@ -24,8 +24,8 @@ class AddProject extends Component
         } else {
             // Set defaults for new form
             $this->data['status'] = 'ongoing';
-            $this->data['visible'] = true;
-            $this->data['featured'] = false;
+            $this->data['visible'] = 1;
+            $this->data['featured'] = 1;
         }
     }
 
