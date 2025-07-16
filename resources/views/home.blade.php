@@ -29,7 +29,7 @@
     <!-- Sliding Background -->
     <div class="slider-container">
         <div id="sliderWrapper" class="w-full h-full flex transition-transform duration-1000 ease-in-out">
-            <div class="slide-bg" style="background-image: url('/images/home/1.jpg');"></div>
+            <div class="slide-bg" style="background-image: url('/images/home/1.webp');"></div>
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80');"></div>
             <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=2070&q=80');"></div>
 
