@@ -3,7 +3,7 @@
 @section('title', 'Shannon Engineering Company - Building Qatar\'s Future with Excellence and Innovation')
 
 @section('content')
-
+@php use Illuminate\Support\Str; @endphp
 <!-- Hero Section -->
 <section
     x-data="{
@@ -228,12 +228,13 @@
                 class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
                 {{ count($featuredprojects) === 1 ? 'justify-center' : '' }}">
 
+
                 @foreach($featuredprojects as $project)
                 <div class="min-w-[300px] snap-center bg-white rounded-lg shadow-lg overflow-hidden">
                     <img src="{{ 'storage/'.$project['card_img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
-                        <p class="text-gray-600 mb-4">{{ $project['description'] }}</p>
+                        <p class="text-gray-600 mb-4">{{ Str::words($project['description'], 25, '...') }}</p>
                         <a href="{{ route('projects') }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
                     </div>
                 </div>
