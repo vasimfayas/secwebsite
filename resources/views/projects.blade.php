@@ -142,7 +142,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Residential -->
             @foreach($categories as $cat)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-white rounded-2xl overflow-hidden shadow group transition-all duration-300 hover:shadow-lg">
                 <img src="{{asset('storage/' .$cat->card_img) }}"
                     alt="Residential Projects"
                     class="w-full h-48 object-cover">
