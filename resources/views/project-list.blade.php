@@ -41,7 +41,7 @@
                             {{ strtolower($project->status) == 'ongoing' ? 'Under Construction' : 'Delivered' }}
                         </span>
                         <div class="pt-4 mt-auto">
-                            <a href="" class="inline-block text-red-600 hover:text-red-700 font-semibold">
+                            <a href="{{route('detailprojects',$project->id)}}" class="inline-block text-red-600 hover:text-red-700 font-semibold">
                                 View Project →
                             </a>
                         </div>
@@ -54,6 +54,15 @@
             @endforeach
         </div>
         @endif
+    </div>
+
+</section>
+
+<section>
+    <div class="text-center my-2">
+        <a href="{{ route('projects')}}" class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition">
+            ← Back to Projects
+        </a>
     </div>
 </section>
 @endsection

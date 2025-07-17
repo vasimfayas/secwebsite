@@ -76,6 +76,20 @@
                 <img src="{{ asset('storage/' . $data['card_img']) }}" class="mt-2" width="120">
                 @endif
             </div>
+            <!-- Gallery Images -->
+            <div class="form-group">
+                <label>Gallery Images</label>
+                <input type="file" class="form-control-file" wire:model.defer="gallery" multiple>
+                @error('gallery.*') <small class="text-danger">{{ $message }}</small> @enderror
+
+                @if ($gallery)
+                <div class="mt-3">
+                    @foreach ($gallery as $image)
+                    <img src="{{ $image->temporaryUrl() }}" width="100" class="rounded shadow mr-2 mb-2">
+                    @endforeach
+                </div>
+                @endif
+            </div>
 
             <!-- Featured -->
             <div class="form-group">

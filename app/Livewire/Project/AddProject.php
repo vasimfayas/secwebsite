@@ -14,6 +14,8 @@ class AddProject extends Component
 
     public $projectId;
     public $data = [];
+    public $gallery = [];
+
 
     public function mount($id = null)
     {
@@ -46,6 +48,7 @@ class AddProject extends Component
                 'data.card_img' => $this->projectId ? 'nullable' : 'required',
                 'data.featured' => 'required|boolean',
                 'data.size' => 'nullable|string|max:255',
+                'gallery.*' => 'nullable|image|max:10480'
             ], [
                 'data.title.required' => 'The project title is required.',
                 'data.category_id.required' => 'Please select a project category.',
@@ -63,15 +66,24 @@ class AddProject extends Component
             }
 
             // Insert or update the project
-            Project::updateOrCreate(
+            $project = Project::updateOrCreate(
                 ['id' => $this->projectId],
                 $this->data
             );
+            if (!empty($this->gallery)) {
+                foreach ($this->gallery as $index => $image) {
+                    $path = $image->store('project-gallery', 'public');
+                    $project->images()->create([
+                        'image_path' => $path,
+                        'position' => $index + 1
+                    ]);
+                }
+            }
 
             DB::commit();
 
             session()->flash('success', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
-            $this->reset(['data', 'projectId']);
+            $this->reset(['data', 'projectId', 'gallery']);
             $this->mount();
         } catch (\Exception $e) {
             DB::rollBack();

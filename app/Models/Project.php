@@ -25,4 +25,9 @@ class Project extends Model
     {
         return $this->belongsTo(ProjectCategory::class, 'category_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProjectImage::class)->orderBy('position');
+    }
 }

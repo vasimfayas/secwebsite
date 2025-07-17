@@ -1,16 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Al Wakrah Health Center - Project Details')
+@section('title',$project->title.' Project - Shannon Engineering Company')
 
 @section('content')
-<section class="bg-gray-50 py-16" x-data="{
-    activeImage: '{{ asset('images/home/1.webp') }}',
-    images: [
-        '{{ asset('images/home/1.webp') }}',
-        '{{ asset('images/client/1.jpg') }}',
-        '{{ asset('images/home/3.webp') }}'
-    ]
-}">
+<section class="bg-gray-50 py-16" x-data='{
+        activeImage: @json(asset("storage/" . $project->card_img)),
+        images: @json($images->map(fn($img) => asset("storage/" . $img->image_path)))
+    }'>
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Hero Image with Thumbnails -->
@@ -34,10 +30,10 @@
 
         <!-- Project Title & Status -->
         <div class="mb-8 text-center">
-            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Al Wakrah Health Center</h1>
+            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">{{$project->title}}</h1>
             <span class="inline-block px-4 py-1 rounded-full text-sm font-medium 
                 bg-yellow-100 text-yellow-700">
-                Under Construction
+                {{$project->status}}
             </span>
         </div>
 
@@ -45,11 +41,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-700 mb-12">
             <div>
                 <h2 class="text-lg font-semibold text-gray-900 mb-2">Location</h2>
-                <p>Al Wakrah, Doha, Qatar</p>
+                <p>{{$project->location}}</p>
             </div>
             <div>
                 <h2 class="text-lg font-semibold text-gray-900 mb-2">Project Size</h2>
-                <p>18,000 m²</p>
+                <p>{{$project->size}}</p>
             </div>
         </div>
 
@@ -57,15 +53,13 @@
         <div class="mb-16">
             <h2 class="text-lg font-semibold text-gray-900 mb-4">Project Description</h2>
             <p class="text-gray-600 leading-relaxed">
-                The Al Wakrah Health Center project is a state-of-the-art healthcare facility under development in the rapidly growing city of Al Wakrah.
-                Designed to meet the increasing demand for quality medical services in the southern region of Qatar, the center features modern architectural elements,
-                energy-efficient design, and high-end infrastructure to support both outpatient and emergency services.
+                {{$project->description}}
             </p>
         </div>
 
         <!-- Back Button -->
         <div class="text-center">
-            <a href="{{ url('/projects') }}" class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition">
+            <a href="{{ route('listprojects',$project->category_id)}}" class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition">
                 ← Back to Projects
             </a>
         </div>

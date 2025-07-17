@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -41,9 +42,11 @@ class HomeController extends Controller
         return view('project-list', compact('category', 'projects'));
     }
 
-    public function detailprojects()
+    public function detailprojects($id)
     {
-        return view('project-detail');
+        $project = Project::findorfail($id);
+        $images = ProjectImage::where('project_id', $id)->get();
+        return view('project-detail', compact('project', 'images'));
     }
     /**
      * Display the sister companies page
