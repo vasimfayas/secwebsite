@@ -34,7 +34,7 @@
                     <div class="flex-grow">
                         <h3 class="text-xl font-semibold text-gray-800 mb-1">{{ $project->title }}</h3>
                         <p class="text-sm text-gray-500 mb-1">{{ $project->location }}</p>
-                        <p class="text-sm text-gray-500 mb-2"><strong>Size:</strong> {{ $project->size }}</p>
+                        <p class="text-sm text-gray-500 mb-2"><strong>Size:</strong> {{ $project->size ? formatIndianNumber($project->size) : '_____'}} m<sup>2</sup></p>
                         <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $project->description }}</p>
                         <span class="inline-block px-3 py-1 text-xs font-medium rounded-full 
                             {{ strtolower($project->status) == 'ongoing' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700' }}">
