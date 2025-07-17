@@ -230,7 +230,7 @@
 
                 @foreach($featuredprojects as $project)
                 <div class="min-w-[300px] snap-center bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="{{ $project['card_img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
+                    <img src="{{ 'storage/'.$project['card_img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
                         <p class="text-gray-600 mb-4">{{ $project['description'] }}</p>
