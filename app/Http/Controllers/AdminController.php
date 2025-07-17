@@ -18,8 +18,8 @@ class AdminController extends Controller
     {
         return view('admin.category');
     }
-    public function addproject()
+    public function addproject($id = null)
     {
-        return view('admin.project');
+        return view('admin.project', ['projectId' => $id]);
     }
 }

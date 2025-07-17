@@ -34,7 +34,7 @@
 
             <div class="card-footer text-right bg-white border-top-0">
                 <a href="#" class="btn btn-sm btn-outline-primary">View</a>
-                <a href="#" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="{{route('admin.project',$project->id)}}" class="btn btn-sm btn-outline-secondary">Edit</a>
             </div>
         </div>
     </div>

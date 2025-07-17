@@ -24,8 +24,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/category', [AdminController::class, 'category'])->name('admin.category');
-    Route::get('/project', [AdminController::class, 'addproject'])->name('admin.project');
-    Route::get('/project/view', [AdminController::class, 'existingprojects'])->name('admin.list');
+    Route::get('/project/{id?}', [AdminController::class, 'addproject'])->name('admin.project');
+    Route::get('/project/all/view', [AdminController::class, 'existingprojects'])->name('admin.list');
 });
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');

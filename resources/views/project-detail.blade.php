@@ -45,7 +45,7 @@
             </div>
             <div>
                 <h2 class="text-lg font-semibold text-gray-900 mb-2">Project Size</h2>
-                <p>{{$project->size}}</p>
+                <p>{{ $project->size ? formatIndianNumber($project->size) : '_____'}} m<sup>2</sup></p>
             </div>
         </div>
 
