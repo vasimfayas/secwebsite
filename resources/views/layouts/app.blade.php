@@ -135,8 +135,9 @@
                         </div>
 
                         <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('siste-companies') ? 'text-red-600' : '' }}">Sister Companies</a>
-                        <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">Careers</a>
                         <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('clients') ? 'text-red-600' : '' }}">Our Clients</a>
+                        <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">Careers</a>
+
                         <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">Contact</a>
                     </div>
                 </div>
@@ -160,8 +161,8 @@
                 <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">About us</a>
                 <a href="{{ route('projects') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Projects</a>
                 <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Sister Companies</a>
-                <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Careers</a>
                 <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Our Clients</a>
+                <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Careers</a>
                 <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Contact</a>
             </div>
         </div>

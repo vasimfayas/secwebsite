@@ -22,4 +22,8 @@ class AdminController extends Controller
     {
         return view('admin.project', ['projectId' => $id]);
     }
+    public function job()
+    {
+        return view('admin.career');
+    }
 }

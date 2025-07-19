@@ -26,6 +26,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/category', [AdminController::class, 'category'])->name('admin.category');
     Route::get('/project/{id?}', [AdminController::class, 'addproject'])->name('admin.project');
     Route::get('/project/all/view', [AdminController::class, 'existingprojects'])->name('admin.list');
+    Route::get('/jobs', [AdminController::class, 'job'])->name('admin.career');
 });
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');

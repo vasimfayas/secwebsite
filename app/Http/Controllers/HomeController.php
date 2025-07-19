@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Career;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\ProjectImage;
@@ -61,7 +62,8 @@ class HomeController extends Controller
      */
     public function careers()
     {
-        return view('careers');
+        $careers = Career::all();
+        return view('careers', compact('careers'));
     }
 
     /**

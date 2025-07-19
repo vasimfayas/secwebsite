@@ -24,7 +24,7 @@
                 Join a team that values excellence, innovation, and professional growth
             </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="text-center">
                 <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -37,7 +37,7 @@
                     Opportunities for professional development and career advancement in a growing company.
                 </p>
             </div>
-            
+
             <div class="text-center">
                 <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@
                     Work alongside experienced professionals in a collaborative and supportive environment.
                 </p>
             </div>
-            
+
             <div class="text-center">
                 <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,61 +76,40 @@
                 Explore exciting career opportunities across various departments
             </p>
         </div>
-        
+
         <div class="space-y-6">
             <!-- Job Listing -->
+            @forelse($careers as $career)
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div class="mb-4 md:mb-0">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Manager</h3>
-                        <p class="text-gray-600 mb-2">Lead construction projects from planning to completion</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Full-time</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Doha</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">5+ Years Experience</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $career->title }}</h3>
+                        <p class="text-gray-600 mb-2">{{ $career->desc }}</p>
+
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">{{ $career->period }}</span>
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">{{ $career->location }}</span>
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">{{ $career->experience }}</span>
                         </div>
+
+                        @if ($career->deadline)
+                        <div class="text-sm text-gray-600 mt-1">
+                            <strong>Apply by:</strong> {{ \Carbon\Carbon::parse($career->deadline)->format('F j, Y') }}
+                        </div>
+                        @endif
                     </div>
+
                     <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                         Apply Now
                     </a>
                 </div>
             </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div class="mb-4 md:mb-0">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Civil Engineer</h3>
-                        <p class="text-gray-600 mb-2">Design and oversee construction of infrastructure projects</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Full-time</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Doha</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">3+ Years Experience</span>
-                        </div>
-                    </div>
-                    <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                        Apply Now
-                    </a>
-                </div>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div class="mb-4 md:mb-0">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Site Supervisor</h3>
-                        <p class="text-gray-600 mb-2">Supervise daily construction activities and ensure quality standards</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Full-time</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Multiple Locations</span>
-                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">2+ Years Experience</span>
-                        </div>
-                    </div>
-                    <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                        Apply Now
-                    </a>
-                </div>
-            </div>
+            @empty
+            <p class="text-gray-500 text-center">No careers available at the moment.</p>
+            @endforelse
+
         </div>
-        
+
         <div class="text-center mt-12">
             <p class="text-gray-600 mb-6">Don't see a position that fits? We're always looking for talented individuals.</p>
             <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block transition-colors">
@@ -155,4 +134,3 @@
     </div>
 </section>
 @endsection
-
