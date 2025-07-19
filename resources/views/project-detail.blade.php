@@ -13,7 +13,7 @@
         <div class="mb-10">
             <!-- Main Image -->
             <div class="rounded-xl overflow-hidden shadow mb-4">
-                <img :src="activeImage" alt="Project Image" class="w-full h-96 object-cover transition-all duration-300">
+                <img :src="activeImage" alt="Project Image" class="w-full h-96 object-contain transition-all duration-300">
             </div>
 
             <!-- Thumbnail Queue -->
@@ -45,7 +45,7 @@
             </div>
             <div>
                 <h2 class="text-lg font-semibold text-gray-900 mb-2">Project Size</h2>
-                <p>{{ $project->size ? formatIndianNumber($project->size) : '_____'}} m<sup>2</sup></p>
+                <p>{!! $project->size ? formatIndianNumber($project->size).' m<sup>2</sup>': 'N/A'!!} </p>
             </div>
         </div>
 
