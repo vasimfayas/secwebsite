@@ -67,6 +67,11 @@
 
 <!-- Current Openings -->
 <section class="py-20 bg-gray-50">
+    @if (session()->has('success'))
+    <div class="bg-green-100 text-green-800 p-2 rounded mb-3">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
@@ -99,13 +104,19 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                        Apply Now
+                    <!-- simplest fix: give the element its own x-data scope -->
+                    <a
+                        x-data {{-- creates an Alpine context --}}
+                        href="javascript:void(0)"
+                        @click="$dispatch('open-career-modal', { id: {{ $career->id }} })"
+                        class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        Apply Now
                     </a>
+
                 </div>
             </div>
             @empty
-            <p class="text-gray-500 text-center">No careers available at the moment.</p>
+            <p class="text-gray-500 text-center">No openings available at the moment.</p>
             @endforelse
 
         </div>
@@ -133,4 +144,8 @@
         </a>
     </div>
 </section>
+
+@endsection
+@section('component')
+@livewire('mail.career')
 @endsection

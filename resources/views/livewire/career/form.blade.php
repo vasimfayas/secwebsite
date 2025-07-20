@@ -80,5 +80,6 @@
     <!-- Existing Jobs Table Placeholder -->
     <div class="card shadow p-4">
         <h5 class="mb-3">Existing Job Posts</h5>
+        @livewire('career.jobs')
     </div>
 </div>

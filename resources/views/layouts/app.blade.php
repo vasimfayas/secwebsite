@@ -9,8 +9,8 @@
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
     <!-- Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 
-    <script src="//unpkg.com/alpinejs" defer></script>
 
     <!-- Custom CSS -->
     <style>
@@ -250,6 +250,8 @@
             });
         });
     </script>
+    @yield('component')
+    @livewireScripts
     @stack('scripts')
 </body>
 

@@ -18,55 +18,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Form -->
-            <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 section-title">
-                    Get In Touch
-                </h2>
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                            <input type="text" id="first_name" name="first_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
-                        </div>
-                        <div>
-                            <label for="last_name" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
-                    </div>
-
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    </div>
-
-                    <div>
-                        <label for="project_type" class="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
-                        <select id="project_type" name="project_type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                            <option value="">Select Project Type</option>
-                            <option value="residential">Residential Construction</option>
-                            <option value="commercial">Commercial Development</option>
-                            <option value="industrial">Industrial Facilities</option>
-                            <option value="medical">Medical Buildings</option>
-                            <option value="religious">Mosque Construction</option>
-                            <option value="engineering">Engineering Solutions</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
-                        <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Tell us about your project requirements, timeline, and any specific needs..."></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg">
-                        Send Message
-                    </button>
-                </form>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                @livewire('mail.contact')
             </div>
 
             <!-- Contact Information -->
