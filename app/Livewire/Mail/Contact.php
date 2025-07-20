@@ -25,7 +25,7 @@ class Contact extends Component
 
         // Send mail
         Mail::raw($this->buildMessage(), function ($msg) {
-            $msg->to('you@yourdomain.com') // change this to your receiving email
+            $msg->to('vasim@shannoneng.com') // change this to your receiving email
                 ->subject('New Project Inquiry from ' . $this->first_name . ' ' . $this->last_name);
         });
 
