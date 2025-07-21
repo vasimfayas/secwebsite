@@ -45,12 +45,11 @@
         <div id="sliderWrapper" x-ref="sliderWrapper"
             class="flex h-full transition-transform duration-1000 ease-in-out">
             <div class="flex-none w-full h-full bg-cover bg-center"
+                style="background-image:url('/images/home/lexus.webp')"></div>
+            <div class="flex-none w-full h-full bg-cover bg-center"
                 style="background-image:url('/images/home/lulu.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/westbay.webp')"></div>
-            <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/safety.webp')"></div>
-
+                style="background-image:url('/images/home/lulu2.webp')"></div>
         </div>
     </div>
 
@@ -105,7 +104,7 @@
                 </a>
             </div>
             <div class="relative">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                <img src="{{asset('/images/home/safety.webp')}}"
                     alt="Modern construction site"
                     class="rounded-lg shadow-xl w-full h-96 object-cover">
             </div>
