@@ -46,7 +46,7 @@ class Career extends Component
 
         // Store logic (e.g., DB insert or email) goes here
         Mail::html($this->buildMessage(), function ($msg) use ($cvPath) {
-            $msg->to(['vasim@shannoneng.com', 's.subhash@shannoneng.com']) // array of emails
+            $msg->to('hr@shannoneng.com') // array of emails
                 ->subject('New Application - ' . $this->job)
                 ->attach(storage_path('app/' . $cvPath));
         });

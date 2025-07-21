@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 class Contact extends Component
 {
-    public $first_name, $last_name, $email, $phone, $project_type, $message;
+    public $first_name, $last_name, $email, $phone, $message;
 
 
     public function submit()
@@ -19,7 +19,6 @@ class Contact extends Component
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:50',
-            'project_type' => 'required|string|max:255',
             'message' => 'required|string|max:2000',
         ]);
 
@@ -30,7 +29,7 @@ class Contact extends Component
         });
 
         session()->flash('success', 'Your message has been sent!');
-        $this->reset(['first_name', 'last_name', 'email', 'phone', 'project_type', 'message']);
+        $this->reset(['first_name', 'last_name', 'email', 'phone', 'message']);
     }
 
     protected function buildMessage()
@@ -49,10 +48,6 @@ class Contact extends Component
     <tr>
         <td style="font-weight:bold;">Phone:</td>
         <td>{$this->phone}</td>
-    </tr>
-    <tr>
-        <td style="font-weight:bold;">Project Type:</td>
-        <td>{$this->project_type}</td>
     </tr>
     <tr>
         <td style="font-weight:bold; vertical-align: top;">Message:</td>

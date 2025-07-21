@@ -6,35 +6,55 @@
 @php use Illuminate\Support\Str; @endphp
 <!-- Hero Section -->
 <section
-    x-data="{
+    x-data="() => ({
         currentSlide: 0,
-        slides: 3,
-        goToSlide(index) {
-            this.currentSlide = index;
+        slides: 0,
+        intervalId: null,
+
+        goToSlide(i) {
+            this.currentSlide = i;
             this.moveSlide();
         },
         nextSlide() {
             this.currentSlide = (this.currentSlide + 1) % this.slides;
+            console.log('currentSlide:', this.currentSlide);   // ✅ correct case
             this.moveSlide();
         },
         moveSlide() {
-            document.getElementById('sliderWrapper').style.transform = `translateX(-${this.currentSlide * 100}%)`;
+            this.$refs.sliderWrapper.style.transform =
+              `translateX(-${this.currentSlide * 100}%)`;
         },
+
+        startAuto() {                         // ← runs only once
+            if (this.intervalId) clearInterval(this.intervalId);
+            this.intervalId = setInterval(() => this.nextSlide(), 8000);
+        },
+
         init() {
-            setInterval(() => this.nextSlide(), 8000);
+            this.$nextTick(() => {            // wait until DOM finished
+                this.slides = this.$refs.sliderWrapper.children.length;
+                this.startAuto();
+            });
         }
-    }"
+    })"
     x-init="init"
     class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
-    <!-- Sliding Background -->
-    <div class="slider-container">
-        <div id="sliderWrapper" class="w-full h-full flex transition-transform duration-1000 ease-in-out">
-            <div class="slide-bg" style="background-image: url('/images/home/1.webp');"></div>
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2070&q=80');"></div>
-            <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=2070&q=80');"></div>
 
+    <!-- Sliding Background -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <div id="sliderWrapper" x-ref="sliderWrapper"
+            class="flex h-full transition-transform duration-1000 ease-in-out">
+            <div class="flex-none w-full h-full bg-cover bg-center"
+                style="background-image:url('/images/home/4.webp')"></div>
+            <div class="flex-none w-full h-full bg-cover bg-center"
+                style="background-image:url('/images/home/2.webp')"></div>
+            <div class="flex-none w-full h-full bg-cover bg-center"
+                style="background-image:url('/images/home/3.webp')"></div>
+            <div class="flex-none w-full h-full bg-cover bg-center"
+                style="background-image:url('/images/home/5.webp')"></div>
         </div>
     </div>
+
 
     <!-- Foreground Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -48,9 +68,6 @@
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-block">
                 Explore Our Projects
-            </a>
-            <a href="{{ route('contact') }}" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
-                Contact Us Today
             </a>
         </div>
     </div>

@@ -121,12 +121,7 @@
 
         </div>
 
-        <div class="text-center mt-12">
-            <p class="text-gray-600 mb-6">Don't see a position that fits? We're always looking for talented individuals.</p>
-            <a href="{{ route('contact') }}" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block transition-colors">
-                Send Your Resume
-            </a>
-        </div>
+
     </div>
 </section>
 
@@ -139,9 +134,14 @@
         <p class="text-xl mb-8 max-w-3xl mx-auto">
             Join Shannon Engineering Company and be part of building Qatar's future with excellence and innovation.
         </p>
-        <a href="{{ route('contact') }}" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
-            Apply Today
+        <a
+            x-data {{-- creates an Alpine context --}}
+            href="javascript:void(0)"
+            @click="$dispatch('open-career-modal')"
+            class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
+            Apply Now
         </a>
+
     </div>
 </section>
 

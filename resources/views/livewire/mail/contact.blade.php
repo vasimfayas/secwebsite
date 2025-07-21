@@ -32,23 +32,10 @@
             <input type="tel" wire:model="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
         </div>
 
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
-            <select wire:model="project_type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
-                <option value="">Select Project Type</option>
-                <option value="residential">Residential Construction</option>
-                <option value="commercial">Commercial Development</option>
-                <option value="industrial">Industrial Facilities</option>
-                <option value="medical">Medical Buildings</option>
-                <option value="religious">Mosque Construction</option>
-                <option value="engineering">Engineering Solutions</option>
-                <option value="other">Other</option>
-            </select>
-            @error('project_type') <small class="text-red-600">{{ $message }}</small> @enderror
-        </div>
+
 
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Project Details</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
             <textarea rows="6" wire:model="message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"></textarea>
             @error('message') <small class="text-red-600">{{ $message }}</small> @enderror
         </div>

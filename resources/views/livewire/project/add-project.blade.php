@@ -81,7 +81,9 @@
                 <label>Gallery Images</label>
                 <input type="file" class="form-control-file" wire:model.defer="gallery" multiple>
                 @error('gallery.*') <small class="text-danger">{{ $message }}</small> @enderror
-
+                <div wire:loading wire:target="gallery">
+                    <p>Uploading images...</p>
+                </div>
                 @if ($gallery)
                 <div class="mt-3">
                     @foreach ($gallery as $image)

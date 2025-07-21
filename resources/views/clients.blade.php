@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="bg-gray-800 text-white py-20">
+<section id="clients" class="bg-gray-800 text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Clients</h1>
 
@@ -46,7 +46,7 @@
 </section>
 
 <!-- Client Testimonials -->
-<section class="py-20 bg-white">
+<section id="consultants" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
@@ -60,7 +60,7 @@
         $consultant = [
         '1.jpg', '2.png', '3.jpg', '4.jpg', '5.jpg',
         '6.jpg', '7.png', '8.jpg', '9.jpg', '10.jpg',
-        '11.jpg',
+        '11.jpg','12.png'
         ];
         @endphp
 
