@@ -45,13 +45,13 @@
         <div id="sliderWrapper" x-ref="sliderWrapper"
             class="flex h-full transition-transform duration-1000 ease-in-out">
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/4.webp')"></div>
+                style="background-image:url('/images/home/6.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/2.webp')"></div>
+                style="background-image:url('/images/home/4.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
                 style="background-image:url('/images/home/3.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/5.webp')"></div>
+                style="background-image:url('/images/home/2.webp')"></div>
         </div>
     </div>
 
