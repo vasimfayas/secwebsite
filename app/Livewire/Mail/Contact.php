@@ -24,8 +24,8 @@ class Contact extends Component
         ]);
 
         // Send mail
-        Mail::raw($this->buildMessage(), function ($msg) {
-            $msg->to('vasim@shannoneng.com') // change this to your receiving email
+        Mail::html($this->buildMessage(), function ($msg) {
+            $msg->to('vasim@shannoneng.com')
                 ->subject('New Project Inquiry from ' . $this->first_name . ' ' . $this->last_name);
         });
 
@@ -36,15 +36,31 @@ class Contact extends Component
     protected function buildMessage()
     {
         return <<<EOT
-New Project Inquiry
-
-Name: {$this->first_name} {$this->last_name}
-Email: {$this->email}
-Phone: {$this->phone}
-Project Type: {$this->project_type}
-
-Message:
-{$this->message}
+<h2 style="color:#2e6c80;">New Project Inquiry Received</h2>
+<table cellpadding="8" cellspacing="0" border="0" style="font-family:Arial, sans-serif; border-collapse: collapse;">
+    <tr>
+        <td style="font-weight:bold;">Name:</td>
+        <td>{$this->first_name} {$this->last_name}</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">Email:</td>
+        <td>{$this->email}</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">Phone:</td>
+        <td>{$this->phone}</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;">Project Type:</td>
+        <td>{$this->project_type}</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; vertical-align: top;">Message:</td>
+        <td>{$this->message}</td>
+    </tr>
+</table>
+<hr style="margin-top: 20px;">
+<p style="font-size: 12px; color: #777;">This is an automated message from your website. Please do not reply to this email directly.</p>
 EOT;
     }
 

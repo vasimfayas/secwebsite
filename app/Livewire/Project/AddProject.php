@@ -4,6 +4,7 @@ namespace App\Livewire\Project;
 
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\ProjectImage;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -70,7 +71,9 @@ class AddProject extends Component
                 ['id' => $this->projectId],
                 $this->data
             );
+
             if (!empty($this->gallery)) {
+                $project->images()->delete();
                 foreach ($this->gallery as $index => $image) {
                     $path = $image->store('project-gallery', 'public');
                     $project->images()->create([
@@ -85,6 +88,7 @@ class AddProject extends Component
             session()->flash('success', $this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
             $this->reset(['data', 'projectId', 'gallery']);
             $this->mount();
+            $this->redirect(route('admin.project'));
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Warning: ' . $e->getMessage());

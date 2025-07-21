@@ -45,8 +45,8 @@ class Career extends Component
         // fires event to Alpine
 
         // Store logic (e.g., DB insert or email) goes here
-        Mail::raw($this->buildMessage(), function ($msg) use ($cvPath) {
-            $msg->to(['hr@shannoneng.com', 'ibrahim@shannoneng.com']) // array of emails
+        Mail::html($this->buildMessage(), function ($msg) use ($cvPath) {
+            $msg->to(['vasim@shannoneng.com', 's.subhash@shannoneng.com']) // array of emails
                 ->subject('New Application - ' . $this->job)
                 ->attach(storage_path('app/' . $cvPath));
         });
@@ -64,27 +64,49 @@ class Career extends Component
         $jobTitle = is_string($this->job) ? $this->job : ($this->job->title ?? 'General Application');
 
         return <<<EOT
-------------------------------------------------------------
-                   JOB APPLICATION DETAILS
-------------------------------------------------------------
-
-Name           : {$this->first_name} {$this->last_name}
-Email          : {$this->email}
-Phone          : {$this->contact_number}
-Age            : {$this->age}
-Nationality    : {$this->nationality}
-Experience     : {$this->experience}
-Position Applied For: {$jobTitle}
-
-------------------------------------------------------------
-                    COVER LETTER
-------------------------------------------------------------
-
-{$this->cover_letter}
-
-------------------------------------------------------------
-Application submitted via Shannon Engineering Careers Portal
-EOT;
+    <h2 style="color:#2e6c80; font-family:Arial, sans-serif;">New Job Application Received</h2>
+    
+    <table cellpadding="8" cellspacing="0" border="0" style="font-family:Arial, sans-serif; border-collapse: collapse; width:100%; max-width:600px;">
+        <tr>
+            <td style="font-weight:bold;">Name:</td>
+            <td>{$this->first_name} {$this->last_name}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Email:</td>
+            <td>{$this->email}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Phone:</td>
+            <td>{$this->contact_number}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Age:</td>
+            <td>{$this->age}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Nationality:</td>
+            <td>{$this->nationality}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Experience:</td>
+            <td>{$this->experience}</td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">Position Applied For:</td>
+            <td>{$jobTitle}</td>
+        </tr>
+    </table>
+    
+    <h3 style="margin-top:30px; font-family:Arial, sans-serif;">Cover Letter</h3>
+    <p style="padding: 10px; background-color:#f9f9f9; border-left:4px solid #2e6c80; font-family:Arial, sans-serif;">
+        {$this->cover_letter}
+    </p>
+    
+    <hr style="margin-top: 30px;">
+    <p style="font-size: 12px; color: #777; font-family:Arial, sans-serif;">
+        Application submitted via <strong>Shannon Engineering Careers Portal</strong>.
+    </p>
+    EOT;
     }
 
     public function render()
