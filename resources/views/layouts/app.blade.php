@@ -83,18 +83,18 @@
 <body class="bg-white">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+        <div>
+            <div class="flex justify-between items-center h-16 px-4 md:px-8">
                 <!-- Logo -->
-                <div class="flex-shrink-0">
+                <div class="flex-shrink-0 mr-10">
                     <a href="{{ route('home') }}" class="flex items-center">
-                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 80px;">
+                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 100px;">
                     </a>
                 </div>
                 @php
                 $projectCategories = App\Models\ProjectCategory::all();
                 @endphp <!-- Desktop Navigation -->
-                <div class="hidden md:block">
+                <div class="hidden md:flex flex-grow justify-end ml-20">
                     <div class="ml-10 flex items-baseline space-x-8 relative group">
                         <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'text-red-600' : '' }}">Home</a>
                         <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'text-red-600' : '' }}">About us</a>

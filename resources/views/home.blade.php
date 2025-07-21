@@ -45,13 +45,12 @@
         <div id="sliderWrapper" x-ref="sliderWrapper"
             class="flex h-full transition-transform duration-1000 ease-in-out">
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/6.webp')"></div>
+                style="background-image:url('/images/home/lulu.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/4.webp')"></div>
+                style="background-image:url('/images/home/westbay.webp')"></div>
             <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/3.webp')"></div>
-            <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/2.webp')"></div>
+                style="background-image:url('/images/home/safety.webp')"></div>
+
         </div>
     </div>
 
@@ -63,7 +62,7 @@
             <span class="text-red-500">Excellence and Innovation</span>
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Grade A Construction Company Operating in the GCC and Middle East
+            Grade A Construction Company Operating in Qatar
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-block">
