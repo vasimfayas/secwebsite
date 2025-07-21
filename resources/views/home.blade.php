@@ -8,51 +8,42 @@
 <section
     x-data="() => ({
         currentSlide: 0,
-        slides: 0,
+        slides: [
+            '/images/home/lexus.webp',
+            '/images/home/lulu.webp',
+            '/images/home/lulu2.webp'
+        ],
         intervalId: null,
 
         goToSlide(i) {
             this.currentSlide = i;
-            this.moveSlide();
         },
         nextSlide() {
-            this.currentSlide = (this.currentSlide + 1) % this.slides;
-            console.log('currentSlide:', this.currentSlide);   // ✅ correct case
-            this.moveSlide();
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
         },
-        moveSlide() {
-            this.$refs.sliderWrapper.style.transform =
-              `translateX(-${this.currentSlide * 100}%)`;
-        },
-
-        startAuto() {                         // ← runs only once
+        startAuto() {
             if (this.intervalId) clearInterval(this.intervalId);
             this.intervalId = setInterval(() => this.nextSlide(), 8000);
         },
-
         init() {
-            this.$nextTick(() => {            // wait until DOM finished
-                this.slides = this.$refs.sliderWrapper.children.length;
-                this.startAuto();
-            });
+            this.startAuto();
         }
     })"
     x-init="init"
     class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
 
-    <!-- Sliding Background -->
+    <!-- Sliding Background with Fade Effect -->
     <div class="absolute inset-0 w-full h-full overflow-hidden">
-        <div id="sliderWrapper" x-ref="sliderWrapper"
-            class="flex h-full transition-transform duration-1000 ease-in-out">
-            <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/lexus.webp')"></div>
-            <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/lulu.webp')"></div>
-            <div class="flex-none w-full h-full bg-cover bg-center"
-                style="background-image:url('/images/home/lulu2.webp')"></div>
-        </div>
+        <template x-for="(slide, index) in slides" :key="index">
+            <div class="absolute inset-0 transition-opacity duration-1000"
+                :class="{
+                    'opacity-100 z-10': currentSlide === index,
+                    'opacity-0 z-0': currentSlide !== index
+                }"
+                :style="`background-image: url(${slide}); background-size: cover; background-position: center;`">
+            </div>
+        </template>
     </div>
-
 
     <!-- Foreground Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -72,19 +63,18 @@
 
     <!-- Dot Navigation -->
     <div class="absolute bottom-6 w-full flex justify-center space-x-3 z-20">
-        <template x-for="index in slides" :key="index">
+        <template x-for="(slide, index) in slides" :key="index">
             <button
-                @click="goToSlide(index - 1)"
+                @click="goToSlide(index)"
                 class="w-3 h-3 rounded-full border-2 border-white"
                 :class="{
-                    'bg-white': currentSlide === (index - 1),
-                    'bg-transparent': currentSlide !== (index - 1)
+                    'bg-white': currentSlide === index,
+                    'bg-transparent': currentSlide !== index
                 }">
             </button>
         </template>
     </div>
 </section>
-
 
 <!-- About Shannon Engineering -->
 <section class="py-20 bg-gray-50">
