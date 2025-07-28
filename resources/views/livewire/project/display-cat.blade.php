@@ -8,7 +8,8 @@
                 <th>Category</th>
                 <th>Description</th>
                 <th>Card Image</th>
-                <th>Created At</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -24,7 +25,10 @@
                     <span class="text-muted">No image</span>
                     @endif
                 </td>
-                <td>{{ $category->created_at->format('Y-m-d') }}</td>
+                <td><a href="{{route('admin.category',[$category->id])}}">
+                        <i class="fa fa-edit">edit</i>
+                    </a></td>
+
             </tr>
             @empty
             <tr>
