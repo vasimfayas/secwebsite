@@ -55,6 +55,7 @@ class Category extends Component
 
                 $category->save();
                 session()->flash('success', 'Project category updated successfully.');
+                redirect('admin/category');
             } else {
                 // Create new
                 ProjectCategory::create([
