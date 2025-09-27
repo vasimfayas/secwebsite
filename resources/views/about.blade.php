@@ -8,7 +8,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">About Shannon Engineering</h1>
         <p class="text-xl max-w-3xl mx-auto">
-            Building Qatar's future with excellence, innovation, and unwavering commitment to quality
+            Building Qatar's future with success, excellence & commitment.
         </p>
     </div>
 </section>
@@ -48,16 +48,7 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
-                <p class="text-gray-600">
-                    Shannon Engineering Company is committed to form long-term partnerships with its clients through maintaining the highest standard for success, excellence, and commitment for the benefit of our partners, employees and community. </p>
-            </div>
+            
 
             <div class="bg-white p-8 rounded-lg shadow-lg">
                 <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
@@ -70,6 +61,15 @@
                 <p class="text-gray-600">
                     To be recognized as a market leader in delivering successful, excellent and committed Grade A contracting services. </p>
             </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+                <p class="text-gray-600">
+                    Shannon Engineering Company is dedicated to deliver projects with the highest standards of quality, safety, and innovation. We build long-term partnerships with our clients through reliability, technical excellence, and a strong commitment to our people and community.</p> </div>
         </div>
     </div>
 </section>
@@ -82,8 +82,7 @@
                 Our Values
             </h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                The principles that guide everything we do
-            </p>
+Built on trust, driven by excellence </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -93,9 +92,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Excellence
+                   </h3>
                 <p class="text-gray-600">
-                    Always put customers first by delivering high quality and timely projects.
+                    Delivering superior quality and embracing innovation in every project.
                 </p>
             </div>
 
@@ -105,9 +105,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Innovation</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Sustainability
+                    </h3>
                 <p class="text-gray-600">
-                    We embrace new technologies and methods to deliver cutting-edge solutions.
+                    Building with respect for the environment and future generations.
                 </p>
             </div>
 
@@ -117,9 +118,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Safety</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Responsibility
+                   </h3>
                 <p class="text-gray-600">
-                    Adopt the highest levels of safety and preserve the environment.
+                    Ensuring safety, integrity, and ethical practices at all times.
                 </p>
             </div>
 
@@ -129,9 +131,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Integrity</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Partnership</h3>
                 <p class="text-gray-600">
-                    Keep ethics, integrity and transparency as high priority.
+                    Creating long-term value through collaboration and client focus.
                 </p>
             </div>
         </div>

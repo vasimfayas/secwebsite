@@ -36,9 +36,9 @@
                         <p class="text-sm text-gray-500 mb-1">{{ $project->location }}</p>
                         <p class="text-sm text-gray-500 mb-2"><strong>Size: </strong>{!! $project->size ? formatIndianNumber($project->size).' m<sup>2</sup>': 'N/A'!!}</p>
                         <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $project->description }}</p>
-                        <span class="inline-block px-3 py-1 text-xs font-medium rounded-full 
+                       <span class="inline-block px-3 py-1 text-xs font-medium rounded-full 
                             {{ strtolower($project->status) == 'ongoing' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700' }}">
-                            {{ strtolower($project->status) == 'ongoing' ? 'Under Construction' : 'Delivered' }}
+                            Project Status : {{ strtolower($project->status) == 'ongoing' ? 'Under Construction' : 'Delivered' }}
                         </span>
                         <div class="pt-4 mt-auto">
                             <a href="{{route('detailprojects',$project->id)}}" class="inline-block text-red-600 hover:text-red-700 font-semibold">

@@ -19,7 +19,7 @@
                 Trusted By Leading Organizations
             </h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                We're proud to work with some of Qatar's most respected companies and organizations
+                We're proud to partner with leading Organization across Qatar, delivering projects that reflected our success, excellence & commitment
             </p>
         </div>
 
@@ -53,7 +53,7 @@
                 Consultants We Work With
             </h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                We proudly collaborate with some of the most reputable consulting firms in Qatar,<br> delivering projects that reflect shared values of excellence, innovation, and trust.
+                We proudly collaborate with some of the most reputable consulting firms in Qatar,<br> delivering projects that reflect shared values of success, excellence, and commitment.
             </p>
         </div>
         @php

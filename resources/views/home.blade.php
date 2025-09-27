@@ -48,9 +48,10 @@
     <!-- Foreground Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Building Qatar's Future with<br>
-            <span class="text-red-500">Excellence and Innovation</span>
-        </h1>
+            <span class="text-red-500">S</span>uccess,  <span class="text-red-500">E</span>xcellence,  <span class="text-red-500">C</span>ommitment<br>
+        </h1> 
+        <h2 class="text-2xl md:text-4xl font-bold mb-6 leading-tight">Driving Qatar’s Future</h2>
+       
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Grade A Construction Company Operating in Qatar
         </p>
@@ -201,11 +202,10 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Signature Project</h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                Explore some of our landmark projects that showcase our expertise and commitment to excellence
-            </p>
-        </div>
+                Explore our signature projects that redefine the standards of design, quality, and innovation. 
+                They reflect Shannon Engineering’s excellence and commitment to our valued clients.</p> </div>
 
         @if(count($featuredprojects) === 0)
         <div class="text-center text-gray-500 text-lg py-20">
@@ -287,28 +287,28 @@
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Expertise & Experience</h3>
                         <p class="text-gray-600">
-                            With years of experience in the construction industry, our team brings unparalleled expertise to every project we undertake.
+                            Decades of proven experience in the construction industry, our highly skilled team delievers knowledge and hands on experties to every project we undertake.
                         </p>
                     </div>
 
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality & Precision</h3>
                         <p class="text-gray-600">
-                            We maintain the highest standards of quality and precision in all our construction and engineering work.
+                            We maintain the highest standards of quality and precision in all our construction and engineering work. Ensuring every detail reflect the trust placed in us.
                         </p>
                     </div>
 
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Timely Delivery</h3>
                         <p class="text-gray-600">
-                            We understand the importance of timelines and ensure that all our projects are completed on schedule.
+                            We understand the importance of timelines and ensure that all our projects are guaranteed for on-schedule delivery.
                         </p>
                     </div>
 
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Client Satisfaction</h3>
                         <p class="text-gray-600">
-                            Our client-centric approach ensures that we meet and exceed expectations, resulting in high levels of client satisfaction.
+                            Our client-centric approach ensures that we not only meet but also exceed expectations by listening, understanding, and anticipating their needs. We consistently deliver beyond expectations and build long-term partnerships based on trust.
                         </p>
                     </div>
                 </div>

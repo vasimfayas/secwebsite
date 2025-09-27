@@ -6,9 +6,9 @@
 <!-- Hero Section -->
 <section class="bg-gray-800 text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Sister Companies</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">SEC Group</h1>
         <p class="text-xl max-w-3xl mx-auto">
-            Expanding our reach through strategic partnerships and subsidiary companies
+            Strengthening our capabilities and expanding our impact through strategic subsidiaries and trusted partnerships
         </p>
     </div>
 </section>
@@ -27,25 +27,36 @@
 
         @php
         $logos = [
-        ['file' => 'flameLogo.png', 'name' => 'Elctrical Solutions'],
-        ['file' => 'sidra.jpg', 'name' => 'MEP Solutions'],
-        ['file' => 'marble.jpg', 'name' => 'Marble Advisory'],
-        ['file' => 'acting.jpg', 'name' => 'Construction Equipments and Machinery Supplier'],
+            ['file' => 'flameLogo.png','name'=>'FLAME QATAR', 'Desp' => 'Grade A electrical expert'],
+            ['file' => 'sidra.jpg','name'=>'SIDRA', 'Desp' => 'Grade A mechanical expert'],
+            ['file' => 'marble.jpg','name'=>'MarbleArch', 'Desp' => 'Premium specialist in marble & stone work'],
+            ['file' => 'acting.jpg','name'=>'ACTING', 'Desp' => 'A state of art to deliver excellence interior'],
         ];
-        @endphp
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 items-center">
-            @foreach ($logos as $logo)
-            <div class="w-full bg-white p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center">
+    @endphp
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 items-stretch">
+        @foreach ($logos as $logo)
+            <div class="group w-full h-full bg-white p-5 border border-gray-200 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-500 transition-all duration-300 flex flex-col items-center">
+                
+                <!-- Logo -->
                 <div class="h-24 w-full flex items-center justify-center">
                     <img src="{{ asset('images/logo/' . $logo['file']) }}"
                         alt="{{ $logo['name'] }}"
-                        class="h-full w-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out" />
+                        class="h-full w-full object-contain grayscale group-hover:grayscale-0 transform group-hover:scale-105 transition duration-300 ease-in-out" />
                 </div>
-                <p class="mt-4 text-sm text-gray-700 font-medium text-center">{{ $logo['name'] }}</p>
+    
+                <!-- Name -->
+                <p class="mt-3 text-base font-semibold text-gray-800 text-center">
+                    {{ $logo['name'] }}
+                </p>
+    
+                <!-- Description -->
+                <p class="mt-1 text-sm text-gray-500 text-center">
+                    {{ $logo['Desp'] }}
+                </p>
             </div>
-            @endforeach
-        </div>
+        @endforeach
+    </div>
 
 
     </div>

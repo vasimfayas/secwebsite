@@ -113,7 +113,7 @@
                             <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            Years of Experience in Qatar
+                            25 Years of Success, Excellence, Commitment
                         </li>
                         <li class="flex items-center">
                             <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,10 +158,10 @@
 <section class="py-20 bg-red-600 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-4xl font-bold mb-6">
-            Ready to Build Your Vision?
+            Ready to Build Your Dream?
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">
-            Contact Shannon Engineering Company today and let's discuss how we can bring your construction project to life with excellence and innovation.
+            Contact Shannon Engineering Company today and let's discuss how we can bring your construction project to life with success story.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:+97444355656" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">

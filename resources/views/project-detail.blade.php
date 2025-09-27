@@ -31,13 +31,23 @@
         <!-- Project Title & Status -->
         <div class="mb-8 text-center">
             <h1 class="text-4xl font-extrabold text-gray-800 mb-2">{{$project->title}}</h1>
-            <span class="inline-block px-4 py-1 rounded-full text-sm font-medium 
-                bg-yellow-100 text-yellow-700">
-                {{$project->status}}
-            </span>
+          
+            <span class="inline-block px-3 py-1 text-xs font-medium rounded-full 
+            {{ strtolower($project->status) == 'ongoing' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700' }}">
+            Project Status : {{ strtolower($project->status) == 'ongoing' ? 'Under Construction' : 'Delivered' }}
+        </span>
         </div>
 
         <!-- Project Info -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-700 mb-12">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">Client</h2>
+                <p></p>
+            </div>
+            <div>
+                <h2 class="text-lg font-semibold text-gray-900 mb-2">Consultant</h2>
+             </div>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-gray-700 mb-12">
             <div>
                 <h2 class="text-lg font-semibold text-gray-900 mb-2">Location</h2>
