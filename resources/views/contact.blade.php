@@ -153,7 +153,73 @@
         </div>
     </div>
 </section>
+<!-- Meet Our Team Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">
+            Meet Our Team
+        </h2>
+        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            Our dedicated professionals are here to support your projects with expertise and excellence.
+        </p>
 
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center items-stretch">
+            <!-- Team Member 1 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="Eng Hany Abdel Fattah" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">Eng Hany Abdel Fattah</h3>
+                <p class="text-gray-500 mt-auto">CEO</p>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="Eng Badawi" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">Eng Badawi Gaber Badawi</h3>
+                <p class="text-gray-500 mt-auto">Operations Manager</p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="Eng Ehab Mahmoud" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">Eng Ehab Mahmoud Abbas </h3>
+                <p class="text-gray-500 mt-auto">Projects Manager</p>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="M.Dushyantha" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">M.Dushyantha Saman K Cooray</h3>
+                <p class="text-gray-500 mt-auto">Tender Manager</p>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="Santhosh Kumar" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">Santhosh Kumar</h3>
+                <p class="text-gray-500 mt-auto">Accounts Manager</p>
+            </div>
+
+            <!-- Team Member 6 -->
+            <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                <img src="{{ asset('images/team/pp.webp') }}" 
+                     alt="Ibrahim Abdelhafez" 
+                     class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                <h3 class="text-xl font-semibold text-gray-800">Ibrahim Abdelhafez</h3>
+                <p class="text-gray-500 mt-auto">HR Manager</p>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Call to Action -->
 <section class="py-20 bg-red-600 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
