@@ -16,28 +16,72 @@
 <!-- Company Overview -->
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            
+            <!-- Left Frame for Future Image -->
+            <div class="lg:col-span-1 flex justify-center">
+                <div class="w-64 h-80 bg-gray-100 border border-gray-300 rounded-xl shadow-md flex items-center justify-center">
+                    <span class="text-gray-400 text-sm">CEO Image<br>Placeholder</span>
+                </div>
+            </div>
+
+            <!-- CEO Message -->
+            <div class="lg:col-span-2">
                 <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
-                    MESSAGE FROM OUR CEO
+                    MESSAGE FROM OUR <span class="text-red-500">CEO</span>
                 </h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in; our clients deserve the best.. </p>
-                <p class="text-lg text-gray-600 mb-6">
-                    Our success is due to an unwavering commitment to provide our clients with their own unique opportunities to succeed. We ensure that we exceed their expectations by providing them with tailored options and opportunities.</p>
-                <p class="text-lg text-gray-600 mb-6">We have worked hard on recruiting a professional team of engineers and technical personnel. Our team has surpassed all difficulties by staying strong and understanding the market. We believe in strong values of honesty and work ethics. We desire to be the best, with an obligation to success, excellence and commitment to our clients and employees.
-                </p>
-                <p class="text-lg text-gray-600">
-                    I would like to extend my sincerest appreciation for our client’s trust and support of SEC over the years and hereby promise to devote all our resources and attributes to further their success through maintaining our commitment to excellence.
-                </p>
+
+                <div class="space-y-6 text-justify">
+                    <p class="text-lg text-gray-600">
+                        I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in; our clients deserve the best..
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        Our success is due to an unwavering commitment to provide our clients with their own unique opportunities to succeed. We ensure that we exceed their expectations by providing them with tailored options and opportunities.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        We have worked hard on recruiting a professional team of engineers and technical personnel. Our team has surpassed all difficulties by staying strong and understanding the market. We believe in strong values of honesty and work ethics. We desire to be the best, with an obligation to success, excellence and commitment to our clients and employees.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        I would like to extend my sincerest appreciation for our client’s trust and support of SEC over the years and hereby promise to devote all our resources and attributes to further their success through maintaining our commitment to excellence.
+                    </p>
+                </div>
+
+                <!-- Signature -->
                 <p class="text-base text-gray-700 font-semibold mt-8">
                     ENG. HANY ABDEL FATTAH<br>
                     CEO
                 </p>
             </div>
-            <div class="relative">
-               
-                    <iframe class="rounded-lg shadow-xl w-full h-96 object-cover" width="560" height="315" src="https://www.youtube.com/embed/MGmc3KKI-Qw?si=1TLJHjxwybykMz2P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            
+     
+
+            <!-- CEO Message -->
+            <div class="lg:col-span-2">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
+                    MESSAGE FROM <span class="text-red-500">OPERATION MANAGER</span>
+                </h2>
+
+                <div class="space-y-6 text-justify">
+                   </div>
+
+                <!-- Signature -->
+                <p class="text-base text-gray-700 font-semibold mt-8">
+                    ENG. BADAWI GABER BADWI MOHAMMED ABDULGLIL<br>
+                    Operation Manager
+                </p>
+            </div>
+                   <!-- Left Frame for Future Image -->
+                   <div class="lg:col-span-1 flex justify-center">
+                    <div class="w-64 h-80 bg-gray-100 border border-gray-300 rounded-xl shadow-md flex items-center justify-center">
+                        <span class="text-gray-400 text-sm">OM Image<br>Placeholder</span>
+                    </div>
+                </div>
         </div>
     </div>
 </section>
