@@ -202,7 +202,7 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Signature Project</h2>
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Signature Projects</h2>
             <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                 Explore our signature projects that redefine the standards of design, quality, and innovation. 
                 They reflect Shannon Engineering’s excellence and commitment to our valued clients.</p> </div>

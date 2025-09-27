@@ -36,13 +36,12 @@
                 </p>
             </div>
             <div class="relative">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Modern construction site"
-                    class="rounded-lg shadow-xl w-full h-96 object-cover">
-            </div>
+               
+                    <iframe class="rounded-lg shadow-xl w-full h-96 object-cover" width="560" height="315" src="https://www.youtube.com/embed/MGmc3KKI-Qw?si=1TLJHjxwybykMz2P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
 </section>
+
 
 <!-- Mission & Vision -->
 <section class="py-20 bg-gray-50">
