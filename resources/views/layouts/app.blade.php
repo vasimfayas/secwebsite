@@ -7,6 +7,8 @@
     <title>@yield('title', 'Shannon Engineering Company - Building Qatar\'s Future')</title>
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
+    <link rel="preload" href="{{ asset('/images/home/lexus.webp') }}" as="image">
+   
     <!-- Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -133,7 +135,20 @@
 
                         <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('siste-companies') ? 'text-red-600' : '' }}">SEC Group</a>
                         <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">Careers</a>
-                        <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">Contact</a>
+                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                            <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">Contact Us</a>
+                   
+
+                            <!-- Dropdown Menu -->
+                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
+
+                                <a href="{{route('contact')}}#team"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                                    Meet our team
+                                </a>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -192,6 +207,7 @@
                         <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
                         <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition-colors">About us</a></li>
                         <li><a href="{{ route('projects') }}" class="text-gray-300 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="{{ route('contact')}}#team" class="text-gray-300 hover:text-white transition-colors">Meet Our Team</a></li>
                         <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
