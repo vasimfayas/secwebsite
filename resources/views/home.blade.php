@@ -274,9 +274,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="relative">
-                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Construction workers on site"
-                    class="rounded-lg shadow-xl w-full h-96 object-cover">
+                    <iframe  class="rounded-lg shadow-xl w-full h-96 object-cover" width="560" height="315" src="https://www.youtube-nocookie.com/embed/qpmrD94lSqk?si=5WDv1NesVf7NMb-g&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div>
                 <h2 class="text-4xl font-bold text-gray-800 mb-8 section-title">

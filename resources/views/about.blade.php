@@ -4,14 +4,20 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="bg-gray-800 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">About Shannon Engineering</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-            Building Qatar's future with success, excellence & commitment.
-        </p>
-    </div>
+<section class="relative text-white py-20 bg-cover bg-center bg-no-repeat"
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Content -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">About Shannon Engineering</h1>
+    <p class="text-xl max-w-3xl mx-auto">
+      Building Qatar's future with success, excellence & commitment.
+    </p>
+  </div>
 </section>
+
 
 <!-- Company Overview -->
 <section class="py-20 bg-white">

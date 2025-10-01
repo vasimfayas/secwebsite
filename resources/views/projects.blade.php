@@ -4,13 +4,20 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="bg-gray-800 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Projects</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-            Explore our portfolio of landmark projects that showcase our expertise and commitment to excellence
-        </p>
-    </div>
+<section class="relative text-white h-[400px] md:h-[300px] bg-cover bg-center bg-no-repeat"
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Text Content -->
+  <div class="absolute bottom-10 left-8 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Projects</h1>
+    <p class="text-lg md:text-xl">
+      Building Qatar's future with success, excellence & commitment.
+    </p>
+  </div>
+
 </section>
 
 <!-- Featured Projects

@@ -86,11 +86,13 @@
     <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
         <div>
-            <div class="flex justify-between items-center h-16 px-4 md:px-8">
+            <div class="flex justify-between items-center h-16 px-4 md:px-8" style="
+            height: fit-content;
+        ">
                 <!-- Logo -->
                 <div class="flex-shrink-0 mr-10">
-                    <a href="{{ route('home') }}" class="flex items-center">
-                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 100px;">
+                    <a href="{{ route('home') }}" class="flex items-center py-2">
+                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 140px;">
                     </a>
                 </div>
                 @php
@@ -201,52 +203,90 @@
                 </div>
 
                 <!-- Quick Links -->
-                <div class="col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition-colors">About us</a></li>
-                        <li><a href="{{ route('projects') }}" class="text-gray-300 hover:text-white transition-colors">Projects</a></li>
-                        <li><a href="{{ route('contact')}}#team" class="text-gray-300 hover:text-white transition-colors">Meet Our Team</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
-                    </ul>
-                </div>
+            
 
                 <!-- Our Services -->
-                <div class="col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Our Services</h3>
-                    <ul class="space-y-2">
-                        <li class="text-gray-300">Residential Construction</li>
-                        <li class="text-gray-300">Commercial Development</li>
-                        <li class="text-gray-300">Industrial Facilities</li>
-                        <li class="text-gray-300">Medical Buildings</li>
-                        <li class="text-gray-300">Mosque Construction</li>
-                        <li class="text-gray-300">Engineering Solutions</li>
-                    </ul>
-                </div>
-
-                <!-- Contact Us -->
-                <div class="col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <div class="text-gray-300 text-sm space-y-2">
-                        <p>Al Gassar Tower 19th Floor, West Bay, </p>
-                        <p>P.O.Box : 24041</p>
-                        <p>Doha, Qatar</p> <br>
-                        <a href="tel:+974 44355656">
-                            <p>+974 44355656</p>
-                        </a>
-                        <a href="mailto:info@shannoneng.com">
-                            <p>info@shannoneng.com</p>
-                        </a>
-                    </div>
-                </div>
+              <!-- Map -->
+<div class="col-span-2">
+    <h3 class="text-lg font-semibold mb-4 text-white">Find Us</h3>
+    <div class="w-full h-64 md:h-60 rounded-xl overflow-hidden ring-1 ring-white/10 shadow">
+      <iframe
+        title="Shannon Engineering Location Map"
+        src="https://www.google.com/maps?q=Al+Gassar+Tower,+Doha,+Qatar&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="w-full h-full border-0"
+      ></iframe>
+    </div>
+  </div>
+  
+  <!-- Contact Us -->
+  <div class="col-span-1">
+    <h3 class="text-lg font-semibold mb-4 text-white">Contact Us</h3>
+    <div class="text-gray-300 text-sm space-y-3">
+      <p>Al Gassar Tower, 19th Floor, West Bay</p>
+      <p>P.O. Box: 24041</p>
+      <p>Doha, Qatar</p>
+  
+      <div class="pt-1 space-y-1">
+        <a href="tel:+97444355656" class="block hover:text-white transition">+974 4435 5656</a>
+        <a href="mailto:info@shannoneng.com" class="block hover:text-white transition">info@shannoneng.com</a>
+      </div>
+  
+      <!-- Socials -->
+      <div class="pt-3">
+        <p class="mb-2 text-gray-400">Follow us</p>
+        <div class="flex items-center gap-3">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/shannon-engineering" target="_blank" rel="noopener"
+             aria-label="LinkedIn"
+             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-7.3c0-1.74-.03-3.98-2.43-3.98-2.44 0-2.81 1.9-2.81 3.86V23h-4V8z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https:www.facebook.com/ShannonEngineering" target="_blank" rel="noopener"
+             aria-label="Facebook"
+             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/>
+            </svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://youtube.com/@shannonengineering8110?si=_4jo1PEImon7J0Hn" target="_blank" rel="noopener"
+             aria-label="YouTube"
+             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.5 15.5v-7l6 3.5-6 3.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
             </div>
 
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300 text-sm">
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                  
+                  <!-- Left: Copyright -->
+                  <p class="text-gray-300 text-sm text-center md:text-left">
                     © {{ date('Y') }} Shannon Engineering Company. All rights reserved.
-                </p>
-            </div>
+                  </p>
+              
+                  <!-- Right: ISO Logos -->
+                  <div class="flex items-center gap-4">
+                    <img src="{{ asset('images/iso/iso_1.png') }}" alt="ISO Certification 1" class="h-16 w-auto">
+                    <img src="{{ asset('images/iso/iso_2.png') }}" alt="ISO Certification 2" class="h-16 w-auto">
+                    <img src="{{ asset('images/iso/iso_3.png') }}" alt="ISO Certification 3" class="h-16 w-auto">
+                  </div>
+              
+                </div>
+              </div>
+              
         </div>
     </footer>
 
