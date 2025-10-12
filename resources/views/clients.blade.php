@@ -4,12 +4,40 @@
 
 @section('content')
 <!-- Hero Section -->
-<section id="clients" class="bg-gray-800 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Clients</h1>
+<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
+         aria-label="Strategic Partners hero"
+         style="background-image: url('{{ asset('images/home/banner2.png') }}');">
 
+  <!-- gradient + vignette overlay -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/15"></div>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background:
+           radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,0.55), transparent 60%),
+           radial-gradient(60% 40% at 10% 10%, rgba(255,255,255,0.04), transparent 60%);">
     </div>
+  </div>
+
+  <!-- centered content -->
+  <div class="absolute inset-0 flex items-center justify-center px-6 text-center">
+    <div class="relative inline-block">
+      <!-- 3D shadow layer (behind) -->
+    
+
+      <!-- main title -->
+      <h1 class="relative text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight
+                 drop-shadow-[0_6px_20px_rgba(0,0,0,0.45)]">
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">
+          Strategic <span class="text-red-400">Partners</span>
+        </span>
+      </h1>
+
+      <!-- subtle accent line -->
+      <div class="mx-auto mt-4 h-[3px] w-24 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500 opacity-90"></div>
+    </div>
+  </div>
 </section>
+
 
 <!-- Client Logos -->
 <section class="py-20 bg-gray-50 overflow-hidden">

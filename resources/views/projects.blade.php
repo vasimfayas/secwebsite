@@ -4,21 +4,37 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative text-white h-[400px] md:h-[300px] bg-cover bg-center bg-no-repeat"
-         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
+<section class="relative text-white h-[320px] md:h-[320px] bg-cover bg-center bg-no-repeat"
+         aria-label="Our Projects hero"
+         style="background-image: url('{{ asset('images/home/plan2.jpg') }}');">
 
-  <!-- Overlay -->
-  <div class="absolute inset-0 bg-black/40"></div>
-
-  <!-- Text Content -->
-  <div class="absolute bottom-10 left-8 max-w-3xl">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Projects</h1>
-    <p class="text-lg md:text-xl">
-      Building Qatar's future with success, excellence & commitment.
-    </p>
+  <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
+  <div class="absolute inset-0">
+    <!-- subtle white glow behind center/bottom area -->
+    <div class="absolute inset-0"
+         style="background:
+           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
+           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
+    </div>
+    <!-- light vignette to keep edges rich -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
   </div>
 
+  <!-- Text Content: glass card, bottom-left -->
+  <div class="absolute bottom-6 left-6 md:left-10 max-w-3xl">
+    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">Our</span>
+        <span class="text-red-400">Projects</span>
+      </h1>
+      <p class="mt-1 text-sm md:text-lg text-white/90">
+        Building Qatar's future with success, excellence & commitment.
+      </p>
+      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
+    </div>
+  </div>
 </section>
+
 
 <!-- Featured Projects
 <section class="py-20 bg-white">

@@ -26,7 +26,18 @@ class HomeController extends Controller
     {
         return view('about');
     }
-
+    public function vision()
+    {
+        return view('vision');
+    }
+    public function safety()
+    {
+        return view('safety');
+    }
+    public function team()
+    {
+        return view('team');
+    }
     /**
      * Display the projects page
      */

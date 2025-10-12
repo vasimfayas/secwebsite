@@ -34,7 +34,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // About Us page
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-
+Route::get('/about/vision', [HomeController::class, 'vision'])->name('about.vision');
+Route::get('/about/team', [HomeController::class, 'team'])->name('about.team');
+Route::get('/safety', [HomeController::class, 'safety'])->name('safety');
 // Projects page
 Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
 Route::get('/projects/cat/{cat}', [HomeController::class, 'listprojects'])->name('listprojects');

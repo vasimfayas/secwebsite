@@ -4,64 +4,99 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative text-white py-20 bg-cover bg-center bg-no-repeat"
+<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
+         aria-label="About hero"
          style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
-  <!-- Overlay -->
-  <div class="absolute inset-0 bg-black/40"></div>
 
-  <!-- Content -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold mb-6">About Shannon Engineering</h1>
-    <p class="text-xl max-w-3xl mx-auto">
-      Building Qatar's future with success, excellence & commitment.
-    </p>
+  <!-- layered overlays: gradient + vignette + subtle noise -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/35 to-transparent"></div>
+    <div class="absolute inset-0"
+         style="background: radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,.45), transparent 60%);"></div>
+    <div class="absolute inset-0 opacity-[.08] mix-blend-multiply"
+         style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%224%22 height=%224%22><rect width=%224%22 height=%224%22 fill=%22%23fff%22/><circle cx=%220.5%22 cy=%220.5%22 r=%220.5%22 fill=%22%23000%22/></svg>');"></div>
+  </div>
+
+  <!-- content: bottom-left glass card (best on light photos) -->
+  <div class="absolute bottom-8 left-6 md:left-10">
+    <div class="backdrop-blur-md bg-white/10 ring-1 ring-white/20 rounded-2xl p-5 md:p-6 shadow-lg">
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
+        <span class="drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">About</span>
+        <span class="text-red-400 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">Us</span>
+      </h1>
+      <p class="mt-2 text-sm md:text-lg text-white/90">
+        Building Qatar's future with success, excellence & commitment.
+      </p>
+    </div>
   </div>
 </section>
 
 
-<!-- Company Overview -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            
-            <!-- Left Frame for Future Image -->
-            <div class="lg:col-span-1 flex justify-center">
-                <div class="w-64 h-80 bg-gray-100 border border-gray-300 rounded-xl shadow-md flex items-center justify-center">
-                    <span class="text-gray-400 text-sm">CEO Image<br>Placeholder</span>
-                </div>
-            </div>
-
-            <!-- CEO Message -->
-            <div class="lg:col-span-2">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
-                    MESSAGE FROM OUR <span class="text-red-500">CEO</span>
-                </h2>
-
-                <div class="space-y-6 text-justify">
-                    <p class="text-lg text-gray-600">
-                        I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in; our clients deserve the best..
-                    </p>
-                    <p class="text-lg text-gray-600">
-                        Our success is due to an unwavering commitment to provide our clients with their own unique opportunities to succeed. We ensure that we exceed their expectations by providing them with tailored options and opportunities.
-                    </p>
-                    <p class="text-lg text-gray-600">
-                        We have worked hard on recruiting a professional team of engineers and technical personnel. Our team has surpassed all difficulties by staying strong and understanding the market. We believe in strong values of honesty and work ethics. We desire to be the best, with an obligation to success, excellence and commitment to our clients and employees.
-                    </p>
-                    <p class="text-lg text-gray-600">
-                        I would like to extend my sincerest appreciation for our client’s trust and support of SEC over the years and hereby promise to devote all our resources and attributes to further their success through maintaining our commitment to excellence.
-                    </p>
-                </div>
-
-                <!-- Signature -->
-                <p class="text-base text-gray-700 font-semibold mt-8">
-                    ENG. HANY ABDEL FATTAH<br>
-                    CEO
-                </p>
-            </div>
-        </div>
+<!-- Company Overview (Float Layout) -->
+<section class="relative py-20 bg-white">
+    <!-- soft gradient glow -->
+    <div class="pointer-events-none absolute inset-0 opacity-60"
+         style="background:
+           radial-gradient(60% 40% at 10% 10%, rgba(255,0,0,0.06), transparent 60%),
+           radial-gradient(60% 40% at 90% 20%, rgba(0,0,0,0.03), transparent 60%);">
     </div>
-</section>
-<section class="py-20 bg-white">
+  
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 mb-8">
+        MESSAGE FROM OUR <span class="text-red-600">CEO</span>
+      </h2>
+      <div class="mt-3 h-0.5 w-24 bg-gradient-to-r from-red-600 to-red-400 mb-10"></div>
+  
+      <!-- Floating image -->
+      <figure class="relative float-right ml-10 mb-6 w-full sm:w-1/2 lg:w-[45%]">
+        <div class="relative overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/5 bg-gray-50">
+          <img
+            src="{{ asset('images/team/group.jpg') }}"
+            alt="Our Team"
+            class="w-full h-auto object-contain transition-transform duration-500 hover:scale-[1.03]"
+            loading="lazy"
+          />
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
+        </div>
+     
+        <p class="mt-8 text-xs text-gray-500 text-center">
+            © Shannon Engineering Team 2017
+          </p>
+      </figure>
+    
+  
+      <!-- CEO Message -->
+      <div class="text-justify leading-7 max-w-none">
+        <p class="text-sm sm:text-base text-gray-700 mb-4">
+          I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in; our clients deserve the best.
+        </p>
+        <p class="text-sm sm:text-base text-gray-700 mb-4">
+          Our success is due to an unwavering commitment to provide our clients with their own unique opportunities to succeed. We ensure that we exceed their expectations by providing them with tailored options and opportunities.
+        </p>
+        <p class="text-sm sm:text-base text-gray-700 mb-4">
+          We have worked hard on recruiting a professional team of engineers and technical personnel. Our team has surpassed all difficulties by staying strong and understanding the market. We believe in strong values of honesty and work ethics. We desire to be the best, with an obligation to success, excellence and commitment to our clients and employees.
+        </p>
+        <p class="text-sm sm:text-base text-gray-700">
+          I would like to extend my sincerest appreciation for our clients’ trust and support of SEC over the years and hereby promise to devote all our resources and attributes to further their success through maintaining our commitment to excellence.
+        </p>
+      </div>
+  
+      <!-- Signature -->
+      <div class="clear-both mt-10 flex items-center gap-4">
+        <div class="h-10 w-10 rounded-full bg-red-600 text-white flex items-center justify-center font-semibold shadow ring-1 ring-black/5">
+          H
+        </div>
+        <p class="text-sm sm:text-base text-gray-800 font-semibold">
+          ENG. HANY ABDEL FATTAH<br>
+          <span class="text-gray-600 font-normal">CEO</span>
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+{{-- <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             
@@ -90,104 +125,7 @@
                 </div>
         </div>
     </div>
-</section>
-
-
-<!-- Mission & Vision -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            
-
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
-                <p class="text-gray-600">
-                    To be recognized as a market leader in delivering successful, excellent and committed Grade A contracting services. </p>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
-                <p class="text-gray-600">
-                    Shannon Engineering Company is dedicated to deliver projects with the highest standards of quality, safety, and innovation. We build long-term partnerships with our clients through reliability, technical excellence, and a strong commitment to our people and community.</p> </div>
-        </div>
-    </div>
-</section>
-
-<!-- Our Values -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
-                Our Values
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-Built on trust, driven by excellence </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Excellence
-                   </h3>
-                <p class="text-gray-600">
-                    Delivering superior quality and embracing innovation in every project.
-                </p>
-            </div>
-
-            <div class="text-center">
-                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Sustainability
-                    </h3>
-                <p class="text-gray-600">
-                    Building with respect for the environment and future generations.
-                </p>
-            </div>
-
-            <div class="text-center">
-                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Responsibility
-                   </h3>
-                <p class="text-gray-600">
-                    Ensuring safety, integrity, and ethical practices at all times.
-                </p>
-            </div>
-
-            <div class="text-center">
-                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Partnership</h3>
-                <p class="text-gray-600">
-                    Creating long-term value through collaboration and client focus.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+</section> --}}
 
 <!-- Call to Action -->
 <section class="py-20 bg-red-600 text-white">

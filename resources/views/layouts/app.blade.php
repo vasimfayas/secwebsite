@@ -101,7 +101,26 @@
                 <div class="hidden md:flex flex-grow justify-end ml-20">
                     <div class="ml-10 flex items-baseline space-x-8 relative group">
                         <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'text-red-600' : '' }}">Home</a>
-                        <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'text-red-600' : '' }}">About us</a>
+                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
+                            <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about*') ? 'text-red-600' : '' }}">About us</a>
+
+                            <!-- Dropdown Menu -->
+                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
+
+                                <a href="{{route('about')}}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                                    Message from CEO
+                                </a>
+                                <a href="{{route('about.vision')}}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                                    Mission, Vision & Values
+                                </a>
+                                <a href="{{route('about.team')}}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                                Meet our team
+                            </a>
+                            </div>
+                        </div>
 
                         <!-- Projects with Dropdown -->
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
@@ -117,6 +136,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        <a href="{{ route('safety') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('safety') ? 'text-red-600' : '' }}">Safety, Health & Environment</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                             <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('clients') ? 'text-red-600' : '' }}">Strategic Partners</a>
 
@@ -144,10 +164,7 @@
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
 
-                                <a href="{{route('contact')}}#team"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    Meet our team
-                                </a>
+                               
 
                             </div>
                         </div>
