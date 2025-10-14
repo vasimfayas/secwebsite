@@ -18,7 +18,7 @@
   </div>
 
   <!-- content: bottom-left glass card (best on light photos) -->
-  <div class="absolute bottom-8 left-6 md:left-10">
+  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
     <div class="backdrop-blur-md bg-white/10 ring-1 ring-white/20 rounded-2xl p-5 md:p-6 shadow-lg">
       <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
         <span class="drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">Vision & </span>

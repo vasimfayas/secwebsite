@@ -17,7 +17,7 @@
   </div>
 
   <!-- content: bottom-left glass card (best for bright photos) -->
-  <div class="absolute bottom-8 left-6 md:left-10 max-w-3xl">
+  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
     <div class="inline-block rounded-2xl backdrop-blur-md bg-black/20 ring-1 ring-white/20 px-5 py-4 shadow-lg">
       <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">
         Meet Our <span class="text-red-400">Team</span>

@@ -16,19 +16,39 @@
 
     <!-- Custom CSS -->
     <style>
+        [x-cloak]{ display:none !important; }
         .hero-bg {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        .nav-link {
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #dc2626;
-        }
+        .nav-link{
+    position: relative;
+    padding-bottom: .25rem; /* space for underline */
+  }
+  .nav-link::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: linear-gradient(90deg, #ef4444, #f87171, #ef4444); /* red gradient */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+  }
+  /* show underline on hover */
+  .nav-link:hover::after{
+    transform: scaleX(1);
+  }
+  /* keep underline visible for the active route */
+  .nav-link.is-active::after{
+    transform: scaleX(1);
+  }
+  /* optional: make active text red too */
+  .nav-link.is-active{
+    color: #dc2626; /* Tailwind red-600 */
+  }
 
         .btn-primary {
             background-color: #dc2626;
@@ -100,9 +120,9 @@
                 @endphp <!-- Desktop Navigation -->
                 <div class="hidden md:flex flex-grow justify-end ml-20">
                     <div class="ml-10 flex items-baseline space-x-8 relative group">
-                        <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'text-red-600' : '' }}">Home</a>
+                        <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about*') ? 'text-red-600' : '' }}">About us</a>
+                            <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about*') ? 'is-active' : '' }}">About us</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -124,7 +144,7 @@
 
                         <!-- Projects with Dropdown -->
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('projects') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('projects') ? 'text-red-600' : '' }}">Projects</a>
+                            <a href="{{ route('projects') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('projects') ? 'is-active' : '' }}">Projects</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -136,9 +156,9 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ route('safety') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('safety') ? 'text-red-600' : '' }}">Safety, Health & Environment</a>
+                        <a href="{{ route('safety') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('safety') ? 'is-active' : '' }}">Safety, Health & Environment</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('clients') ? 'text-red-600' : '' }}">Strategic Partners</a>
+                            <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('clients') ? 'is-active' : '' }}">Strategic Partners</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -155,20 +175,11 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('siste-companies') ? 'text-red-600' : '' }}">SEC Group</a>
-                        <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">Careers</a>
-                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">Contact Us</a>
-                   
-
-                            <!-- Dropdown Menu -->
-                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
-
-                               
-
-                            </div>
-                        </div>
+                        <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}">SEC Group</a>
+                        <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'is-active' : '' }}">Careers</a>
+                        <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'is-active' : '' }}">Contact Us</a>
                     </div>
+                    
                 </div>
 
 
@@ -184,17 +195,108 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <div class="mobile-menu hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-                <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Home</a>
-                <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">About us</a>
-                <a href="{{ route('projects') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Projects</a>
-                <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">SEC Group</a>
-                <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Strategic Partners</a>
-                <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Careers</a>
-                <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 block px-3 py-2 text-base font-medium">Contact</a>
-            </div>
+       {{-- Mobile Menu (collapsible) --}}
+<div class="mobile-menu hidden md:hidden" x-data="{ aboutOpen:false, projectsOpen:false }">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+  
+      {{-- Home --}}
+      <a href="{{ route('home') }}"
+         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
+                {{ request()->routeIs('home') ? 'text-red-600' : '' }}">
+        Home
+      </a>
+  
+      {{-- About us (parent + dropdown) --}}
+      <div class="border-t border-gray-100 pt-2">
+        <button type="button"
+                @click="aboutOpen = !aboutOpen"
+                :aria-expanded="aboutOpen.toString()"
+                class="w-full flex items-center justify-between px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600">
+          <span class="flex-1 text-left">About us</span>
+          <!-- chevron -->
+          <svg class="h-5 w-5 transform transition" :class="aboutOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+          </svg>
+        </button>
+  
+        <div x-cloak x-show="aboutOpen" x-transition.origin.top class="pl-5 space-y-1 pb-2">
+          <a href="{{ route('about') }}"
+             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
+                    {{ request()->routeIs('about') ? 'text-red-600' : '' }}">
+            Message from CEO
+          </a>
+          <a href="{{ route('about.vision') }}"
+             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
+                    {{ request()->routeIs('about.vision') ? 'text-red-600' : '' }}">
+            Mission, Vision & Values
+          </a>
+          <a href="{{ route('about.team') }}"
+             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
+                    {{ request()->routeIs('about.team') ? 'text-red-600' : '' }}">
+            Meet our team
+          </a>
         </div>
+      </div>
+  
+      {{-- Projects (parent + dropdown) --}}
+      @php
+        // Ensure categories are available (fallback if not passed from controller)
+        $projectCategories = $projectCategories ?? \App\Models\ProjectCategory::all();
+      @endphp
+      <div class="border-t border-gray-100 pt-2">
+        <button type="button"
+                @click="projectsOpen = !projectsOpen"
+                :aria-expanded="projectsOpen.toString()"
+                class="w-full flex items-center justify-between px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600">
+          <span class="flex-1 text-left">Projects</span>
+          <svg class="h-5 w-5 transform transition" :class="projectsOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+          </svg>
+        </button>
+  
+        <div x-cloak x-show="projectsOpen" x-transition.origin.top class="pl-5 space-y-1 pb-2">
+          <a href="{{ route('projects') }}"
+             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
+                    {{ request()->routeIs('projects') ? 'text-red-600' : '' }}">
+            All Projects
+          </a>
+          @foreach($projectCategories as $category)
+            <a href="{{ route('listprojects', $category->id) }}"
+               class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
+                      {{ request()->is('projects/category/'.$category->id) ? 'text-red-600' : '' }}">
+              {{ $category->category }}
+            </a>
+          @endforeach
+        </div>
+      </div>
+  
+      {{-- Other links --}}
+      <a href="{{ route('sister-companies') }}"
+         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
+                {{ request()->routeIs('sister-companies') ? 'text-red-600' : '' }}">
+        SEC Group
+      </a>
+  
+      <a href="{{ route('clients') }}"
+         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
+                {{ request()->routeIs('clients') ? 'text-red-600' : '' }}">
+        Strategic Partners
+      </a>
+  
+      <a href="{{ route('careers') }}"
+         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
+                {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">
+        Careers
+      </a>
+  
+      <a href="{{ route('contact') }}"
+         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
+                {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">
+        Contact
+      </a>
+    </div>
+  </div>
+  
     </nav>
 
     <!-- Main Content -->
@@ -321,6 +423,131 @@
     @yield('component')
     @livewireScripts
     @stack('scripts')
+    {{-- Floating Updates (FAB + Panel) --}}
+<div 
+x-data="updatesWidget()" 
+x-init="init()" 
+class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
+>
+<!-- Backdrop -->
+<div 
+  x-cloak 
+  x-show="open" 
+  @click="toggle(false)" 
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm"
+  aria-hidden="true">
+</div>
+
+<!-- Panel -->
+<div 
+  x-cloak 
+  x-show="open" 
+  x-transition.origin.bottom.right 
+  class="fixed bottom-24 right-5 md:bottom-28 md:right-8 w-[92vw] max-w-sm bg-white shadow-2xl ring-1 ring-black/5 rounded-2xl overflow-hidden"
+  role="dialog" aria-modal="true" aria-label="Latest updates"
+>
+  <div class="px-4 py-3 border-b flex items-center justify-between">
+    <div class="text-sm font-semibold text-gray-900">Updates</div>
+  </div>
+
+  <ul class="max-h-96 overflow-auto divide-y">
+    {{-- Example dynamic list; replace with your data --}}
+    @php
+      $updates = $updates ?? [
+        ['type' => 'project', 'title' => 'New project awarded: Qatar Logistics Hub', 'meta' => 'Kickoff next week • West Bay'],
+        ['type' => 'hire',    'title' => 'New colleague: Sara Al-Thani', 'meta' => 'Project Engineer · Infrastructure'],
+        ['type' => 'job',     'title' => 'We’re hiring: HSE Officer', 'meta' => 'Apply now', 'url' => route('careers')],
+      ];
+    @endphp
+
+    @foreach($updates as $u)
+    <li class="p-4 hover:bg-gray-50 flex gap-3">
+      <span class="mt-1">
+        @if(($u['type'] ?? '') === 'project')
+          <!-- briefcase -->
+          <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2h4a2 2 0 012 2v2h3a1 1 0 011 1v4H4V7a1 1 0 011-1h3V4a2 2 0 012-2Zm2 2h-2v2h4V4Z"/><path d="M4 11h16v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7Zm7 3H6v2h5v-2Zm2 0v2h5v-2h-5Z"/></svg>
+        @elseif(($u['type'] ?? '') === 'hire')
+          <!-- user-plus -->
+          <svg class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="currentColor"><path d="M15 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"/><path d="M1 22a8 8 0 0 1 16 0H1Zm20-12h-2V8h-2V6h2V4h2v2h2v2h-2v2Z"/></svg>
+        @else
+          <!-- megaphone -->
+          <svg class="w-5 h-5 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M13 4v13l8-5V9l-8-5Z"/><path d="M2 9h8v7H7l-1 3H3l1-3H2V9Z"/></svg>
+        @endif
+      </span>
+      <div class="text-sm">
+        <div class="font-medium text-gray-900">
+          @if(isset($u['url'])) <a href="{{ $u['url'] }}" class="hover:underline">@endif
+          {{ $u['title'] }}
+          @if(isset($u['url']))</a>@endif
+        </div>
+        @if(!empty($u['meta']))<div class="text-gray-500">{{ $u['meta'] }}</div>@endif
+      </div>
+    </li>
+    @endforeach
+  </ul>
+
+  <a href=""
+     class="block text-center text-sm font-medium text-red-600 py-3 hover:bg-gray-50">
+    View all updates
+  </a>
+</div>
+
+<!-- Floating Action Button -->
+<button 
+  @click="toggle()" 
+  @keydown.escape.window="toggle(false)" 
+  :aria-expanded="open.toString()" 
+  aria-controls="updates-panel"
+  class="relative h-14 w-14 rounded-full bg-red-600 text-white shadow-xl ring-1 ring-black/10
+         hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
+>
+  <!-- bell icon -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" 
+  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+  aria-hidden="true" class="mx-auto w-6 h-6">
+<!-- Megaphone body -->
+<path d="M3 11a3 3 0 0 1 3-3h4v8H6a3 3 0 0 1-3-3v-2z" />
+<!-- Handle -->
+<path d="M10 16.5v3a1.5 1.5 0 0 1-3 0v-3" />
+<!-- Horn cone -->
+<path d="M14 8l6-3v14l-6-3V8z" />
+<!-- Sound lines -->
+<path d="M21 10l1.5-.5M21 12h1.5M21 14l1.5.5" />
+</svg>
+
+  
+  
+  
+  <!-- unread badge -->
+  <span 
+    x-show="unread > 0" 
+    x-transition 
+    class="absolute -top-1 -right-1 flex items-center justify-center h-5 min-w-5 px-1 rounded-full bg-white text-red-600 text-[11px] font-semibold ring-2 ring-red-600">
+    <span x-text="unread"></span>
+  </span>
+  <!-- subtle pulse -->
+  <span x-show="unread > 0" class="absolute inset-0 rounded-full animate-ping bg-white/30"></span>
+</button>
+</div>
+
+<script>
+function updatesWidget(){
+return {
+  open: false,
+  unread: 3, // set this from backend if you have a count
+  init(){
+    // Optionally restore unread from localStorage:
+    const saved = Number(localStorage.getItem('updates_unread') || this.unread);
+    if (!Number.isNaN(saved)) this.unread = saved;
+  },
+  toggle(state){
+    this.open = typeof state === 'boolean' ? state : !this.open;
+    document.body.classList.toggle('overflow-hidden', this.open); // lock scroll when open
+  },
+}
+}
+</script>
+
 </body>
 
 </html>

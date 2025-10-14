@@ -27,7 +27,7 @@
       <h1 class="relative text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight
                  drop-shadow-[0_6px_20px_rgba(0,0,0,0.45)]">
         <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">
-            <span class="text-red-400">SEC </span>Group
+            <span class="text-red-500">SEC </span>Group
         </span>
       </h1>
       <p class="text-xl max-w-3xl mx-auto">
