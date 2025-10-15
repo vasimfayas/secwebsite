@@ -106,7 +106,7 @@
     <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
         <div>
-            <div class="flex justify-between items-center h-16 px-4 md:px-8" style="
+            <div class="flex justify-between items-center h-16 px-3 md:px-6" style="
             height: fit-content;
         ">
                 <!-- Logo -->
@@ -119,7 +119,7 @@
                 $projectCategories = App\Models\ProjectCategory::all();
                 @endphp <!-- Desktop Navigation -->
                 <div class="hidden md:flex flex-grow justify-end ml-20">
-                    <div class="ml-10 flex items-baseline space-x-8 relative group">
+                    <div class="ml-10 flex items-baseline space-x-6 relative group">
                         <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
                             <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about*') ? 'is-active' : '' }}">About us</a>
