@@ -37,7 +37,7 @@
                 <li class="text-gray-700 font-semibold">{{ $category->category }}</li>
             </ol>
         </nav>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-4">
+            <div class="max-w-7xl mx-auto my-4 px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center gap-4">
         <a href="{{ route('projects') }}"
            class="px-5 py-2 rounded-full font-semibold transition-colors duration-300
            {{ request()->routeIs('projects') ? 'bg-red-600 text-white' : 'bg-white text-red-600 border border-red-600' }}">

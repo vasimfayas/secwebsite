@@ -35,7 +35,7 @@ class Category extends Component
             $imagePath = null;
 
             // Check if image is an uploaded file (not a string path)
-            if (isset($this->data['card_img']) && is_object($this->data['card_img']) && method_exists($this->data['card_img'], 'store')) {
+            if (!empty($this->data['card_img']) && $this->data['card_img'] instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
                 $imagePath = $this->data['card_img']->store('project-category-images', 'public');
             }
 
