@@ -104,7 +104,12 @@
 
 <body class="bg-white">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+    <nav 
+x-data="{ scrolled:false }"
+@scroll.window="scrolled = (window.scrollY > 50)"
+:class="scrolled ? 'bg-white shadow-lg' : 'bg-transparent'"
+class="fixed w-full top-0 z-50 transition-all duration-300"
+>
         <div>
             <div class="flex justify-between items-center h-16 px-3 md:px-6" style="
             height: fit-content;
@@ -112,17 +117,19 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 mr-10">
                     <a href="{{ route('home') }}" class="flex items-center py-2">
-                        <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 140px;">
+                        <img src="{{asset('images/logo/nobgseclogo.png')}}" alt="Comapny Logo" style="width: 100px;">
                     </a>
                 </div>
                 @php
                 $projectCategories = App\Models\ProjectCategory::all();
                 @endphp <!-- Desktop Navigation -->
                 <div class="hidden md:flex flex-grow justify-end ml-20">
-                    <div class="ml-10 flex items-baseline space-x-6 relative group">
-                        <a href="{{ route('home') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
+                    <div class="ml-10 flex items-baseline space-x-2 relative group">
+                        <a href="{{ route('home') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('home') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>HOME</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('about') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about*') ? 'is-active' : '' }}">About us</a>
+                            <a href="{{ route('about') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>ABOUT US</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -144,7 +151,8 @@
 
                         <!-- Projects with Dropdown -->
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('projects') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('projects') ? 'is-active' : '' }}">Projects</a>
+                            <a href="{{ route('projects') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('projects') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>PROJECTS</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -156,9 +164,11 @@
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ route('safety') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('safety') ? 'is-active' : '' }}">Safety, Health & Environment</a>
+                        <a href="{{ route('safety') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('safety') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>SAFETY, HEALTH & ENVIRONMENT</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('clients') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('clients') ? 'is-active' : '' }}">Strategic Partners</a>
+                            <a href="{{ route('clients') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('clients') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>STRATEGIC PARTNERS</a>
 
                             <!-- Dropdown Menu -->
                             <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
@@ -175,9 +185,12 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('sister-companies') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}">SEC Group</a>
-                        <a href="{{ route('careers') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('careers') ? 'is-active' : '' }}">Careers</a>
-                        <a href="{{ route('contact') }}" class="nav-link text-gray-800 hover:text-red-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'is-active' : '' }}">Contact Us</a>
+                        <a href="{{ route('sister-companies') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('sister-companies') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>SEC GROUP</a>
+                        <a href="{{ route('careers') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('careers') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>CAREERS</a>
+                        <a href="{{ route('contact') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide{{ request()->routeIs('contact') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+>CONTACT US</a>
                     </div>
                     
                 </div>
@@ -300,7 +313,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-16">
+    <main>
         @yield('content')
     </main>
 

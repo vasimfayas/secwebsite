@@ -13,6 +13,7 @@
         "livewire/livewire": "^3.6",
         "nyholm/psr7": "^1.8",
         "railsware/mailtrap-php": "^3.6",
+        "revolution/laravel-google-sheets": "^6.4",
         "symfony/http-client": "^7.3",
         "symfony/mailer": "^6.4"
     },

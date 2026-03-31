@@ -95,11 +95,109 @@
                 </a>
             </div>
             <div class="relative">
-                <img src="{{asset('/images/home/safety.webp')}}"
+                <img src="{{asset('/images/home/QMIC.jpg')}}"
                     alt="Modern construction site"
                     class="rounded-lg shadow-xl w-full h-96 object-cover">
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Company Statistics -->
+<section class="py-20 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">
+                Our Achievements
+            </h2>
+
+            <p class="text-gray-300 text-lg">
+                Numbers that reflect our commitment and excellence
+            </p>
+        </div>
+
+        <div 
+        x-data="counterSection()"
+        x-init="startCounting()"
+        class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+
+            <!-- Projects -->
+            <div class="space-y-3">
+                <div class="text-red-500 flex justify-center">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-width="2" d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
+                    </svg>
+                </div>
+
+                <div class="text-5xl font-bold">
+                    <span x-text="projects"></span>+
+                </div>
+
+                <div class="text-gray-300 text-lg">
+                    Projects Completed
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="space-y-3">
+
+                <div class="text-red-500 flex justify-center">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor">
+                        <path stroke-width="2" d="M12 8v5l3 3M12 3a9 9 0 1 0 0 18"/>
+                    </svg>
+                </div>
+
+                <div class="text-5xl font-bold">
+                    <span x-text="years"></span>+
+                </div>
+
+                <div class="text-gray-300 text-lg">
+                    Years Experience
+                </div>
+
+            </div>
+
+            <!-- Clients -->
+            <div class="space-y-3">
+
+                <div class="text-red-500 flex justify-center">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor">
+                        <path stroke-width="2" d="M17 20h5V4H2v16h5"/>
+                    </svg>
+                </div>
+
+                <div class="text-5xl font-bold">
+                    <span x-text="clients"></span>+
+                </div>
+
+                <div class="text-gray-300 text-lg">
+                    Happy Clients
+                </div>
+
+            </div>
+
+            <!-- Engineers -->
+            <div class="space-y-3">
+
+                <div class="text-red-500 flex justify-center">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor">
+                        <path stroke-width="2" d="M16 14a4 4 0 1 0-8 0"/>
+                    </svg>
+                </div>
+
+                <div class="text-5xl font-bold">
+                    <span x-text="engineers"></span>+
+                </div>
+
+                <div class="text-gray-300 text-lg">
+                    Engineers & Staff
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </section>
 
@@ -202,10 +300,11 @@
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Signature Projects</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                Explore our signature projects that redefine the standards of design, quality, and innovation. 
-                They reflect Shannon Engineering’s excellence and commitment to our valued clients.</p> </div>
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">Ongoing Projects</h2>
+
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">
+Our ongoing projects reflect Shannon Engineering’s continuous growth and trusted reputation in Qatar’s construction sector, delivering through Success, Excellence and Commitment.
+</p> </div>
 
         @if(count($featuredprojects) === 0)
         <div class="text-center text-gray-500 text-lg py-20">
@@ -330,3 +429,55 @@
     </div>
 </section>
 @endsection
+<script>
+
+function counterSection(){
+
+return{
+
+projects:0,
+years:0,
+clients:0,
+engineers:0,
+
+targetProjects:120,
+targetYears:18,
+targetClients:85,
+targetEngineers:60,
+
+startCounting(){
+
+this.animateValue('projects',this.targetProjects)
+this.animateValue('years',this.targetYears)
+this.animateValue('clients',this.targetClients)
+this.animateValue('engineers',this.targetEngineers)
+
+},
+
+animateValue(field,target){
+
+let duration=2000
+
+let stepTime=Math.abs(Math.floor(duration/target))
+
+let interval=setInterval(()=>{
+
+if(this[field]<target){
+
+this[field]++
+
+}else{
+
+clearInterval(interval)
+
+}
+
+},stepTime)
+
+}
+
+}
+
+}
+
+</script>

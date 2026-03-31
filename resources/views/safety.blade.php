@@ -116,7 +116,7 @@
         <figure class="relative animate-fade-up">
           <div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/5 bg-gray-50">
             <img
-              src="{{ asset('images/safety/vest.jpg') }}"
+              src="{{ asset('images/home/safety.webp') }}"
               alt="Site team demonstrating PPE compliance"
               class="w-full h-80 object-cover transition-transform duration-500 hover:scale-[1.02]"
               loading="lazy"

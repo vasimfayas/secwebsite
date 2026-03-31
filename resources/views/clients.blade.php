@@ -59,16 +59,16 @@
         ];
         @endphp
 
-        <div class="relative w-full overflow-hidden">
-            <div class="animate-scroll flex gap-6 py-2 whitespace-nowrap min-w-max">
-                @foreach(array_merge($logos, $logos,$logos) as $logo)
-                <div class="w-36 h-24 flex items-center justify-center bg-white rounded-lg shadow-md p-2 shrink-0">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+           
+                @foreach($logos as $logo)
+                <div class="w-full h-24 bg-white flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow-sm ">
                     <img src="{{ asset('images/client/' . $logo) }}"
                         alt="Client Logo"
                         class="h-full w-full object-contain" />
                 </div>
                 @endforeach
-            </div>
+            
         </div>
     </div>
 </section>
@@ -94,10 +94,10 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
             @foreach($consultant as $logo)
-            <div class="w-full h-24 bg-white flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition">
+            <div class="w-full h-24 bg-white flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow-sm ">
                 <img src="{{ asset('images/consultant/' . $logo) }}"
                     alt="Consulting Logo"
-                    class="h-full w-full object-contain grayscale hover:grayscale-0 transition duration-300" />
+                    class="h-full w-full object-contain " />
             </div>
             @endforeach
         </div>

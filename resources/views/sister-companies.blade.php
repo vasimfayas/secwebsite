@@ -52,36 +52,98 @@
             </p>
         </div>
 
-        @php
-        $logos = [
-            ['file' => 'flameLogo.png','name'=>'FLAME QATAR', 'Desp' => 'Grade A electrical expert'],
-            ['file' => 'sidra.jpg','name'=>'SIDRA', 'Desp' => 'Grade A mechanical expert'],
-            ['file' => 'marble.jpg','name'=>'MarbleArch', 'Desp' => 'Premium specialist in marble & stone work'],
-            ['file' => 'acting.jpg','name'=>'ACTING', 'Desp' => 'A state of art to deliver excellence interior'],
-        ];
-    @endphp
+@php
+$logos = [
+[
+'file' => 'flameLogo.png',
+'name'=>'FLAME QATAR',
+'Desp' => 'Grade A Electrical Contracting Company specializing in complete range electrical installations with international quality standards for residential, commercial, and industrial projects.',
+'url' => 'https://www.flameqatar.com/',
+'points' => [
+'Power Systems',
+'Lighting Solutions',
+'Electrical Design'
+]
+],
+
+[
+'file' => 'sidra.jpg',
+'name'=>'SIDRA',
+'Desp' => 'Grade A Mechanical Contracting Company specializing in advanced mechanical systems, HVAC, plumbing, and comprehensive MEP solutions for commercial and industrial projects.',
+'url' => 'https://sidraengineering.com/',
+'points' => [
+'HVAC systems',
+'Mechanical Design',
+'Plumbing & Piping'
+]
+],
+
+[
+'file' => 'marble.jpg',
+'name'=>'MarbleArch',
+'Desp' => 'Specializing in premium marble, granite, and natural stone solutions for architectural and interior applications. Delivering exquisite finishes for residential and commercial spaces.',
+'url' => 'https://marblearchqtr.com/',
+'points' => [
+'Premium Marble & Granite',
+'Natural Stone Solutions',
+'Architectural Finishes',
+'Custom Fabrication'
+]
+],
+
+[
+'file' => 'acting.jpg',
+'name'=>'ACTING',
+'Desp' => 'One of the largest suppliers of finishing packages in the Gulf Region, offering premium materials, architectural finishes, and comprehensive interior solutions for luxury projects.',
+'url' => 'https://actingtradecont.com/',
+'points' => [
+'Finishing Packages',
+'Premium Materials',
+'Gulf Region Supply',
+'Luxury Interiors'
+]
+],
+];
+@endphp
     
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 items-stretch">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 items-stretch">
         @foreach ($logos as $logo)
-            <div class="group w-full h-full bg-white p-5 border border-gray-200 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-500 transition-all duration-300 flex flex-col items-center">
-                
-                <!-- Logo -->
-                <div class="h-24 w-full flex items-center justify-center">
-                    <img src="{{ asset('images/logo/' . $logo['file']) }}"
-                        alt="{{ $logo['name'] }}"
-                        class="h-full w-full object-contain grayscale group-hover:grayscale-0 transform group-hover:scale-105 transition duration-300 ease-in-out" />
-                </div>
-    
-                <!-- Name -->
-                <p class="mt-3 text-base font-semibold text-gray-800 text-center">
-                    {{ $logo['name'] }}
-                </p>
-    
-                <!-- Description -->
-                <p class="mt-1 text-sm text-gray-500 text-center">
-                    {{ $logo['Desp'] }}
-                </p>
-            </div>
+<div class="group flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+
+  <!-- Logo Left -->
+  <div class="md:w-1/4 flex items-center justify-center  p-6">
+      <img src="{{ asset('images/logo/' . $logo['file']) }}" 
+           alt="{{ $logo['name'] }}" 
+           class="h-24 w-auto object-contain"/>
+  </div>
+
+  <!-- Content Right -->
+  <div class="md:w-3/4 p-6 flex flex-col">
+      <!-- Name -->
+      <h3 class="text-2xl font-bold text-gray-800 mb-3">{{ $logo['name'] }}</h3>
+
+      <!-- Full Description -->
+      <p class="text-gray-700 text-sm mb-4">{{ $logo['Desp'] }}</p>
+
+      <!-- Bullet points -->
+      <ul class="text-gray-600 text-sm space-y-2 mb-4">
+          @foreach($logo['points'] as $point)
+          <li class="flex items-start">
+              <span class="w-2 h-2 mt-1 bg-red-500 rounded-full mr-2 flex-shrink-0"></span>
+              <span>{{ $point }}</span>
+          </li>
+          @endforeach
+      </ul>
+
+      <!-- Button -->
+      <div class="mt-auto text-left md:text-right">
+          <a href="{{ $logo['url'] }}" target="blank"
+             class="inline-block bg-red-600 hover:bg-red-500 text-white py-2 px-6 rounded-lg font-semibold transition-colors">
+             Learn More →
+          </a>
+      </div>
+  </div>
+</div>
         @endforeach
     </div>
 

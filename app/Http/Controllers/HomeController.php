@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featuredprojects = Project::with('category')->where('featured', true)->get();
+        $featuredprojects = Project::with('category')->where('status', "ongoing")->get();
         return view('home', compact('featuredprojects'));
     }
 
@@ -49,9 +49,10 @@ class HomeController extends Controller
 
     public function listprojects($cat)
     {
+        $categories = ProjectCategory::get();
         $category = ProjectCategory::findorfail($cat);
         $projects = Project::where('category_id', $cat)->get();
-        return view('project-list', compact('category', 'projects'));
+        return view('project-list', compact('category', 'projects', 'categories'));
     }
 
     public function detailprojects($id)
