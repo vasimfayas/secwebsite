@@ -6,7 +6,8 @@
 @php use Illuminate\Support\Str; @endphp
 <section
 x-data="{
-    currentSlide: 0,
+    currentSlide: 1,
+    transitioning: false,
     slides: [
         '/images/home/lexus.webp',
         '/images/home/lulu.webp',
@@ -14,16 +15,33 @@ x-data="{
     ],
     intervalId: null,
 
+    get track() {
+        return [this.slides[this.slides.length - 1], ...this.slides, this.slides[0]]
+    },
+
     next() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length
+        if (this.transitioning) return
+        this.transitioning = true
+        this.currentSlide++
     },
 
     prev() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length
+        if (this.transitioning) return
+        this.transitioning = true
+        this.currentSlide--
+    },
+
+    onTransitionEnd() {
+        this.transitioning = false
+        if (this.currentSlide === 0) {
+            this.currentSlide = this.slides.length
+        } else if (this.currentSlide === this.track.length - 1) {
+            this.currentSlide = 1
+        }
     },
 
     start() {
-        this.intervalId = setInterval(() => this.next(), 8000)
+        this.intervalId = setInterval(() => this.next(), 4000)
     },
 
     init() {
@@ -37,13 +55,18 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
     {{-- Sliding Track --}}
     <div class="absolute inset-0 overflow-hidden">
         <div
-            class="flex h-full transition-transform duration-700 ease-in-out"
-            :style="`width: ${slides.length * 100}%; transform: translateX(-${currentSlide * (100 / slides.length)}%)`"
+            class="flex h-full"
+            :style="`
+                width: ${track.length * 100}%;
+                transform: translateX(-${currentSlide * (100 / track.length)}%);
+                transition: ${transitioning ? 'transform 700ms ease-in-out' : 'none'};
+            `"
+            @transitionend="onTransitionEnd"
         >
-            <template x-for="(slide, index) in slides" :key="index">
+            <template x-for="(slide, index) in track" :key="index">
                 <div
                     class="relative h-full flex-shrink-0 bg-cover bg-center"
-                    :style="`width: ${100 / slides.length}%; background-image: url(${slide})`"
+                    :style="`width: ${100 / track.length}%; background-image: url(${slide})`"
                 >
                     <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.05) 100%);"></div>
                 </div>
@@ -55,32 +78,32 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
     margin-left: 0px;
 ">
 
-    <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
-        Qatar's Trusted Contractor
-    </p>
+        <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
+            Qatar's Trusted Contractor
+        </p>
 
-    <h1
-        class="font-normal leading-tight mb-5"
-        style="font-size: clamp(40px, 6vw, 68px);"
-    >
-        <span class="text-red-500">S</span>uccess<br>
-        <span class="text-red-500">E</span>xcellence<br>
-        <span class="text-red-500">C</span>ommitment
-    </h1>
+        <h1
+            class="font-normal leading-tight mb-5"
+            style="font-size: clamp(40px, 6vw, 68px);"
+        >
+            <span class="text-red-500">S</span>uccess<br>
+            <span class="text-red-500">E</span>xcellence<br>
+            <span class="text-red-500">C</span>ommitment
+        </h1>
 
-    <p class="text-sm md:text-base font-light text-white/70 max-w-lg leading-relaxed mb-10">
-        Grade A Construction Company Operating in Qatar
-    </p>
+       <p class="text-base md:text-lg font-medium text-white/70 max-w-lg leading-relaxed mb-10">
+    Grade A Construction Company Operating in Qatar
+</p>
 
-    <a href="{{ route('projects') }}"
-        class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
-        Explore Our Projects
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-        </svg>
-    </a>
+        <a href="{{ route('projects') }}"
+            class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
+            Explore Our Projects
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
 
-</div>
+    </div>
 
     {{-- PREV button --}}
     <button
