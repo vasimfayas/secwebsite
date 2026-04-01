@@ -22,14 +22,13 @@
     </div>
   </div>
 </section>
-
 <!-- Team Section -->
 <section id="team" class="py-24 bg-red-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-16">
       <p class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">The People Behind The Work</p>
-      <h2 class="text-5xl font-black text-gray-900" >Our Team</h2>
+      <h2 class="text-5xl font-black text-gray-900" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;">Our Team</h2>
       <div class="mt-4 mx-auto w-12 h-[2px] bg-red-600"></div>
     </div>
 
@@ -47,14 +46,21 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       @foreach($team as $member)
 
-      <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500
-                  bg-white border-t-4 border-red-500">
+      <div
+        x-data="{ open: false }"
+        @click="open = !open"
+        @mouseenter="open = true"
+        @mouseleave="open = false"
+        class="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500
+               bg-white border-t-4 border-red-500 cursor-pointer select-none"
+      >
 
         {{-- Subtle red tint background --}}
         <div class="absolute inset-0 bg-gradient-to-br from-red-50/80 via-white to-red-50/40 pointer-events-none"></div>
 
         {{-- Default State --}}
-        <div class="relative flex flex-col items-center text-center px-8 py-14 transition-opacity duration-300 group-hover:opacity-0 group-hover:pointer-events-none">
+        <div class="relative flex flex-col items-center text-center px-8 py-14 transition-opacity duration-300"
+             :class="open ? 'opacity-0 pointer-events-none' : 'opacity-100'">
 
           <h3 class="text-base font-semibold text-gray-900 leading-snug mb-2">{{ $member['name'] }}</h3>
 
@@ -64,10 +70,10 @@
 
         </div>
 
-        {{-- Hover State --}}
+        {{-- Hover / Tap State --}}
         <div class="absolute inset-0 bg-red-600 flex flex-col items-center justify-center text-center px-8 py-10
-                    translate-y-full group-hover:translate-y-0
-                    transition-transform duration-500 ease-in-out">
+                    transition-transform duration-500 ease-in-out"
+             :class="open ? 'translate-y-0' : 'translate-y-full'">
 
           <h3 class="text-base font-semibold text-white leading-snug mb-1">{{ $member['name'] }}</h3>
 
