@@ -24,60 +24,50 @@
 </section>
 
 <!-- Team Section -->
-<section id="team" class="py-24 bg-white">
+<section id="team" class="py-24 bg-red-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-16">
       <p class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">The People Behind The Work</p>
-      <h2 class="text-5xl font-black text-gray-900" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;">Our Team</h2>
+      <h2 class="text-5xl font-black text-gray-900" >Our Team</h2>
       <div class="mt-4 mx-auto w-12 h-[2px] bg-red-600"></div>
     </div>
 
     @php
       $team = [
-        ['name' => 'Hany Abdel Fattah',            'role' => 'CEO',                'initial' => 'HA', 'message' => 'Leading our vision with commitment to excellence, innovation, and sustainable growth.'],
-        ['name' => 'Badawi Gaber Badawi',           'role' => 'Operations Manager', 'initial' => 'BG', 'message' => 'Ensuring smooth operations and delivering efficiency in every step of our work.'],
-        ['name' => 'Ehab Mahmoud Abbas',            'role' => 'Projects Manager',   'initial' => 'EM', 'message' => 'Driving projects forward with precision, quality, and timely execution.'],
-        ['name' => 'M. Dushyantha Saman K Cooray', 'role' => 'Tender Manager',     'initial' => 'DS', 'message' => 'Securing opportunities through strategic planning and competitive proposals.'],
-        ['name' => 'Santhosh Kumar',                'role' => 'Accounts Manager',   'initial' => 'SK', 'message' => 'Maintaining financial integrity and supporting smart business decisions.'],
-        ['name' => 'Ibrahim Abdelhafez',            'role' => 'HR Manager',         'initial' => 'IA', 'message' => 'Leading workforce transformation through talent excellence and a results-driven culture.'],
+        ['name' => 'Hany Abdel Fattah',            'role' => 'CEO',                'message' => 'Leading our vision with commitment to excellence, innovation, and sustainable growth.'],
+        ['name' => 'Badawi Gaber Badawi',           'role' => 'Operations Manager', 'message' => 'Ensuring smooth operations and delivering efficiency in every step of our work.'],
+        ['name' => 'Ehab Mahmoud Abbas',            'role' => 'Projects Manager',   'message' => 'Driving projects forward with precision, quality, and timely execution.'],
+        ['name' => 'M. Dushyantha Saman K Cooray', 'role' => 'Tender Manager',     'message' => 'Securing opportunities through strategic planning and competitive proposals.'],
+        ['name' => 'Santhosh Kumar',                'role' => 'Accounts Manager',   'message' => 'Maintaining financial integrity and supporting smart business decisions.'],
+        ['name' => 'Ibrahim Abdelhafez',            'role' => 'HR Manager',         'message' => 'Leading workforce transformation through talent excellence and a results-driven culture.'],
       ];
     @endphp
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       @foreach($team as $member)
 
-      <div class="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:border-red-200 transition-all duration-500 bg-white">
+      <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500
+                  bg-white border-t-4 border-red-500">
 
-        {{-- Default State — visible when NOT hovered --}}
-        <div class="flex flex-col items-center text-center px-8 py-10 transition-opacity duration-300 group-hover:opacity-0 group-hover:pointer-events-none">
+        {{-- Subtle red tint background --}}
+        <div class="absolute inset-0 bg-gradient-to-br from-red-50/80 via-white to-red-50/40 pointer-events-none"></div>
 
-          {{-- Avatar --}}
-          <div class="w-20 h-20 rounded-full bg-red-50 border-2 border-red-100 flex items-center justify-center mb-5">
-            <span class="text-2xl font-black text-red-600" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em;">
-              {{ $member['initial'] }}
-            </span>
-          </div>
+        {{-- Default State --}}
+        <div class="relative flex flex-col items-center text-center px-8 py-14 transition-opacity duration-300 group-hover:opacity-0 group-hover:pointer-events-none">
 
           <h3 class="text-base font-semibold text-gray-900 leading-snug mb-2">{{ $member['name'] }}</h3>
 
-          <span class="text-[11px] uppercase tracking-[0.18em] text-red-500 font-medium bg-red-50 px-3 py-1 rounded-full">
+          <span class="text-[11px] uppercase tracking-[0.18em] text-red-600 font-medium bg-red-100 px-3 py-1 rounded-full">
             {{ $member['role'] }}
           </span>
 
         </div>
 
-        {{-- Hover State — slides up on hover --}}
+        {{-- Hover State --}}
         <div class="absolute inset-0 bg-red-600 flex flex-col items-center justify-center text-center px-8 py-10
                     translate-y-full group-hover:translate-y-0
                     transition-transform duration-500 ease-in-out">
-
-          {{-- Avatar --}}
-          <div class="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center mb-4">
-            <span class="text-xl font-black text-white" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em;">
-              {{ $member['initial'] }}
-            </span>
-          </div>
 
           <h3 class="text-base font-semibold text-white leading-snug mb-1">{{ $member['name'] }}</h3>
 

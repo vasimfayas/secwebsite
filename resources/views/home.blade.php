@@ -50,69 +50,37 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             </template>
         </div>
     </div>
+{{-- Content --}}
+<div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen px-6 md:px-14" style="
+    margin-left: 0px;
+">
 
+    <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
+        Qatar's Trusted Contractor
+    </p>
 
-    {{-- Content --}}
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pb-24 pt-32 flex flex-col justify-end min-h-screen">
+    <h1
+        class="font-normal leading-tight mb-5"
+        style="font-size: clamp(40px, 6vw, 68px);"
+    >
+        <span class="text-red-500">S</span>uccess<br>
+        <span class="text-red-500">E</span>xcellence<br>
+        <span class="text-red-500">C</span>ommitment
+    </h1>
 
-        <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
-            Qatar's Trusted Contractor
-        </p>
+    <p class="text-sm md:text-base font-light text-white/70 max-w-lg leading-relaxed mb-10">
+        Grade A Construction Company Operating in Qatar
+    </p>
 
-        <h1
-            class="font-black leading-none mb-5  decoration-2"
-            style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px);"
-        >
-            <span class="text-red-500">S</span>uccess<br>
-            <span class="text-red-500">E</span>xcellence<br>
-            <span class="text-red-500">C</span>ommitment
-        </h1>
+    <a href="{{ route('projects') }}"
+        class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
+        Explore Our Projects
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+    </a>
 
-        <p class="text-base md:text-lg font-light text-white/70 max-w-lg leading-relaxed mb-10">
-            Grade A Construction Company Operating in Qatar
-        </p>
-
-        <a href="{{ route('projects') }}"
-            class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
-            Explore Our Projects
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-        </a>
-
-    </div>
-
-
-    {{-- Slide counter --}}
-    <div class="absolute top-7 right-14 text-xs text-white/40 tracking-widest font-light z-20">
-        <span x-text="String(currentSlide + 1).padStart(2, '0')"></span>
-        <span class="mx-1 opacity-40">/</span>
-        <span x-text="String(slides.length).padStart(2, '0')"></span>
-    </div>
-
-
-    {{-- Progress bar --}}
-    <div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-20">
-        <div
-            class="h-full bg-yellow-400 transition-all duration-700"
-            :style="`width: ${((currentSlide + 1) / slides.length) * 100}%`"
-        ></div>
-    </div>
-
-
-    {{-- Dot indicators --}}
-    <div class="absolute bottom-6 right-14 flex gap-2 z-20">
-        <template x-for="(_, i) in slides" :key="i">
-            <button
-                @click="currentSlide = i"
-                class="rounded-full transition-all duration-300"
-                :class="i === currentSlide
-                    ? 'w-5 h-1.5 bg-yellow-400'
-                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'"
-            ></button>
-        </template>
-    </div>
-
+</div>
 
     {{-- PREV button --}}
     <button
