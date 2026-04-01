@@ -28,7 +28,7 @@
 
     <div class="text-center mb-16">
       <p class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">The People Behind The Work</p>
-      <h2 class="text-5xl font-black text-gray-900" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em;">Our Team</h2>
+      <h2 class="text-5xl font-black text-gray-900">Our Team</h2>
       <div class="mt-4 mx-auto w-12 h-[2px] bg-red-600"></div>
     </div>
 
