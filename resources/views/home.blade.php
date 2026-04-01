@@ -19,6 +19,12 @@ x-data="{
         return [this.slides[this.slides.length - 1], ...this.slides, this.slides[0]]
     },
 
+    get realIndex() {
+        if (this.currentSlide === 0) return this.slides.length - 1
+        if (this.currentSlide === this.track.length - 1) return 0
+        return this.currentSlide - 1
+    },
+
     next() {
         if (this.transitioning) return
         this.transitioning = true
@@ -29,6 +35,12 @@ x-data="{
         if (this.transitioning) return
         this.transitioning = true
         this.currentSlide--
+    },
+
+    goTo(index) {
+        if (this.transitioning) return
+        this.transitioning = true
+        this.currentSlide = index + 1
     },
 
     onTransitionEnd() {
@@ -91,9 +103,9 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             <span class="text-red-500">C</span>ommitment
         </h1>
 
-       <p class="text-base md:text-lg font-medium text-white/70 max-w-lg leading-relaxed mb-10">
-    Grade A Construction Company Operating in Qatar
-</p>
+        <p class="text-base md:text-lg font-medium text-white/70 max-w-lg leading-relaxed mb-10">
+            Grade A Construction Company Operating in Qatar
+        </p>
 
         <a href="{{ route('projects') }}"
             class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
@@ -103,6 +115,19 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             </svg>
         </a>
 
+    </div>
+
+    {{-- Dot Indicators --}}
+    <div class="absolute bottom-10 right-14 flex gap-2 z-20">
+        <template x-for="(slide, i) in slides" :key="i">
+            <button
+                @click="goTo(i)"
+                class="rounded-full transition-all duration-300"
+                :class="realIndex === i
+                    ? 'w-5 h-1.5 bg-yellow-400'
+                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'"
+            ></button>
+        </template>
     </div>
 
     {{-- PREV button --}}
@@ -130,7 +155,6 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
     </button>
 
 </section>
-
 <!-- About Shannon Engineering -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
