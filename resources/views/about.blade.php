@@ -4,29 +4,33 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
+<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="About hero"
          style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
-  <!-- layered overlays: gradient + vignette + subtle noise -->
+   <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/35 to-transparent"></div>
+    <!-- subtle white glow behind center/bottom area -->
     <div class="absolute inset-0"
-         style="background: radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,.45), transparent 60%);"></div>
-    <div class="absolute inset-0 opacity-[.08] mix-blend-multiply"
-         style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%224%22 height=%224%22><rect width=%224%22 height=%224%22 fill=%22%23fff%22/><circle cx=%220.5%22 cy=%220.5%22 r=%220.5%22 fill=%22%23000%22/></svg>');"></div>
+         style="background:
+           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
+           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
+    </div>
+    <!-- light vignette to keep edges rich -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
   </div>
 
   <!-- content: bottom-left glass card (best on light photos) -->
-  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
+  <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
     <div class="backdrop-blur-md bg-white/10 ring-1 ring-white/20 rounded-2xl p-5 md:p-6 shadow-lg">
       <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
         <span class="drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">About</span>
-        <span class="text-red-400 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">Us</span>
+        <span class="text-red-500 drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">Us</span>
       </h1>
       <p class="mt-2 text-sm md:text-lg text-white/90">
         Building Qatar's future with success, excellence & commitment.
       </p>
+       <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>
   </div>
 </section>

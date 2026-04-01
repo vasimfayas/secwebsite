@@ -3,16 +3,35 @@
 @section('title', 'Contact Us - Shannon Engineering Company')
 
 @section('content')
-<!-- Hero Section -->
-<section class="bg-gray-800 text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-        <p class="text-xl max-w-3xl mx-auto">
-            Ready to start your next construction project? Get in touch with our team of experts
-        </p>
-    </div>
-</section>
 
+
+<!-- Hero Section -->
+<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
+         aria-label="Our Projects hero"
+         style="background-image: url('{{  asset('images/home/contact us.jpg') }}');">
+
+ <!-- gradient + vignette overlay -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/15"></div>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background:
+           radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,0.55), transparent 60%),
+           radial-gradient(60% 40% at 10% 10%, rgba(255,255,255,0.04), transparent 60%);">
+    </div>
+  </div>
+  <!-- Text Content: glass card, bottom-left -->
+  <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
+    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
+            <span class="text-red-500">Contact Us </span>
+      </h1>
+     <p class="text-xl max-w-3xl mx-auto">
+            Ready to start your next construction project? <br>Get in touch with our team of experts
+        </p>
+      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
+    </div>
+  </div>
+</section>
 <!-- Contact Information -->
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

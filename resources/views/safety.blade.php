@@ -18,35 +18,36 @@
 @endpush
 
 @section('content')
-<!-- Hero -->
-<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
-         aria-label="Safety hero"
-         style="background-image: url('{{ asset('images/safety/scover.jpg') }}');">
-  <!-- layered overlay for contrast -->
+
+<!-- Hero Section -->
+<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
+         aria-label="Our Projects hero"
+         style="background-image: url('{{ asset('images/safety/scover.jpg')  }}');">
+
+  <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
+    <!-- subtle white glow behind center/bottom area -->
     <div class="absolute inset-0"
-         style="background: radial-gradient(115% 70% at 50% 120%, rgba(0,0,0,.45), transparent 60%);"></div>
+         style="background:
+           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
+           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
+    </div>
+    <!-- light vignette to keep edges rich -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
   </div>
 
-  <!-- centered content -->
-  <div class="absolute inset-0 flex items-center justify-center px-6 text-center">
-    <div class="relative inline-block">
-      <!-- depth/3D back layer -->
-    
-
-      <!-- main title -->
-      <h1 class="relative text-4xl md:text-5xl font-extrabold tracking-tight leading-tight
-                 drop-shadow-[0_8px_24px_rgba(0,0,0,0.55)]">
-        Safety, <span class="text-red-500">Health</span> & Environment
+  <!-- Text Content: glass card, bottom-left -->
+  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
+    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200"> Safety, <span class="text-red-500">Health</span> & Environment</span>
+      
       </h1>
-
-      <!-- accent underline -->
-      <div class="mx-auto mt-4 h-[3px] w-24 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
+     
+      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>
   </div>
 </section>
-
 
 <!-- KPI Band (with count-up animation) -->
 <section class="py-12 bg-white">

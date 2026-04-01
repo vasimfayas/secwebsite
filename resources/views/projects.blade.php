@@ -4,9 +4,9 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative text-white h-[320px] md:h-[320px] bg-cover bg-center bg-no-repeat"
+<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="Our Projects hero"
-         style="background-image: url('{{ asset('images/home/plan2.jpg') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
   <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
   <div class="absolute inset-0">
@@ -21,11 +21,11 @@
   </div>
 
   <!-- Text Content: glass card, bottom-left -->
-  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
+  <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
     <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
       <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
         <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">Our</span>
-        <span class="text-red-400">Projects</span>
+        <span class="text-red-500">Projects</span>
       </h1>
       <p class="mt-1 text-sm md:text-lg text-white/90">
         Building Qatar's future with success, excellence & commitment.

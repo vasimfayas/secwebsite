@@ -3,12 +3,13 @@
 @section('title', 'Our Clients - Shannon Engineering Company')
 
 @section('content')
+
 <!-- Hero Section -->
-<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
-         aria-label="Strategic Partners hero"
+<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
+         aria-label="Our Projects hero"
          style="background-image: url('{{ asset('images/home/banner2.png') }}');">
 
-  <!-- gradient + vignette overlay -->
+ <!-- gradient + vignette overlay -->
   <div class="absolute inset-0">
     <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/15"></div>
     <div class="absolute inset-0 pointer-events-none"
@@ -17,23 +18,16 @@
            radial-gradient(60% 40% at 10% 10%, rgba(255,255,255,0.04), transparent 60%);">
     </div>
   </div>
-
-  <!-- centered content -->
-  <div class="absolute inset-0 flex items-center justify-center px-6 text-center">
-    <div class="relative inline-block">
-      <!-- 3D shadow layer (behind) -->
-    
-
-      <!-- main title -->
-      <h1 class="relative text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight
-                 drop-shadow-[0_6px_20px_rgba(0,0,0,0.45)]">
-        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">
-          Strategic <span class="text-red-400">Partners</span>
-        </span>
+  <!-- Text Content: glass card, bottom-left -->
+  <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
+    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
+       Strategic <span class="text-red-500">Partners</span>
       </h1>
-
-      <!-- subtle accent line -->
-      <div class="mx-auto mt-4 h-[3px] w-24 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500 opacity-90"></div>
+      <p class="mt-1 text-sm md:text-lg text-white/90">
+        Building Qatar's future with success, excellence & commitment.
+      </p>
+      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>
   </div>
 </section>

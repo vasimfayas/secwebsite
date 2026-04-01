@@ -4,77 +4,140 @@
 
 @section('content')
 @php use Illuminate\Support\Str; @endphp
-<!-- Hero Section -->
 <section
-    x-data="() => ({
-        currentSlide: 0,
-        slides: [
-            '/images/home/lexus.webp',
-            '/images/home/lulu.webp',
-            '/images/home/lulu2.webp'
-        ],
-        intervalId: null,
+x-data="{
+    currentSlide: 0,
+    slides: [
+        '/images/home/lexus.webp',
+        '/images/home/lulu.webp',
+        '/images/home/lulu2.1.png',
+    ],
+    intervalId: null,
 
-        goToSlide(i) {
-            this.currentSlide = i;
-        },
-        nextSlide() {
-            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-        },
-        startAuto() {
-            if (this.intervalId) clearInterval(this.intervalId);
-            this.intervalId = setInterval(() => this.nextSlide(), 8000);
-        },
-        init() {
-            this.startAuto();
-        }
-    })"
-    x-init="init"
-    class="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+    next() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length
+    },
 
-    <!-- Sliding Background with Fade Effect -->
-    <div class="absolute inset-0 w-full h-full overflow-hidden">
-        <template x-for="(slide, index) in slides" :key="index">
-            <div class="absolute inset-0 transition-opacity duration-1000"
-                :class="{
-                    'opacity-100 z-10': currentSlide === index,
-                    'opacity-0 z-0': currentSlide !== index
-                }"
-                :style="`background-image: url(${slide}); background-size: cover; background-position: center;`">
-            </div>
-        </template>
-    </div>
+    prev() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length
+    },
 
-    <!-- Foreground Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            <span class="text-red-500">S</span>uccess,  <span class="text-red-500">E</span>xcellence,  <span class="text-red-500">C</span>ommitment<br>
-        </h1> 
-        <h2 class="text-2xl md:text-4xl font-bold mb-6 leading-tight">Driving Qatar’s Future</h2>
-       
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Grade A Construction Company Operating in Qatar
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('projects') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-block">
-                Explore Our Projects
-            </a>
+    start() {
+        this.intervalId = setInterval(() => this.next(), 8000)
+    },
+
+    init() {
+        this.start()
+    }
+}"
+x-init="init"
+class="relative min-h-screen flex items-center justify-center text-white overflow-hidden bg-black"
+>
+
+    {{-- Sliding Track --}}
+    <div class="absolute inset-0 overflow-hidden">
+        <div
+            class="flex h-full transition-transform duration-700 ease-in-out"
+            :style="`width: ${slides.length * 100}%; transform: translateX(-${currentSlide * (100 / slides.length)}%)`"
+        >
+            <template x-for="(slide, index) in slides" :key="index">
+                <div
+                    class="relative h-full flex-shrink-0 bg-cover bg-center"
+                    :style="`width: ${100 / slides.length}%; background-image: url(${slide})`"
+                >
+                    <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.05) 100%);"></div>
+                </div>
+            </template>
         </div>
     </div>
 
-    <!-- Dot Navigation -->
-    <div class="absolute bottom-6 w-full flex justify-center space-x-3 z-20">
-        <template x-for="(slide, index) in slides" :key="index">
+
+    {{-- Content --}}
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 pb-24 pt-32 flex flex-col justify-end min-h-screen">
+
+        <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
+            Qatar's Trusted Contractor
+        </p>
+
+        <h1
+            class="font-black leading-none mb-5  decoration-2"
+            style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px);"
+        >
+            <span class="text-red-500">S</span>uccess<br>
+            <span class="text-red-500">E</span>xcellence<br>
+            <span class="text-red-500">C</span>ommitment
+        </h1>
+
+        <p class="text-base md:text-lg font-light text-white/70 max-w-lg leading-relaxed mb-10">
+            Grade A Construction Company Operating in Qatar
+        </p>
+
+        <a href="{{ route('projects') }}"
+            class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
+            Explore Our Projects
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+
+    </div>
+
+
+    {{-- Slide counter --}}
+    <div class="absolute top-7 right-14 text-xs text-white/40 tracking-widest font-light z-20">
+        <span x-text="String(currentSlide + 1).padStart(2, '0')"></span>
+        <span class="mx-1 opacity-40">/</span>
+        <span x-text="String(slides.length).padStart(2, '0')"></span>
+    </div>
+
+
+    {{-- Progress bar --}}
+    <div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-20">
+        <div
+            class="h-full bg-yellow-400 transition-all duration-700"
+            :style="`width: ${((currentSlide + 1) / slides.length) * 100}%`"
+        ></div>
+    </div>
+
+
+    {{-- Dot indicators --}}
+    <div class="absolute bottom-6 right-14 flex gap-2 z-20">
+        <template x-for="(_, i) in slides" :key="i">
             <button
-                @click="goToSlide(index)"
-                class="w-3 h-3 rounded-full border-2 border-white"
-                :class="{
-                    'bg-white': currentSlide === index,
-                    'bg-transparent': currentSlide !== index
-                }">
-            </button>
+                @click="currentSlide = i"
+                class="rounded-full transition-all duration-300"
+                :class="i === currentSlide
+                    ? 'w-5 h-1.5 bg-yellow-400'
+                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'"
+            ></button>
         </template>
     </div>
+
+
+    {{-- PREV button --}}
+    <button
+        @click="prev"
+        class="absolute left-5 bottom-10 z-20 w-12 h-12 rounded-full
+               flex items-center justify-center
+               bg-white/10 border border-white/20
+               hover:bg-white/20 hover:border-white/50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+    </button>
+
+    {{-- NEXT button --}}
+    <button
+        @click="next"
+        class="absolute left-20 bottom-10 z-20 w-12 h-12 rounded-full
+               flex items-center justify-center
+               bg-white/10 border border-white/20
+               hover:bg-white/20 hover:border-white/50 transition">
+        <svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+    </button>
+
 </section>
 
 <!-- About Shannon Engineering -->
