@@ -194,7 +194,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
                 </div>
 
                 <div class="text-5xl font-bold">
-                    <span x-text="projects"></span>+
+                    <span x-text="projects"></span>
                 </div>
 
                 <div class="text-gray-300 text-lg">
@@ -212,7 +212,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
                 </div>
 
                 <div class="text-5xl font-bold">
-                    <span x-text="years"></span>+
+                    <span x-text="years"></span>
                 </div>
 
                 <div class="text-gray-300 text-lg">
@@ -503,8 +503,8 @@ years:0,
 clients:0,
 engineers:0,
 
-targetProjects:120,
-targetYears:18,
+targetProjects:90,
+targetYears:25,
 targetClients:85,
 targetEngineers:60,
 
