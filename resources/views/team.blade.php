@@ -27,7 +27,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-16">
-      <p class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">The People Behind The Work</p>
+      <p class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold mb-3">The People Behind The Success</p>
       <h2 class="text-5xl font-black text-gray-900">Our Team</h2>
       <div class="mt-4 mx-auto w-12 h-[2px] bg-red-600"></div>
     </div>

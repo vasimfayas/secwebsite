@@ -129,6 +129,30 @@
     </div>
   </div>
 </section>
+<!-- HSE Video -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+    <h3 class="text-2xl font-bold text-gray-900">
+      Our <span class="text-red-600">Safety Practices</span> in Action
+    </h3>
+
+    <div class="mt-8 relative rounded-2xl overflow-hidden shadow-2xl">
+      
+      <iframe 
+        id="hseVideo"
+        class="w-full h-[450px]"
+        src="https://www.youtube.com/embed/SYIPYBn0c-4?si=KL6F0g5TXQ0XTzCf?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
+        title="HSE Video"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+  </div>
+</section>
 
 <!-- HSE Pillars -->
 <section class="relative py-16 bg-white">

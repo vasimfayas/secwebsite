@@ -438,11 +438,48 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
     @livewireScripts
     @stack('scripts')
     {{-- Floating Updates (FAB + Panel) --}}
+    
 <div 
 x-data="updatesWidget()" 
 x-init="init()" 
 class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
 >
+<button 
+  
+
+>
+<a 
+   href="https://wa.me/97451785656"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="h-12 w-12 rounded-full flex items-center justify-center
+               bg-green-500 hover:bg-green-600 text-white
+               shadow-xl ring-1 ring-black/10 transition"
+        aria-label="Chat on WhatsApp"
+    >
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.847L.057 23.571a.75.75 0 0 0 .925.926l5.783-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.725 9.725 0 0 1-4.95-1.355l-.355-.211-3.68.929.957-3.595-.231-.368A9.725 9.725 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+        </svg>
+    </a>
+
+</button>
+<button>
+<a 
+   href="https://youtube.com/@shannonengineering8110"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="h-12 w-12 rounded-full flex items-center justify-center
+               bg-red-600 hover:bg-red-700 text-white
+               shadow-xl ring-1 ring-black/10 transition"
+        aria-label="Visit our YouTube channel"
+    >
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+    </a>
+
+</button>
 <!-- Backdrop -->
 <div 
   x-cloak 
@@ -461,7 +498,7 @@ class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
   role="dialog" aria-modal="true" aria-label="Latest updates"
 >
   <div class="px-4 py-3 border-b flex items-center justify-between">
-    <div class="text-sm font-semibold text-gray-900">Updates</div>
+    <div class="text-sm font-semibold text-gray-900">News</div>
   </div>
 
   <ul class="max-h-96 overflow-auto divide-y">
@@ -469,7 +506,7 @@ class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
     @php
       $updates = $updates ?? [
         ['type' => 'project', 'title' => 'New project awarded: Qatar Logistics Hub', 'meta' => 'Kickoff next week • West Bay'],
-        ['type' => 'hire',    'title' => 'New colleague: Sara Al-Thani', 'meta' => 'Project Engineer · Infrastructure'],
+       
         ['type' => 'job',     'title' => 'We’re hiring: HSE Officer', 'meta' => 'Apply now', 'url' => route('careers')],
       ];
     @endphp
@@ -542,13 +579,14 @@ class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
   <!-- subtle pulse -->
   <span x-show="unread > 0" class="absolute inset-0 rounded-full animate-ping bg-white/30"></span>
 </button>
+
 </div>
 
 <script>
 function updatesWidget(){
 return {
   open: false,
-  unread: 3, // set this from backend if you have a count
+  unread: 2, // set this from backend if you have a count
   init(){
     // Optionally restore unread from localStorage:
     const saved = Number(localStorage.getItem('updates_unread') || this.unread);
