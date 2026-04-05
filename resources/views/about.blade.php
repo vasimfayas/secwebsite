@@ -52,7 +52,7 @@
       <div class="mt-3 h-0.5 w-24 bg-gradient-to-r from-red-600 to-red-400 mb-10"></div>
   
       <!-- Floating image -->
-      <figure class="relative float-right ml-10 mb-6 w-full sm:w-1/2 lg:w-[45%]">
+      <figure class="relative float-right ml-10 mb-6 w-full sm:w-1/2 lg:w-[55%]">
         <div class="relative overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/5 bg-gray-50">
           <img
             src="{{ asset('images/team/group.jpg') }}"
@@ -72,7 +72,7 @@
       <!-- CEO Message -->
       <div class="text-justify leading-7 max-w-none">
         <p class="text-sm sm:text-base text-gray-700 mb-4">
-          I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in; our clients deserve the best.
+          I would like to start with the story of SEC which is told through our projects, our employees and our commitment to the community around us. We started as a small group of engineers who were inspired to succeed. Since those days, SEC has thrived due to what we have always believed in our clients deserve the best.
         </p>
         <p class="text-sm sm:text-base text-gray-700 mb-4">
           Our success is due to an unwavering commitment to provide our clients with their own unique opportunities to succeed. We ensure that we exceed their expectations by providing them with tailored options and opportunities.

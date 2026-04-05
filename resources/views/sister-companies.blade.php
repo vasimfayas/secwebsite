@@ -48,55 +48,38 @@
 
 @php
 $logos = [
-[
-'file' => 'flameLogo.png',
-'name'=>'FLAME QATAR',
-'Desp' => 'Grade A Electrical Contracting Company specializing in complete range electrical installations with international quality standards for residential, commercial, and industrial projects.',
-'url' => 'https://www.flameqatar.com/',
-'points' => [
-'Power Systems',
-'Lighting Solutions',
-'Electrical Design'
-]
-],
-
-[
-'file' => 'sidra.jpg',
-'name'=>'SIDRA',
-'Desp' => 'Grade A Mechanical Contracting Company specializing in advanced mechanical systems, HVAC, plumbing, and comprehensive MEP solutions for commercial and industrial projects.',
-'url' => 'https://sidraengineering.com/',
-'points' => [
-'HVAC systems',
-'Mechanical Design',
-'Plumbing & Piping'
-]
-],
-
-[
-'file' => 'marble.jpg',
-'name'=>'MarbleArch',
-'Desp' => 'Specializing in premium marble, granite, and natural stone solutions for architectural and interior applications. Delivering exquisite finishes for residential and commercial spaces.',
-'url' => 'https://marblearchqtr.com/',
-'points' => [
-'Premium Marble & Granite',
-'Natural Stone Solutions',
-'Architectural Finishes',
-'Custom Fabrication'
-]
-],
-
-[
-'file' => 'acting.jpg',
-'name'=>'ACTING',
-'Desp' => 'One of the largest suppliers of finishing packages in the Gulf Region, offering premium materials, architectural finishes, and comprehensive interior solutions for luxury projects.',
-'url' => 'https://actingtradecont.com/',
-'points' => [
-'Finishing Packages',
-'Premium Materials',
-'Gulf Region Supply',
-'Luxury Interiors'
-]
-],
+    [
+        'file' => 'flameLogo.png',
+        'name' => 'FLAME QATAR',
+        'grade' => 'Electrical Contracting',
+        'Desp' => 'specializing in complete range electrical installations with international quality standards for residential, commercial, and industrial projects.',
+        'url' => 'https://www.flameqatar.com/',
+        'points' => ['Power Systems', 'Lighting Solutions', 'Electrical Design']
+    ],
+    [
+        'file' => 'sidra.jpg',
+        'name' => 'SIDRA',
+        'grade' => 'Mechanical Contracting',
+        'Desp' => 'specializing in advanced mechanical systems, HVAC, plumbing, and comprehensive MEP solutions for commercial and industrial projects.',
+        'url' => 'https://sidraengineering.com/',
+        'points' => ['HVAC systems', 'Mechanical Design', 'Plumbing & Piping']
+    ],
+    [
+        'file' => 'marble.jpg',
+        'name' => 'MarbleArch',
+        'grade' => null,
+        'Desp' => 'Specializing in premium marble, granite, and natural stone solutions for architectural and interior applications. Delivering exquisite finishes for residential and commercial spaces.',
+        'url' => 'https://marblearchqtr.com/',
+        'points' => ['Premium Marble & Granite', 'Natural Stone Solutions', 'Architectural Finishes', 'Custom Fabrication']
+    ],
+    [
+        'file' => 'acting.jpg',
+        'name' => 'ACTING',
+        'grade' => null,
+        'Desp' => 'One of the largest suppliers of finishing packages in the Gulf Region, offering premium materials, architectural finishes, and comprehensive interior solutions for luxury projects.',
+        'url' => 'https://actingtradecont.com/',
+        'points' => ['Finishing Packages', 'Premium Materials', 'Gulf Region Supply', 'Luxury Interiors']
+    ],
 ];
 @endphp
     
@@ -116,8 +99,28 @@ $logos = [
       <!-- Name -->
       <h3 class="text-2xl font-bold text-gray-800 mb-3">{{ $logo['name'] }}</h3>
 
-      <!-- Full Description -->
-      <p class="text-gray-700 text-sm mb-4">{{ $logo['Desp'] }}</p>
+   <!-- Full Description -->
+<p class="text-gray-700 text-sm mb-4 leading-relaxed">
+    @if(!empty($logo['grade']))
+        <span class="inline-flex items-center gap-1.5 mr-1 align-middle">
+            <span class="relative inline-block font-bold text-white text-[10px] tracking-widest uppercase px-2 py-0.5 rounded select-none"
+                  style="
+                    background: linear-gradient(160deg, #ef4444 0%, #b91c1c 50%, #ef4444 100%);
+                    box-shadow:
+                      0 2px 0 #7f1d1d,
+                      0 3px 0 #6b1a1a,
+                      0 5px 10px rgba(185,28,28,0.4),
+                      inset 0 1px 0 rgba(255,255,255,0.3),
+                      inset 0 -1px 0 rgba(0,0,0,0.2);
+                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                  ">
+                Grade A
+            </span>
+            <span class="font-semibold text-gray-800 text-xs">{{ $logo['grade'] }} Company</span>
+        </span>
+    @endif
+    {{ $logo['Desp'] }}
+</p>
 
       <!-- Bullet points -->
       <ul class="text-gray-600 text-sm space-y-2 mb-4">
