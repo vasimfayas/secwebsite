@@ -126,10 +126,10 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
                 @endphp <!-- Desktop Navigation -->
                 <div class="hidden md:flex flex-grow justify-end ml-10">
                     <div class="ml-10 flex items-baseline space-x-2 relative group">
-                        <a href="{{ route('home') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('home') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                        <a href="{{ route('home') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('home') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >HOME</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('about') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide  {{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                            <a href="{{ route('about') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide  {{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >ABOUT US</a>
 
                             <!-- Dropdown Menu -->
@@ -152,7 +152,7 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
 
                         <!-- Projects with Dropdown -->
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('projects') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('projects') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                            <a href="{{ route('projects') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('projects') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >PROJECTS</a>
 
                             <!-- Dropdown Menu -->
@@ -165,10 +165,10 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
                                 @endforeach
                             </div>
                         </div>
-                        <a href="{{ route('safety') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('safety') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                        <a href="{{ route('safety') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('safety') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >SAFETY, HEALTH & ENVIRONMENT</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('clients') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('clients') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                            <a href="{{ route('clients') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('clients') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >STRATEGIC PARTNERS</a>
 
                             <!-- Dropdown Menu -->
@@ -186,11 +186,11 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
                             </div>
                         </div>
 
-                        <a href="{{ route('sister-companies') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                        <a href="{{ route('sister-companies') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >SEC GROUP</a>
-                        <a href="{{ route('careers') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('careers') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                        <a href="{{ route('careers') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('careers') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >CAREERS</a>
-                        <a href="{{ route('contact') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('contact') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-red-300'"
+                        <a href="{{ route('contact') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('contact') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >CONTACT US</a>
 <div x-data="updatesWidget()" x-init="init()" class="relative">
 
@@ -201,7 +201,7 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
   :aria-expanded="open.toString()" 
   aria-controls="updates-panel"
 
-  class="relative h-10 w-10 rounded-full bg-red-600 text-white shadow-lg
+  class="relative h-10 w-10 rounded-full bg-red-600 text-gray-800 shadow-lg
          hover:bg-red-700 transition flex items-center justify-center"
 >
 
@@ -488,7 +488,7 @@ View all updates
                         
                     </div>
                     <span class=" text-white font-semibold text-lg">Shannon Engineering</span>
-                    <p class="text-gray-300 text-sm">
+                    <p class="text-gray-300 text-sm text-justify">
                         A premier construction and contracting company in Qatar, delivering exceptional projects across various sectors.
                     </p>
                 </div>
@@ -573,6 +573,7 @@ View all updates
                     <img src="{{ asset('images/iso/iso_1.png') }}" alt="ISO Certification 1" class="h-16 w-auto">
                     <img src="{{ asset('images/iso/iso_2.png') }}" alt="ISO Certification 2" class="h-16 w-auto">
                     <img src="{{ asset('images/iso/iso_3.png') }}" alt="ISO Certification 3" class="h-16 w-auto">
+                    <img src="{{ asset('images/iso/icv.jpg') }}" alt="ICV Certification" class="h-16 w-auto">
                   </div>
               
                 </div>

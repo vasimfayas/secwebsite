@@ -5,7 +5,7 @@
 @section('content')
 <!-- Hero Section -->
 <section class="relative text-white h-[320px] md:h-[320px] bg-cover bg-center bg-no-repeat"
-         style="background-image: url('{{ asset('images/home/plan2.jpg') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
     <div class="absolute inset-0">
         <!-- subtle white glow + vignette overlay -->
         <div class="absolute inset-0"

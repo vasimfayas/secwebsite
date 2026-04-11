@@ -59,7 +59,16 @@ class HomeController extends Controller
     {
         $project = Project::findorfail($id);
         $images = ProjectImage::where('project_id', $id)->get();
-        return view('project-detail', compact('project', 'images'));
+        $next = Project::where('category_id', $project->category_id)
+            ->where('id', '>', $project->id)
+            ->orderBy('id', 'asc')
+            ->first();
+
+        $prev = Project::where('category_id', $project->category_id)
+            ->where('id', '<', $project->id)
+            ->orderBy('id', 'desc')
+            ->first();
+        return view('project-detail', compact('project', 'images', 'next', 'prev'));
     }
     /**
      * Display the sister companies page

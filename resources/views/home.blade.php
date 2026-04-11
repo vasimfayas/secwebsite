@@ -11,7 +11,9 @@ x-data="{
     slides: [
         '/images/home/lexus.webp',
         '/images/home/lulu.webp',
+        '/images/home/shaqab.png',
         '/images/home/lulu2.1.png',
+
     ],
     intervalId: null,
 
@@ -173,7 +175,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
                 </a>
             </div>
             <div class="relative">
-                <img src="{{asset('/images/home/QMIC.jpg')}}"
+                <img src="{{asset('/images/home/cap.png')}}"
                     alt="Modern construction site"
                     class="rounded-lg shadow-xl w-full h-96 object-cover">
             </div>
@@ -468,7 +470,7 @@ Our ongoing projects reflect Shannon Engineering’s continuous growth and trust
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="relative">
-                    <iframe  class="rounded-lg shadow-xl w-full h-full object-cover" width="560" height="315" src="https://www.youtube-nocookie.com/embed/qpmrD94lSqk?si=5WDv1NesVf7NMb-g&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe  class="rounded-lg shadow-xl w-full h-full object-cover" width="560" height="315" src="https://www.youtube-nocookie.com/embed/qpmrD94lSqk?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div>
                 <h2 class="text-4xl font-bold text-gray-800 mb-8 section-title">

@@ -66,12 +66,40 @@
                 {{$project->description}}
             </p>
         </div>
+<div class="flex justify-between items-center mt-14 border-t pt-6">
 
+    @if($prev)
+    <a href="{{ route('detailprojects', $prev->id) }}"
+       class="group flex items-center gap-2 text-gray-600 hover:text-red-600 transition">
+        <span class="group-hover:-translate-x-1 transition">←</span>
+        <span class="font-medium">Previous</span>
+    </a>
+    @else
+    <div></div>
+    @endif
+
+  
+
+    @if($next)
+    <a href="{{ route('detailprojects', $next->id) }}"
+       class="group flex items-center gap-2 text-gray-600 hover:text-red-600 transition">
+        <span class="font-medium">Next</span>
+        <span class="group-hover:translate-x-1 transition">→</span>
+    </a>
+    @else
+    <div></div>
+    @endif
+
+</div>
         <!-- Back Button -->
         <div class="text-center">
-            <a href="{{ route('listprojects',$project->category_id)}}" class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition">
-                ← Back to Projects
+            <a href="{{ route('listprojects',$project->category_id)}}" class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition mt-5">
+                ← Back 
             </a>
+              <a href="{{ route('projects') }}"
+      class="inline-block px-6 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition mt-5">
+        All Projects
+    </a>
         </div>
 
     </div>

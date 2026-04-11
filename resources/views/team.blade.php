@@ -5,7 +5,7 @@
 @section('content')
 <!-- Hero Section -->
 <section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
-         style="background-image: url('{{ asset('images/home/banner1.png') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
 
@@ -21,6 +21,31 @@
       <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>
   </div>
+</section>
+
+<section class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600 flex items-center gap-2">
+
+        <a href="{{ route('about') }}"
+           class="{{ request()->routeIs('about') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            About
+        </a>
+
+        <span class="text-gray-400">/</span>
+
+        <a href="{{ route('about.team') }}"
+           class="{{ request()->routeIs('about.team') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Team
+        </a>
+
+        <span class="text-gray-400">/</span>
+
+        <a href="{{ route('about.vision') }}"
+           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Mission & Vision
+        </a>
+
+    </div>
 </section>
 <!-- Team Section -->
 <section id="team" class="py-24 bg-red-50">

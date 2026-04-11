@@ -22,7 +22,7 @@
 <!-- Hero Section -->
 <section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="Our Projects hero"
-         style="background-image: url('{{ asset('images/safety/scover.jpg')  }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
   <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
   <div class="absolute inset-0">
@@ -85,75 +85,65 @@
       </div>
     </div>
   </div>
-</section>
+</section><!-- Intro / Promise -->
+<section class="relative py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
 
-<!-- Intro / Promise -->
-<section class="relative py-16 bg-gradient-to-b from-gray-50 to-white">
-  <!-- soft background accents -->
-  <div class="pointer-events-none absolute inset-0 opacity-70"
+  <!-- Background accents -->
+  <div class="pointer-events-none absolute inset-0 opacity-60"
        style="background:
-         radial-gradient(60% 40% at 15% 12%, rgba(255,0,0,0.05), transparent 60%),
-         radial-gradient(45% 35% at 85% 18%, rgba(0,0,0,0.04), transparent 60%);"></div>
+       radial-gradient(60% 40% at 15% 12%, rgba(220,38,38,0.08), transparent 60%),
+       radial-gradient(45% 35% at 85% 18%, rgba(0,0,0,0.04), transparent 60%);">
+  </div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-      <div class="lg:col-span-2">
-        <h3 class="text-3xl font-extrabold text-gray-900">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT CONTENT -->
+      <div>
+        <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
           <span class="text-red-600">SAFETY</span> in everything we do
         </h3>
 
-        <div class="mt-5 max-w-[72ch] text-gray-700 space-y-4 text-base leading-7 text-justify">
-          <p>SEC’s commitment to safety is one of its core values, along with caring for our employee’s health and wellness. We also care a great deal about the environment in which we operate. This is clear in each and every one of our construction projects.</p>
-          <p>Moreover, developing and preserving the environment is evident from our keen attention to conserving resources, especially in the use of water, energy, and recycling in our various project sites.</p>
-          <p>We are passionate about excellence and doing our work right. Our reputation depends on our delivered value in the eyes of every client. We are relentless at keeping people safe, in addition to providing a healthy work environment.</p>
-          <p>Our investment in training and development of our employees’ welfare, health and concern for their individual growth puts SEC in the lead.</p>
-          <p>Such commitment has made SEC an employer of choice to career-minded professionals in the construction business. Team work is one of our highest goals and collective employees’ performance is measured according to their adherence to this effort.</p>
-          <p>SEC recognizes the importance of establishing long-term partnerships with its clients. For this purpose, we always ensure to employ state-of-the-art innovative technical solutions in the development and execution of the construction projects.</p>
+        <div class="mt-6 space-y-5 text-gray-700 text-base leading-7 text-justify max-w-2xl">
+          <p>SEC’s commitment to safety is one of its core values, along with caring for our employee’s health and wellness. We also care a great deal about the environment in which we operate.</p>
+
+          <p>Developing and preserving the environment is evident from our attention to conserving resources, especially water, energy, and recycling across project sites.</p>
+
+          <p>We are passionate about excellence and doing our work right. Our reputation depends on delivered value in the eyes of every client.</p>
+
+          <p>We invest heavily in training, employee welfare, and professional growth, making SEC a preferred employer in the construction industry.</p>
+
+          <p>Teamwork and collaboration are core values, ensuring collective performance and long-term success.</p>
+
+          <p>We build long-term partnerships with clients using innovative technical solutions and modern construction practices.</p>
         </div>
       </div>
 
-      <!-- Feature Image -->
-      <aside class="lg:col-span-1">
-        <figure class="relative animate-fade-up">
-          <div class="overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/5 bg-gray-50">
-            <img
-              src="{{ asset('images/home/safety.webp') }}"
-              alt="Site team demonstrating PPE compliance"
-              class="w-full h-80 object-cover transition-transform duration-500 hover:scale-[1.02]"
-              loading="lazy"
-            />
+      <!-- RIGHT VIDEO -->
+      <div class="flex justify-center lg:justify-end">
+
+        <div class="w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
+
+          <div class="aspect-video">
+            <iframe
+              class="w-full h-full"
+              src="https://www.youtube.com/embed/SYIPYBn0c-4?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
+              title="HSE Video"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen>
+            </iframe>
           </div>
-          <figcaption class="mt-3 text-xs text-gray-500 text-center">© Shannon Engineering</figcaption>
-        </figure>
-      </aside>
-    </div>
-  </div>
-</section>
-<!-- HSE Video -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-    <h3 class="text-2xl font-bold text-gray-900">
-      Our <span class="text-red-600">Safety Practices</span> in Action
-    </h3>
+        </div>
 
-    <div class="mt-8 relative rounded-2xl overflow-hidden shadow-2xl">
-      
-      <iframe 
-        id="hseVideo"
-        class="w-full h-[450px]"
-        src="https://www.youtube.com/embed/SYIPYBn0c-4?si=KL6F0g5TXQ0XTzCf?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
-        title="HSE Video"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      </div>
 
     </div>
 
   </div>
 </section>
-
 <!-- HSE Pillars -->
 <section class="relative py-16 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

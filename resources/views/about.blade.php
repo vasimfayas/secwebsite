@@ -35,7 +35,30 @@
   </div>
 </section>
 
+<section class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600 flex items-center gap-2">
 
+        <a href="{{ route('about') }}"
+           class="{{ request()->routeIs('about') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            About
+        </a>
+
+        <span class="text-gray-400">/</span>
+
+        <a href="{{ route('about.team') }}"
+           class="{{ request()->routeIs('about.team') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Team
+        </a>
+
+        <span class="text-gray-400">/</span>
+
+        <a href="{{ route('about.vision') }}"
+           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Mission & Vision
+        </a>
+
+    </div>
+</section>
 <!-- Company Overview (Float Layout) -->
 <section class="relative py-20 bg-white">
     <!-- soft gradient glow -->

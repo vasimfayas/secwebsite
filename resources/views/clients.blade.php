@@ -7,7 +7,7 @@
 <!-- Hero Section -->
 <section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="Our Projects hero"
-         style="background-image: url('{{ asset('images/home/banner2.png') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
  <!-- gradient + vignette overlay -->
   <div class="absolute inset-0">
@@ -47,19 +47,22 @@
 
         @php
         $logos = [
-        '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg',
+        '1.png', '2.jpg', '3.jpg', '4.jpg', '5.jpg',
         '6.png', '7.png', '8.jpg', '9.jpg', '10.jpg',
-        '11.jpg', '12.jpg', '13.jpg',
+        '11.jpg', '12.jpg', '13.jpg','14.jpeg','15.png','16.png','17.webp','18.png','19.png','20.jpeg','21.png'
         ];
         @endphp
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
            
                 @foreach($logos as $logo)
-                <div class="w-full h-24 bg-white flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow-sm ">
-                    <img src="{{ asset('images/client/' . $logo) }}"
-                        alt="Client Logo"
-                        class="h-full w-full object-contain" />
+                <div class="w-full h-32 bg-white flex items-center justify-center p-3 border border-gray-200 rounded-xl shadow-sm
+            transition-all duration-300 ease-out
+            hover:shadow-xl hover:-translate-y-2 hover:scale-105
+            group cursor-pointer">
+                  <img src="{{ asset('images/client/' . $logo) }}"
+    alt="Client Logo"
+    class="h-full w-full object-contain transition-all duration-300 group-hover:scale-110" />
                 </div>
                 @endforeach
             
@@ -81,17 +84,19 @@
         @php
         $consultant = [
         '1.jpg', '2.png', '3.jpg', '4.jpg', '5.jpg',
-        '6.jpg', '7.png', '8.jpg', '9.jpg', '10.jpg',
-        '11.jpg','12.png'
+        '6.jpg', '7.png', '8.jpg', '9.jpg', '10.png',
+        '11.jpg','12.png','13.jpeg','14.webp'
         ];
         @endphp
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 items-center">
             @foreach($consultant as $logo)
-            <div class="w-full h-24 bg-white flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow-sm ">
-                <img src="{{ asset('images/consultant/' . $logo) }}"
+           <div class="w-full h-32 bg-white flex items-center justify-center p-3 border border-gray-200 rounded-xl shadow-sm
+            transition-all duration-300 ease-out
+            hover:shadow-xl hover:-translate-y-2 hover:scale-105
+            group cursor-pointer">     <img src="{{ asset('images/consultant/' . $logo) }}"
                     alt="Consulting Logo"
-                    class="h-full w-full object-contain " />
+                   class="h-full w-full object-contain transition-all duration-300 group-hover:scale-120" />
             </div>
             @endforeach
         </div>

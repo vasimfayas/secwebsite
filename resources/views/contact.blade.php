@@ -8,7 +8,7 @@
 <!-- Hero Section -->
 <section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="Our Projects hero"
-         style="background-image: url('{{  asset('images/home/contact us.jpg') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
  <!-- gradient + vignette overlay -->
   <div class="absolute inset-0">

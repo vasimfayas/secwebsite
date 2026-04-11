@@ -8,7 +8,7 @@
 <!-- Hero Section -->
 <section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
          aria-label="Our Projects hero"
-         style="background-image: url('{{  asset('images/home/plan.jpg') }}');">
+         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
  <!-- gradient + vignette overlay -->
   <div class="absolute inset-0">
@@ -103,17 +103,7 @@ $logos = [
 <p class="text-gray-700 text-sm mb-4 leading-relaxed">
     @if(!empty($logo['grade']))
         <span class="inline-flex items-center gap-1.5 mr-1 align-middle">
-            <span class="relative inline-block font-bold text-white text-[10px] tracking-widest uppercase px-2 py-0.5 rounded select-none"
-                  style="
-                    background: linear-gradient(160deg, #ef4444 0%, #b91c1c 50%, #ef4444 100%);
-                    box-shadow:
-                      0 2px 0 #7f1d1d,
-                      0 3px 0 #6b1a1a,
-                      0 5px 10px rgba(185,28,28,0.4),
-                      inset 0 1px 0 rgba(255,255,255,0.3),
-                      inset 0 -1px 0 rgba(0,0,0,0.2);
-                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-                  ">
+            <span class="relative inline-block bg-red-200 font-bold  text-[10px] tracking-widest uppercase px-2 py-0.5 rounded select-none">
                 Grade A
             </span>
             <span class="font-semibold text-gray-800 text-xs">{{ $logo['grade'] }} Company</span>
