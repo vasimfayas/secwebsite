@@ -37,12 +37,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // About Us page
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/about/vision', [HomeController::class, 'vision'])->name('about.vision');
+Route::get('/about/culture', [HomeController::class, 'culture'])->name('about.culture');
+
 Route::get('/about/team', [HomeController::class, 'team'])->name('about.team');
 Route::get('/safety', [HomeController::class, 'safety'])->name('safety');
 // Projects page
 Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
 Route::get('/projects/cat/{cat}', [HomeController::class, 'listprojects'])->name('listprojects');
 Route::get('/projects/detail/{id}', [HomeController::class, 'detailprojects'])->name('detailprojects');
+Route::get('/projects/status/ongoing', [HomeController::class, 'ongoing'])->name('ongoingProjects');
+Route::get('/projects/status/ongoing/{id}', [HomeController::class, 'ongoingdetails'])->name('ongoingdetails');
 
 // Sister Companies page
 Route::get('/sister-companies', [HomeController::class, 'sisterCompanies'])->name('sister-companies');

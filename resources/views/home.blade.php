@@ -9,10 +9,10 @@ x-data="{
     currentSlide: 1,
     transitioning: false,
     slides: [
+        '/images/home/shaqab.png',
         '/images/home/lexus.webp',
         '/images/home/lulu.webp',
-        '/images/home/shaqab.png',
-        '/images/home/lulu2.1.png',
+        
 
     ],
     intervalId: null,
@@ -310,86 +310,53 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Residential Construction -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Residential Construction</h3>
-                <p class="text-gray-600">
-                    Luxury villas, apartment complexes, and residential communities built to the highest standards of quality and comfort.
-                </p>
-            </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <!-- Commercial Development -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Commercial Development</h3>
-                <p class="text-gray-600">
-                    Shopping malls, office buildings, hotels, and retail spaces designed for functionality, aesthetics, and business success.
-                </p>
-            </div>
-
-            <!-- Industrial Facilities -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Industrial Facilities</h3>
-                <p class="text-gray-600">
-                    Factories, warehouses, and industrial complexes engineered for efficiency, safety, and operational excellence.
-                </p>
-            </div>
-
-            <!-- Medical Buildings -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Medical Buildings</h3>
-                <p class="text-gray-600">
-                    Hospitals, clinics, and healthcare facilities constructed with precision to support modern medical services.
-                </p>
-            </div>
-
-            <!-- Mosque Construction -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Mosque Construction</h3>
-                <p class="text-gray-600">
-                    Beautiful and functional mosques that serve as spiritual centers for communities, combining traditional elements with modern engineering.
-                </p>
-            </div>
-
-            <!-- Engineering Solutions -->
-            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Engineering Solutions</h3>
-                <p class="text-gray-600">
-                    Comprehensive engineering services including structural design, MEP systems, and project management.
-                </p>
-            </div>
+    <!-- General Contracting -->
+    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fa-solid fa-helmet-safety text-red-600 text-xl"></i>
         </div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">General Contracting</h3>
+        <p class="text-gray-500 text-sm">
+            Complete construction solutions from planning to execution.
+        </p>
+    </div>
+
+    <!-- Construction -->
+    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fa-solid fa-building text-red-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Construction</h3>
+        <p class="text-gray-500 text-sm">
+            Residential and commercial buildings built with precision.
+        </p>
+    </div>
+
+    <!-- Design & Build -->
+    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fa-solid fa-drafting-compass text-red-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Design & Build</h3>
+        <p class="text-gray-500 text-sm">
+            Smart design combined with efficient project execution.
+        </p>
+    </div>
+
+    <!-- Facilities Management -->
+    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+            <i class="fa-solid fa-screwdriver-wrench text-red-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Facilities Management</h3>
+        <p class="text-gray-500 text-sm">
+            Ongoing maintenance and support for building performance.
+        </p>
+    </div>
+
+</div>
     </div>
 </section>
 
@@ -454,7 +421,7 @@ Our ongoing projects reflect Shannon Engineering’s continuous growth and trust
         </div>
 
         <div class="text-center mt-12">
-            <a href="{{ route('projects') }}"
+            <a href="{{ route('ongoingProjects') }}"
                 class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block transition-all duration-300">
                 View All Projects
             </a>

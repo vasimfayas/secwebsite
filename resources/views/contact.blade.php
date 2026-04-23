@@ -11,13 +11,15 @@
          style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
  <!-- gradient + vignette overlay -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/15"></div>
-    <div class="absolute inset-0 pointer-events-none"
+   <div class="absolute inset-0">
+    <!-- subtle white glow behind center/bottom area -->
+    <div class="absolute inset-0"
          style="background:
-           radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,0.55), transparent 60%),
-           radial-gradient(60% 40% at 10% 10%, rgba(255,255,255,0.04), transparent 60%);">
+           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
+           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
     </div>
+    <!-- light vignette to keep edges rich -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
   </div>
   <!-- Text Content: glass card, bottom-left -->
   <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
@@ -26,7 +28,7 @@
             <span class="text-red-500">Contact Us </span>
       </h1>
      <p class="text-xl max-w-3xl mx-auto">
-            Ready to start your next construction project? <br>Get in touch with our team of experts
+           Be ready to turn your dream into measurable success.
         </p>
       <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>

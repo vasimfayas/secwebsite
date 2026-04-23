@@ -40,22 +40,27 @@
 
         <a href="{{ route('about') }}"
            class="{{ request()->routeIs('about') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            About
+            Message From Our CEO
         </a>
+     <span class="text-gray-400">/</span>
 
+        <a href="{{ route('about.vision') }}"
+           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Mission, Vision & Values
+        </a>
         <span class="text-gray-400">/</span>
 
         <a href="{{ route('about.team') }}"
            class="{{ request()->routeIs('about.team') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            Team
+            Meet Our Team
+        </a>
+         <span class="text-gray-400">/</span>
+          <a href="{{ route('about.culture') }}"
+           class="{{ request()->routeIs('about.team') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Our Culture
         </a>
 
-        <span class="text-gray-400">/</span>
-
-        <a href="{{ route('about.vision') }}"
-           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            Mission & Vision
-        </a>
+   
 
     </div>
 </section>

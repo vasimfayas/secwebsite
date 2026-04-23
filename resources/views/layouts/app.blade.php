@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
     <link rel="preload" href="{{ asset('/images/home/lexus.webp') }}" as="image">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
    
     <!-- Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -145,26 +146,65 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
                                 </a>
                                 <a href="{{route('about.team')}}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                Meet our team
+                                Meet Our Team
+                            </a>
+                                <a href="{{route('about.culture')}}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                                Our Culture
                             </a>
                             </div>
                         </div>
 
                         <!-- Projects with Dropdown -->
-                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('projects') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('projects') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->PROJECTS</a>
+                  <div x-data="{ open: false, subOpen: false }"
+     @mouseenter="open = true"
+     @mouseleave="open = false"
+     class="relative">
 
-                            <!-- Dropdown Menu -->
-                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
-                                @foreach($projectCategories as $category)
-                                <a href="{{route('listprojects',$category->id)}}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    {{ $category->category }}
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>
+    <!-- Main Link -->
+    <a href="{{ route('projects') }}"
+       class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('projects') ? 'is-active' : '' }}"
+       :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'">
+        PROJECTS
+    </a>
+
+    <!-- Dropdown -->
+    <div x-show="open" x-cloak x-transition
+         class="absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md z-50">
+
+        <!-- Ongoing -->
+        <a href="{{route('ongoingProjects')}}"
+           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+            Ongoing Projects
+        </a>
+
+        <!-- Delivered (with submenu) -->
+        <div class="relative"
+             @mouseenter="subOpen = true"
+             @mouseleave="subOpen = false">
+
+            <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600 cursor-pointer">
+                Delivered Projects
+                <a href=""></a>
+                <span>▶</span>
+            </div>
+
+            <!-- Submenu -->
+            <div x-show="subOpen" x-transition
+                 class="absolute top-0 left-full ml-1 w-56 bg-white border border-gray-200 shadow-lg rounded-md">
+
+                @foreach($projectCategories as $category)
+                <a href="{{ route('listprojects', $category->id) }}"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
+                    {{ $category->category }}
+                </a>
+                @endforeach
+
+            </div>
+        </div>
+
+    </div>
+</div>
                         <a href="{{ route('safety') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('safety') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >SAFETY, HEALTH & ENVIRONMENT</a>
                         <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">

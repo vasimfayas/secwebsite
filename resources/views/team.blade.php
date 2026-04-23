@@ -28,27 +28,32 @@
 
         <a href="{{ route('about') }}"
            class="{{ request()->routeIs('about') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            About
+            Message From Our CEO
         </a>
+     <span class="text-gray-400">/</span>
 
+        <a href="{{ route('about.vision') }}"
+           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Mission, Vision & Values
+        </a>
         <span class="text-gray-400">/</span>
 
         <a href="{{ route('about.team') }}"
            class="{{ request()->routeIs('about.team') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            Team
+            Meet Our Team
+        </a>
+         <span class="text-gray-400">/</span>
+          <a href="{{ route('about.culture') }}"
+           class="{{ request()->routeIs('about.culture') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
+            Our Culture
         </a>
 
-        <span class="text-gray-400">/</span>
-
-        <a href="{{ route('about.vision') }}"
-           class="{{ request()->routeIs('about.vision') ? 'text-red-600 font-semibold' : 'hover:text-red-600 transition' }}">
-            Mission & Vision
-        </a>
+   
 
     </div>
 </section>
 <!-- Team Section -->
-<section id="team" class="py-24 bg-red-50">
+<section id="team" class="py-24 ">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-16">
@@ -72,49 +77,63 @@
       @foreach($team as $member)
 
       <div
-        x-data="{ open: false }"
-        @click="open = !open"
-        @mouseenter="open = true"
-        @mouseleave="open = false"
-        class="relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500
-               bg-white border-t-4 border-red-500 cursor-pointer select-none"
-      >
+  x-data="{ open: false }"
+  @click="open = !open"
+  @mouseenter="open = true"
+  @mouseleave="open = false"
+  class="relative rounded-2xl overflow-hidden cursor-pointer select-none
+         bg-white border border-gray-100 shadow-sm
+         hover:shadow-xl transition-all duration-500
+         group"
+>
 
-        {{-- Subtle red tint background --}}
-        <div class="absolute inset-0 bg-gradient-to-br from-red-50/80 via-white to-red-50/40 pointer-events-none"></div>
+  <!-- Premium gradient border effect -->
+  <div class="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-br from-red-200 via-white to-red-100 pointer-events-none"></div>
 
-        {{-- Default State --}}
-        <div class="relative flex flex-col items-center text-center px-8 py-14 transition-opacity duration-300"
-             :class="open ? 'opacity-0 pointer-events-none' : 'opacity-100'">
+  <!-- Inner card -->
+  <div class="relative h-full rounded-2xl bg-white">
 
-          <h3 class="text-base font-semibold text-gray-900 leading-snug mb-2">{{ $member['name'] }}</h3>
+    <!-- Subtle top accent line -->
+    <div class="h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
 
-          <span class="text-[11px] uppercase tracking-[0.18em] text-red-600 font-medium bg-red-100 px-3 py-1 rounded-full">
-            {{ $member['role'] }}
-          </span>
+    <!-- Default State -->
+    <div class="flex flex-col items-center text-center px-8 py-14 transition-opacity duration-300"
+         :class="open ? 'opacity-0 pointer-events-none' : 'opacity-100'">
 
-        </div>
+      <h3 class="text-base font-semibold text-gray-900 mb-2">
+        {{ $member['name'] }}
+      </h3>
 
-        {{-- Hover / Tap State --}}
-        <div class="absolute inset-0 bg-red-600 flex flex-col items-center justify-center text-center px-8 py-10
-                    transition-transform duration-500 ease-in-out"
-             :class="open ? 'translate-y-0' : 'translate-y-full'">
+      <span class="text-[11px] uppercase tracking-[0.18em] text-red-600 font-medium bg-red-50 px-3 py-1 rounded-full">
+        {{ $member['role'] }}
+      </span>
 
-          <h3 class="text-base font-semibold text-white leading-snug mb-1">{{ $member['name'] }}</h3>
+    </div>
 
-          <span class="text-[11px] uppercase tracking-[0.18em] text-red-200 font-medium bg-white/15 px-3 py-1 rounded-full mb-5">
-            {{ $member['role'] }}
-          </span>
+    <!-- Hover State -->
+    <div class="absolute inset-0 bg-gradient-to-br from-red-600 to-red-500
+                flex flex-col items-center justify-center text-center px-8 py-10
+                transition-transform duration-500 ease-in-out"
+         :class="open ? 'translate-y-0' : 'translate-y-full'">
 
-          <div class="w-8 h-px bg-white/30 mb-5"></div>
+      <h3 class="text-base font-semibold text-white mb-1">
+        {{ $member['name'] }}
+      </h3>
 
-          <p class="text-sm text-white/90 leading-relaxed italic">
-            "{{ $member['message'] }}"
-          </p>
+      <span class="text-[11px] uppercase tracking-[0.18em] text-red-100 bg-white/15 px-3 py-1 rounded-full mb-5">
+        {{ $member['role'] }}
+      </span>
 
-        </div>
+      <div class="w-10 h-px bg-white/30 mb-5"></div>
 
-      </div>
+      <p class="text-sm text-white/90 italic leading-relaxed">
+        "{{ $member['message'] }}"
+      </p>
+
+    </div>
+
+  </div>
+</div>
       @endforeach
     </div>
 

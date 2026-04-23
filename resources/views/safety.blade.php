@@ -43,7 +43,9 @@
         <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200"> Safety, <span class="text-red-500">Health</span> & Environment</span>
       
       </h1>
-     
+       <p class="mt-2 text-sm md:text-lg text-white/90">
+       Driving a culture of safety and sustainability across every stage of delivery.
+      </p>
       <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>
   </div>
@@ -121,20 +123,20 @@
       </div>
 
       <!-- RIGHT VIDEO -->
-      <div class="flex justify-center lg:justify-end">
+      <div class="flex h-full">
 
         <div class="w-full max-w-xl rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
 
-          <div class="aspect-video">
+         
             <iframe
-              class="w-full h-full"
+              class="w-full h-full min-h-[400px]"
               src="https://www.youtube.com/embed/SYIPYBn0c-4?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
               title="HSE Video"
               frameborder="0"
               allow="autoplay; encrypted-media"
               allowfullscreen>
             </iframe>
-          </div>
+      
 
         </div>
 

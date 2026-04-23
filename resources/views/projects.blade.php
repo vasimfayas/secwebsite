@@ -28,7 +28,7 @@
         <span class="text-red-500">Projects</span>
       </h1>
       <p class="mt-1 text-sm md:text-lg text-white/90">
-        Building Qatar's future with success, excellence & commitment.
+       Reflected SEC success through diverse, high quality engineering achievements.
       </p>
       <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
     </div>

@@ -12,12 +12,14 @@
 
  <!-- gradient + vignette overlay -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-black/15"></div>
-    <div class="absolute inset-0 pointer-events-none"
+    <!-- subtle white glow behind center/bottom area -->
+    <div class="absolute inset-0"
          style="background:
-           radial-gradient(120% 70% at 50% 120%, rgba(0,0,0,0.55), transparent 60%),
-           radial-gradient(60% 40% at 10% 10%, rgba(255,255,255,0.04), transparent 60%);">
+           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
+           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
     </div>
+    <!-- light vignette to keep edges rich -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
   </div>
   <!-- Text Content: glass card, bottom-left -->
   <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">

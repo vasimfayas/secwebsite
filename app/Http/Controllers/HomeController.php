@@ -26,6 +26,10 @@ class HomeController extends Controller
     {
         return view('about');
     }
+    public function culture()
+    {
+        return view('culture');
+    }
     public function vision()
     {
         return view('vision');
@@ -77,6 +81,29 @@ class HomeController extends Controller
     {
         return view('sister-companies');
     }
+
+    public function ongoing()
+    {
+        $projects = Project::where('status', 'ongoing')->get();
+
+        return view('ongoing', compact('projects'));
+    }
+    public function ongoingdetails($id)
+    {
+        $project = Project::findorfail($id);
+        $images = ProjectImage::where('project_id', $id)->get();
+        $next = Project::where('status', 'ongoing')
+            ->where('id', '>', $project->id)
+            ->orderBy('id', 'asc')
+            ->first();
+
+        $prev = Project::where('status', 'ongoing')
+            ->where('id', '<', $project->id)
+            ->orderBy('id', 'desc')
+            ->first();
+        return view('ongoingdetails', compact('project', 'images', 'next', 'prev'));
+    }
+
 
     /**
      * Display the careers page
