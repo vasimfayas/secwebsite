@@ -34,6 +34,11 @@
                 @endif
                 @error('card_img') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
+            <div>
+                <div wire:loading wire:target=card_img>
+                   <small class="text-primary">Uploading image...</small>
+                </div>
+            </div>
 
             <!-- Description -->
             <div class="form-group">
