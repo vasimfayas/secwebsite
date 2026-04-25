@@ -99,6 +99,9 @@ class AddProject extends Component
                 $url = $this->card_img->store('project-galley', 'public');
                 $this->data['card_img'] = $url;
             }
+            if ($this->data['category_id'] === '') {
+                $this->data['category_id'] = null;
+            }
 
             // Insert or update the project
             $project = Project::updateOrCreate(
