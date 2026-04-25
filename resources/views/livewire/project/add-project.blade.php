@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label>Category</label>
                 <select class="form-control" wire:model.defer="data.category_id">
-                    <option value="NULL">-- Select Category --</option>
+                    <option value="{{NULL}}">-- Select Category --</option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                     @endforeach
