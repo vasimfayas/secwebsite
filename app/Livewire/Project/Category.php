@@ -12,6 +12,7 @@ class Category extends Component
 {
     use WithFileUploads;
     public $data = [];
+    public $card_img;
     public $table_id;
 
 
@@ -21,7 +22,7 @@ class Category extends Component
             'data.category' => 'required|string|max:255',
             'data.description' => 'required|string',
             // We'll still validate as image, but handle failure manually
-            'data.card_img' => 'nullable|max:5120',
+            'card_img' => 'nullable|max:10480',
         ];
 
         $this->validate($rules, [
@@ -34,9 +35,9 @@ class Category extends Component
         try {
             $imagePath = null;
 
-            // Check if image is an uploaded file (not a string path)
-            if (!empty($this->data['card_img']) && $this->data['card_img'] instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
-                $imagePath = $this->data['card_img']->store('project-category-images', 'public');
+            if ($this->card_img) {
+                $url = $this->card_img->store('project-category-images', 'public');
+                $imagePath = $url;
             }
 
             if ($this->table_id) {

@@ -71,27 +71,83 @@
             <!-- Card Image -->
             <div class="form-group">
                 <label>Card Image</label>
-                <input type="file" class="form-control-file" wire:model="data.card_img">
+                <input type="file" class="form-control-file" wire:model="card_img">
                 @if (isset($data['card_img']) && is_string($data['card_img']))
                 <img src="{{ asset('storage/' . $data['card_img']) }}" class="mt-2" width="120">
                 @endif
             </div>
             <!-- Gallery Images -->
-            <div class="form-group">
-                <label>Gallery Images</label>
-                <input type="file" class="form-control-file" wire:model.defer="gallery" multiple>
-                @error('gallery.*') <small class="text-danger">{{ $message }}</small> @enderror
-                <div wire:loading wire:target="gallery">
-                    <p>Uploading images...</p>
+            <!-- Gallery Images -->
+<div class="form-group">
+    <label class="font-weight-bold">Gallery Images</label>
+
+    <!-- Upload Input -->
+    <input type="file" class="form-control-file" wire:model="newgallery" multiple>
+
+    @error('newgallery.*')
+        <small class="text-danger d-block">{{ $message }}</small>
+    @enderror
+
+    <!-- Loading -->
+    <div wire:loading wire:target="newgallery" class="mt-2">
+        <small class="text-primary">Uploading images...</small>
+    </div>
+
+    <!-- Preview Area -->
+    <div class="mt-3 d-flex flex-wrap">
+
+        <!-- Existing Images -->
+        @if(!empty($gallery))
+            @foreach($gallery as $index => $image)
+                <div class="position-relative mr-2 mb-2">
+
+                    <!-- Delete Button -->
+                    <button
+                        type="button"
+                        wire:click="removeOldImage({{ $index }})"
+                        class="btn btn-danger btn-sm position-absolute"
+                        style="top:0; right:0; z-index:10; width:22px; height:22px; padding:0; border-radius:50%;">
+                        ×
+                    </button>
+
+                    <img
+                        src="{{ Storage::url($image['image_path']) }}"
+                        width="100"
+                        height="100"
+                        style="object-fit:cover;"
+                        class="rounded shadow"
+                    >
                 </div>
-                @if ($gallery)
-                <div class="mt-3">
-                    @foreach ($gallery as $image)
-                    <img src="{{ $image->temporaryUrl() }}" width="100" class="rounded shadow mr-2 mb-2">
-                    @endforeach
+            @endforeach
+        @endif
+
+        <!-- Newly Uploaded Images -->
+        @if(!empty($newgallery))
+            @foreach($newgallery as $index => $image)
+                <div class="position-relative mr-2 mb-2">
+
+                    <!-- Delete Button -->
+                    <button
+                        type="button"
+                        wire:click="removeNewImage({{ $index }})"
+                        class="btn btn-danger btn-sm position-absolute"
+                        style="top:0; right:0; z-index:10; width:22px; height:22px; padding:0; border-radius:50%;">
+                        ×
+                    </button>
+
+                    <img
+                        src="{{ $image->temporaryUrl() }}"
+                        width="100"
+                        height="100"
+                        style="object-fit:cover;"
+                        class="rounded shadow border border-success"
+                    >
                 </div>
-                @endif
-            </div>
+            @endforeach
+        @endif
+
+    </div>
+</div>
 
             <!-- Featured -->
             <div class="form-group">

@@ -28,7 +28,10 @@
             <!-- Card Image -->
             <div class="form-group">
                 <label for="card_img">Upload Card Image</label>
-                <input type="file" class="form-control-file" id="card_img" wire:model="data.card_img" accept="image/*">
+                <input type="file" class="form-control-file" id="card_img" wire:model="card_img" accept="image/*">
+                     @if (isset($data['card_img']) && is_string($data['card_img']))
+                <img src="{{ asset('storage/' . $data['card_img']) }}" class="mt-2" width="120">
+                @endif
                 @error('card_img') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
