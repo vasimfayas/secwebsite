@@ -609,7 +609,7 @@ View all updates
                   </p>
               
                   <!-- Right: ISO Logos -->
-                  <div class="flex items-center gap-4">
+                  <div class="grid grid-cols-2 lg:grid-cols-4  gap-2">
                     <img src="{{ asset('images/iso/iso_1.png') }}" alt="ISO Certification 1" class="h-16 w-auto">
                     <img src="{{ asset('images/iso/iso_2.png') }}" alt="ISO Certification 2" class="h-16 w-auto">
                     <img src="{{ asset('images/iso/iso_3.png') }}" alt="ISO Certification 3" class="h-16 w-auto">
