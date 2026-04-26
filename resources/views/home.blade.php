@@ -386,7 +386,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
 </section>
 
 <!-- Featured Projects -->
-<section class="py-20 bg-gray-50">
+<section class="py-10 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-800 mb-4">Ongoing Projects</h2>
@@ -418,7 +418,7 @@ Our ongoing projects reflect Shannon Engineering’s continuous growth and trust
             <!-- Cards -->
             <div
                 x-ref="projects"
-                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
+                class="flex  space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
                 {{ count($featuredprojects) === 1 ? 'justify-center' : '' }}">
 
 
