@@ -418,7 +418,7 @@ Our ongoing projects reflect Shannon Engineering’s continuous growth and trust
             <!-- Cards -->
             <div
                 x-ref="projects"
-                class="flex  space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
+                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
                 {{ count($featuredprojects) === 1 ? 'justify-center' : '' }}">
 
 
