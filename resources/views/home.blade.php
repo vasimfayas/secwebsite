@@ -10,7 +10,10 @@ x-data="{
     transitioning: false,
     slides: [
         '/images/home/shaqab.png',
+        '/images/home/mosque.webp',
+        '/images/home/villa.jpg', 
         '/images/home/lexus.webp',
+        '/images/home/home1.jpeg',
         '/images/home/lulu.webp',
         
 
@@ -55,7 +58,7 @@ x-data="{
     },
 
     start() {
-        this.intervalId = setInterval(() => this.next(), 4000)
+        this.intervalId = setInterval(() => this.next(), 5000)
     },
 
     init() {
@@ -73,7 +76,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             :style="`
                 width: ${track.length * 100}%;
                 transform: translateX(-${currentSlide * (100 / track.length)}%);
-                transition: ${transitioning ? 'transform 700ms ease-in-out' : 'none'};
+                transition: ${transitioning ? 'transform 500ms ease-in-out' : 'none'};
             `"
             @transitionend="onTransitionEnd"
         >
@@ -310,7 +313,7 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
             </p>
         </div>
 
-       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
 
     <!-- General Contracting -->
     <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
@@ -353,6 +356,18 @@ class="relative min-h-screen flex items-center justify-center text-white overflo
         <h3 class="text-lg font-semibold text-gray-800 mb-2">Facilities Management</h3>
         <p class="text-gray-500 text-sm">
             Ongoing maintenance and support for building performance.
+        </p>
+    </div>
+        <!-- Facilities Management -->
+    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+   <i class="fa-solid fa-kitchen-set text-red-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Interior Design</h3>
+        <p class="text-gray-500 text-sm">
+            ⁠Custom interior solutions that blend style and functionality.
+⁠Transforming spaces with creative, modern interior solutions.
+
         </p>
     </div>
 
