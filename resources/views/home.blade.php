@@ -12,6 +12,7 @@ x-data="{
         '/images/home/shaqab.png',
         '/images/home/mosque.webp',
         '/images/home/villa.jpg', 
+         '/images/home/compound.jpg', 
         '/images/home/lexus.webp',
         '/images/home/home1.jpeg',
         '/images/home/lulu.webp',
@@ -30,23 +31,35 @@ x-data="{
         return this.currentSlide - 1
     },
 
-    next() {
-        if (this.transitioning) return
-        this.transitioning = true
-        this.currentSlide++
-    },
+  next() {
+    if (this.transitioning) return
+    this.resetTimer()
+    this.transitioning = true
+    this.currentSlide++
+},
 
     prev() {
-        if (this.transitioning) return
-        this.transitioning = true
-        this.currentSlide--
-    },
+    if (this.transitioning) return
+    this.resetTimer()
+    this.transitioning = true
+    this.currentSlide--
+},
 
-    goTo(index) {
-        if (this.transitioning) return
-        this.transitioning = true
-        this.currentSlide = index + 1
-    },
+goTo(index) {
+    if (this.transitioning) return
+    this.resetTimer()
+    this.transitioning = true
+    this.currentSlide = index + 1
+},
+
+start() {
+    this.intervalId = setInterval(() => this.next(), 5000)
+},
+
+resetTimer() {
+    clearInterval(this.intervalId)
+    this.start()
+},
 
     onTransitionEnd() {
         this.transitioning = false
@@ -57,9 +70,6 @@ x-data="{
         }
     },
 
-    start() {
-        this.intervalId = setInterval(() => this.next(), 5000)
-    },
 
     init() {
         this.start()
