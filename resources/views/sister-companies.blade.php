@@ -102,7 +102,7 @@ $logos = [
       <h3 class="text-2xl font-bold text-gray-800 mb-3">{{ $logo['name'] }}</h3>
 
    <!-- Full Description -->
-<p class="text-gray-700 text-sm mb-4 leading-relaxed">
+<p class="text-gray-700 text-sm mb-4 leading-relaxed text-justify">
     @if(!empty($logo['grade']))
         <span class="inline-flex items-center gap-1.5 mr-1 align-middle">
             <span class="relative inline-block bg-red-200 font-bold  text-[10px] tracking-widest uppercase px-2 py-0.5 rounded select-none">

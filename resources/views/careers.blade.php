@@ -155,13 +155,7 @@
         <p class="text-xl mb-8 max-w-3xl mx-auto">
             Join Shannon Engineering Company and be part of building Qatar's future with excellence and innovation.
         </p>
-        <a
-            x-data {{-- creates an Alpine context --}}
-            href="javascript:void(0)"
-            @click="$dispatch('open-career-modal')"
-            class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
-            Apply Now
-        </a>
+     
 
     </div>
 </section>

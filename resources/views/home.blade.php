@@ -428,7 +428,9 @@ Our ongoing projects reflect Shannon Engineering’s continuous growth and trust
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
                         <p class="text-gray-600 mb-4">{{ Str::words($project['description'], 25, '...') }}</p>
-                        <a href="{{ route('detailprojects',$project->id) }}" class="text-red-600 hover:text-red-700 font-semibold">View Project →</a>
+                        <a href="{{ route('ongoingdetails', $project->id) }}" class="inline-block text-red-600 hover:text-red-700 font-semibold">
+                                        View Project →
+                                    </a>
                     </div>
                 </div>
                 @endforeach
