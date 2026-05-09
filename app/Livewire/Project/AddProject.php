@@ -44,6 +44,8 @@ class AddProject extends Component
             // Set defaults for new form
             $this->data['status'] = 'ongoing';
             $this->data['card_img'] = null;
+            $this->data['category_id'] = null;
+            $this->data['project_code'] = null;
             $this->data['visible'] = 1;
             $this->data['featured'] = 1;
         }
@@ -85,6 +87,7 @@ class AddProject extends Component
 
     public function save()
     {
+
         DB::beginTransaction();
 
         try {
@@ -98,6 +101,7 @@ class AddProject extends Component
                 'card_img' => $this->projectId ? 'nullable' : 'required|image',
                 'data.featured' => 'required|boolean',
                 'data.size' => 'nullable|string|max:255',
+                'data.code' => 'nullable',
                 'newgallery.*' => 'required|image|max:30480'
             ], [
                 'data.title.required' => 'The project title is required.',

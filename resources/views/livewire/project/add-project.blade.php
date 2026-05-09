@@ -24,7 +24,12 @@
                 <input type="text" class="form-control" wire:model.live="data.title">
                 @error('data.title') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
-
+  <!-- Code -->
+            <div class="form-group">
+                <label>Code</label>
+                <input type="text" class="form-control" wire:model.defer="data.project_code">
+                @error('data.code') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
             <!-- Category -->
             <div class="form-group">
                 <label>Category</label>
@@ -36,6 +41,7 @@
                 </select>
                 @error('data.category_id') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
+             
 <!-- Client -->
 <div class="form-group">
     <label>Client</label>

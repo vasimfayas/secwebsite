@@ -9,7 +9,8 @@
 
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title font-weight-bold">{{ $project->title }}</h5>
-
+                <p class="mb-1"><strong>Sequence:</strong> <span class="text-danger">{{ $project->sequence ?? '—' }}</span></p>
+<p class="mb-1"><strong>Code:</strong> {{ $project->project_code ?? '—' }}</p>
                 <p class="mb-1"><strong>Category:</strong> {{ $project->category->category ?? 'N/A' }}</p>
                 <p class="mb-1"><strong>Status:</strong>
                     <span class="badge badge-{{ $project->status === 'completed' ? 'success' : 'warning' }}">
@@ -18,6 +19,12 @@
                 </p>
                 <p class="mb-1"><strong>Location:</strong> {{ $project->location ?? '—' }}</p>
                 <p class="mb-1"><strong>Size:</strong> {{ $project->size ?? '—' }}</p>
+                 <p class="mb-1"><strong>Slug:</strong> {{ $project->slug ?? '—' }}</p>
+                  <p class="mb-1"><strong>Gallery Images:</strong> {{ $project->images->count() ?? '—' }}</p>
+                   <p class="mb-1"><strong>Completed Year:</strong> {{ $project->completed_year ?? '—' }}</p>
+                    <p class="mb-1"><strong>Client:</strong> {{ $project->client?->name ?? '—' }}</p>
+                     <p class="mb-1"><strong>Consultant:</strong> {{ $project->consultant?->name?? '—' }}</p>
+                      <p class="mb-1"><strong>Duration:</strong> {{ $project->duration ?? '—' }}</p>
                 <p class="mb-1"><strong>Visible:</strong>
                     <span class="badge badge-{{ $project->visible ? 'primary' : 'secondary' }}">
                         {{ $project->visible ? 'Yes' : 'No' }}

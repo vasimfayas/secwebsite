@@ -25,6 +25,7 @@ class Project extends Model
         'duration',
         'slug',
         'sequence',
+        'project_code'
     ];
 
     public function category()
@@ -35,5 +36,13 @@ class Project extends Model
     public function images()
     {
         return $this->hasMany(ProjectImage::class)->orderBy('position');
+    }
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+    public function consultant()
+    {
+        return $this->belongsTo(Consultant::class, 'consultant_id');
     }
 }

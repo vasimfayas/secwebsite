@@ -11,7 +11,7 @@ class ProjectTable extends Component
 
     public function mount()
     {
-        $this->projects = Project::with('category')->latest()->get();
+        $this->projects = Project::with(['category', 'client', 'consultant'])->latest()->get();
     }
     public function render()
     {
