@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         return response()->json(
-            Project::with('category')->get()
+            Project::with('category')->where('status', "ongoing")->get()
         );
     }
 }
