@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Project;
 
+use App\Models\Client;
+use App\Models\Consultant;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\ProjectImage;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Illuminate\Support\Str;
 
 class AddProject extends Component
 {
@@ -18,8 +21,18 @@ class AddProject extends Component
     public $gallery = [];
     public $newgallery = [];
     public $deletedImages = [];
+    public $clients = [];
+    public $consultants = [];
 
 
+
+
+    public function updatedDataTitle($value)
+
+    {
+
+        $this->data['slug'] = Str::slug($value);
+    }
     public function mount($id = null)
     {
         if ($id) {
@@ -34,6 +47,9 @@ class AddProject extends Component
             $this->data['visible'] = 1;
             $this->data['featured'] = 1;
         }
+        $this->clients = Client::all();
+
+        $this->consultants = Consultant::all();
     }
     public function cardImage() {}
 

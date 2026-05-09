@@ -28,6 +28,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/category/{id?}', [AdminController::class, 'category'])->name('admin.category');
     Route::get('/project/{id?}', [AdminController::class, 'addproject'])->name('admin.project');
     Route::get('/project/all/view', [AdminController::class, 'existingprojects'])->name('admin.list');
+    Route::get('/client', [AdminController::class, 'client'])->name('admin.client');
+    Route::get('/consultant', [AdminController::class, 'consultant'])->name('admin.consultant');
+
     Route::get('/jobs', [AdminController::class, 'job'])->name('admin.career');
 });
 // Home page

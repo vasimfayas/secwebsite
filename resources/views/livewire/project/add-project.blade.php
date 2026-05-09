@@ -21,7 +21,7 @@
             <!-- Title -->
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" class="form-control" wire:model.defer="data.title">
+                <input type="text" class="form-control" wire:model.live="data.title">
                 @error('data.title') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
@@ -36,7 +36,69 @@
                 </select>
                 @error('data.category_id') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
+<!-- Client -->
+<div class="form-group">
+    <label>Client</label>
+    <select class="form-control" wire:model.defer="data.client_id">
+        <option value="">-- Select Client --</option>
+        @foreach ($clients as $client)
+            <option value="{{ $client->id }}">{{ $client->name }}</option>
+        @endforeach
+    </select>
+    @error('data.client_id') <small class="text-danger">{{ $message }}</small> @enderror
+</div>
+<!-- Consultant -->
+<div class="form-group">
+    <label>Consultant</label>
+    <select class="form-control" wire:model.defer="data.consultant_id">
+        <option value="">-- Select Consultant --</option>
+        @foreach ($consultants as $consultant)
+            <option value="{{ $consultant->id }}">{{ $consultant->name }}</option>
+        @endforeach
+    </select>
+    @error('data.consultant_id') <small class="text-danger">{{ $message }}</small> @enderror
+</div>
+<!-- Slug -->
+<div class="form-group">
+    <label>Slug</label>
+    <input type="text" class="form-control"
+           wire:model.defer="data.slug"
+           placeholder="Auto generated from title"
+           readonly>
+</div>
+<!-- Completed Year -->
+<div class="form-group">
+    <label>Completed Year</label>
+    <select class="form-control" wire:model.defer="data.completed_year">
+        <option value="">-- Select Year --</option>
 
+        @for ($year = date('Y'); $year >= 1990; $year--)
+            <option value="{{ $year }}">{{ $year }}</option>
+        @endfor
+
+    </select>
+
+    @error('data.completed_year')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
+<!-- Duration (Days) -->
+<div class="form-group">
+    <label>Duration (Days)</label>
+    <input type="number"
+           class="form-control"
+           wire:model.defer="data.duration"
+           placeholder="Enter number of days">
+
+    @error('data.duration')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
+<!-- Sequence -->
+<div class="form-group">
+    <label>Sequence</label>
+    <input type="number" class="form-control" wire:model.defer="data.sequence">
+</div>
             <!-- Location -->
             <div class="form-group">
                 <label>Location</label>

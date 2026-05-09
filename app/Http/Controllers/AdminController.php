@@ -26,4 +26,12 @@ class AdminController extends Controller
     {
         return view('admin.career');
     }
+    public function client()
+    {
+        return view('admin.client');
+    }
+    public function consultant()
+    {
+        return view('admin.consultant');
+    }
 }

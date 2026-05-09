@@ -12,6 +12,8 @@ class Project extends Model
     protected $fillable = [
         'title',
         'category_id',
+        'client_id',
+        'consultant_id',
         'location',
         'status',
         'visible',
@@ -19,6 +21,10 @@ class Project extends Model
         'card_img',
         'featured',
         'size',
+        'completed_year',
+        'duration',
+        'slug',
+        'sequence',
     ];
 
     public function category()

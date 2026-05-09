@@ -42,6 +42,18 @@
             <span>Existing Projects</span>
         </a>
     </li>
+     <li class="nav-item {{request()->is('admin/client')?'active':''}}">
+        <a class="nav-link" href="{{route('admin.client')}}">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Clients</span>
+        </a>
+    </li>
+      <li class="nav-item {{request()->is('admin/consultant')?'active':''}}">
+        <a class="nav-link" href="{{route('admin.consultant')}}">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Consultants</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
