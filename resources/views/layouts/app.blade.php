@@ -9,6 +9,13 @@
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
 
+    {{-- JS is on: start scroll-reveal elements hidden from the very first paint (no show-then-hide flash).
+         Safety net: if app.js never runs, reveal everything after 4s. --}}
+    <script>
+        document.documentElement.classList.remove('no-js');
+        setTimeout(function () { if (!window.__secReady) document.documentElement.classList.add('no-js'); }, 4000);
+    </script>
+
     {{-- First-visit launcher: decide before first paint so it never flashes --}}
     <script>
         (function () {
@@ -130,15 +137,11 @@
     <!-- ============ HEADER ============ -->
     <header
         x-data="{
-            scrolled: false,
             progress: 0,
             mobileOpen: false,
-            solid: {{ $solidNav ? 'true' : 'false' }},
             onScroll() {
-                const y = window.scrollY;
-                this.scrolled = y > 40;
                 const h = document.documentElement.scrollHeight - window.innerHeight;
-                this.progress = h > 0 ? (y / h) * 100 : 0;
+                this.progress = h > 0 ? (window.scrollY / h) * 100 : 0;
             },
             toggleMobile(state) {
                 this.mobileOpen = typeof state === 'boolean' ? state : !this.mobileOpen;
@@ -149,40 +152,44 @@
         @scroll.window.passive="onScroll()"
         @keydown.escape.window="toggleMobile(false)"
         id="site-header"
-        class="fixed inset-x-0 top-0 z-50"
+        @if(! $solidNav) data-overlay @endif
+        class="group/header fixed inset-x-0 top-0 z-50 {{ $solidNav ? '' : 'is-light' }}"
     >
-        <div
-            :class="(scrolled || solid)
-                ? 'bg-white/90 shadow-[0_8px_30px_-12px_rgba(0,0,0,.18)] backdrop-blur-xl border-b border-gray-100'
-                : 'bg-gradient-to-b from-black/60 via-black/25 to-transparent'"
-            class="transition-all duration-500"
-        >
-            <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-4 md:px-8"
-                 :class="(scrolled || solid) ? 'h-20' : 'h-24'">
+        {{-- Header look (transparent over the hero vs. white) is pure CSS keyed off .is-light, set here
+             before first paint — so it never snaps into place when Alpine loads. --}}
+        <script>
+            (function (h) {
+                if (!h.hasAttribute('data-overlay')) return;
+                var update = function () { h.classList.toggle('is-light', window.scrollY <= 40); };
+                update();
+                window.addEventListener('scroll', update, { passive: true });
+            })(document.currentScript.parentElement);
+        </script>
+        <div class="border-b border-gray-100 bg-white/90 shadow-[0_8px_30px_-12px_rgba(0,0,0,.18)] backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-500
+                    group-[.is-light]/header:border-b-0 group-[.is-light]/header:bg-transparent group-[.is-light]/header:bg-gradient-to-b group-[.is-light]/header:from-black/60 group-[.is-light]/header:via-black/25 group-[.is-light]/header:to-transparent group-[.is-light]/header:shadow-none group-[.is-light]/header:backdrop-blur-none">
+            <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-6 px-4 transition-[height] duration-500 md:px-8 group-[.is-light]/header:h-24">
 
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Shannon Engineering Company – Home">
                     {{-- Light logo over dark hero, original logo once the header turns white --}}
-                    <img src="{{ asset($solidNav ? 'images/optimized/logo-320.webp' : 'images/optimized/logo-light-320.webp') }}"
-                         :src="(scrolled || solid) ? '{{ asset('images/optimized/logo-320.webp') }}' : '{{ asset('images/optimized/logo-light-320.webp') }}'"
-                         alt="Shannon Engineering Company" width="100" height="64"
-                         class="h-auto w-[92px] transition-all duration-500 drop-shadow-[0_2px_8px_rgba(0,0,0,.35)]"
-                         :class="(scrolled || solid) ? 'w-[88px] drop-shadow-none' : 'w-[100px]'">
+                    <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company" width="88" height="56"
+                         class="h-auto w-[88px] group-[.is-light]/header:hidden">
+                    <img src="{{ asset('images/optimized/logo-light-320.webp') }}" alt="Shannon Engineering Company" width="100" height="64"
+                         class="hidden h-auto w-[100px] drop-shadow-[0_2px_8px_rgba(0,0,0,.35)] group-[.is-light]/header:block">
                 </a>
 
                 <!-- Desktop navigation -->
                 <nav class="hidden xl:flex items-center gap-1" aria-label="Main">
                     @php
-                        $linkClass = "nav-link";
-                        $linkColor = "(scrolled || solid) ? 'text-gray-800 hover:text-red-600' : 'text-white/90 hover:text-white'";
+                        $linkClass = "nav-link text-gray-800 hover:text-red-600 group-[.is-light]/header:text-white/90 group-[.is-light]/header:hover:text-white";
                         $chevron = '<svg class="h-3.5 w-3.5 transition-transform duration-300" :class="open && \'rotate-180\'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>';
                     @endphp
 
-                    <a href="{{ route('home') }}" class="{{ $linkClass }} {{ request()->routeIs('home') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Home</a>
+                    <a href="{{ route('home') }}" class="{{ $linkClass }} {{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
 
                     <!-- About -->
                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
-                        <a href="{{ route('about') }}" class="{{ $linkClass }} {{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                        <a href="{{ route('about') }}" class="{{ $linkClass }} {{ request()->routeIs('about*') ? 'is-active' : '' }}" :aria-expanded="open">
                             About Us {!! $chevron !!}
                         </a>
                         <div x-show="open" x-cloak
@@ -199,7 +206,7 @@
 
                     <!-- Projects (mega menu) -->
                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
-                        <a href="{{ route('projects') }}" class="{{ $linkClass }} {{ request()->routeIs('projects', 'listprojects', 'detailprojects', 'ongoingProjects') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                        <a href="{{ route('projects') }}" class="{{ $linkClass }} {{ request()->routeIs('projects', 'listprojects', 'detailprojects', 'ongoingProjects') ? 'is-active' : '' }}" :aria-expanded="open">
                             Projects {!! $chevron !!}
                         </a>
                         <div x-show="open" x-cloak
@@ -239,11 +246,11 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('safety') }}" class="{{ $linkClass }} {{ request()->routeIs('safety') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Safety, Health &amp; Environment</a>
+                    <a href="{{ route('safety') }}" class="{{ $linkClass }} {{ request()->routeIs('safety') ? 'is-active' : '' }}">Safety, Health &amp; Environment</a>
 
                     <!-- Partners -->
                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
-                        <a href="{{ route('clients') }}" class="{{ $linkClass }} {{ request()->routeIs('clients') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                        <a href="{{ route('clients') }}" class="{{ $linkClass }} {{ request()->routeIs('clients') ? 'is-active' : '' }}" :aria-expanded="open">
                             Strategic Partners {!! $chevron !!}
                         </a>
                         <div x-show="open" x-cloak
@@ -258,8 +265,8 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('sister-companies') }}" class="{{ $linkClass }} {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}" :class="{{ $linkColor }}">SEC Group</a>
-                    <a href="{{ route('careers') }}" class="{{ $linkClass }} {{ request()->routeIs('careers') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Careers</a>
+                    <a href="{{ route('sister-companies') }}" class="{{ $linkClass }} {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}">SEC Group</a>
+                    <a href="{{ route('careers') }}" class="{{ $linkClass }} {{ request()->routeIs('careers') ? 'is-active' : '' }}">Careers</a>
 
                     <a href="{{ route('contact') }}" class="btn-primary ml-3 px-5 py-2.5 text-[13px] uppercase tracking-wider">
                         Contact Us
@@ -269,8 +276,7 @@
 
                 <!-- Mobile toggle -->
                 <button type="button" @click="toggleMobile()"
-                        class="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-full transition"
-                        :class="(scrolled || solid) ? 'bg-gray-900 text-white' : 'bg-white/15 text-white ring-1 ring-white/30 backdrop-blur'"
+                        class="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-full transition bg-gray-900 text-white group-[.is-light]/header:bg-white/15 group-[.is-light]/header:ring-1 group-[.is-light]/header:ring-white/30 group-[.is-light]/header:backdrop-blur"
                         :aria-expanded="mobileOpen" aria-controls="mobile-menu" aria-label="Open menu">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M10 17h10" />

@@ -94,6 +94,7 @@ function initYoutubeFacades() {
 }
 
 function boot() {
+    window.__secReady = true;
     document.documentElement.classList.remove('no-js');
     initReveal();
     initCounters();
