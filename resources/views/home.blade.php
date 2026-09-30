@@ -2,576 +2,353 @@
 
 @section('title', 'Shannon Engineering Company - Building Qatar\'s Future with Excellence and Innovation')
 
+@php
+    use Illuminate\Support\Str;
+
+    $heroSlides = ['shaqab', 'mosque', 'villa', 'compound', 'lexus', 'home1', 'lulu'];
+    $heroUrls = collect($heroSlides)->map(fn ($name) => [
+        'src' => asset("images/optimized/{$name}-1920.webp"),
+        'srcset' => asset("images/optimized/{$name}-960.webp") . ' 960w, ' . asset("images/optimized/{$name}-1920.webp") . ' 1920w',
+    ]);
+
+    $stats = [
+        ['value' => 90,  'suffix' => '',  'label' => 'Projects Completed'],
+        ['value' => 25,  'suffix' => '',  'label' => 'Years Experience'],
+        ['value' => 85,  'suffix' => '+', 'label' => 'Happy Clients'],
+        ['value' => 60,  'suffix' => '+', 'label' => 'Engineers & Staff'],
+        ['value' => 500, 'suffix' => '+', 'label' => 'Labours'],
+    ];
+
+    $services = [
+        ['title' => 'General Contracting', 'text' => 'Complete construction solutions from planning to execution.',
+         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M12 8V5m-3 3.5V6.2M15 8.5V6.2"/>'],
+        ['title' => 'Construction', 'text' => 'Residential and commercial buildings built with precision.',
+         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>'],
+        ['title' => 'Design & Build', 'text' => 'Smart design combined with efficient project execution.',
+         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-1.2 3.6L5 21m7.2-12.4L19 21M7.5 16.5h9"/>'],
+        ['title' => 'Facilities Management', 'text' => 'Ongoing maintenance and support for building performance.',
+         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/>'],
+        ['title' => 'Interior Design', 'text' => 'Custom interior solutions that blend style and functionality. Transforming spaces with creative, modern interior solutions.',
+         'icon' => '<path stroke-linecap="round" stroke-linejoin="round" d="M4 11V8a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v3M3 16v-3a2 2 0 1 1 4 0v1h10v-1a2 2 0 1 1 4 0v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm2 2v2m14-2v2"/>'],
+    ];
+
+    $reasons = [
+        ['title' => 'Expertise & Experience', 'text' => 'Decades of proven experience in the construction industry, our highly skilled team delivers knowledge and hands on expertise to every project we undertake.'],
+        ['title' => 'Quality & Precision', 'text' => 'We maintain the highest standards of quality and precision in all our construction and engineering work. Ensuring every detail reflects the trust placed in us.'],
+        ['title' => 'Timely Delivery', 'text' => 'We understand the importance of timelines and ensure that all our projects are guaranteed for on-schedule delivery.'],
+        ['title' => 'Client Satisfaction', 'text' => 'Our client-centric approach ensures that we not only meet but also exceed expectations by listening, understanding, and anticipating their needs. We consistently deliver beyond expectations and build long-term partnerships based on trust.'],
+    ];
+@endphp
+
+@push('preload')
+    <link rel="preload" as="image" href="{{ $heroUrls[0]['src'] }}" imagesrcset="{{ $heroUrls[0]['srcset'] }}" imagesizes="100vw" fetchpriority="high">
+@endpush
+
 @section('content')
-@php use Illuminate\Support\Str; @endphp
+
+<!-- ============ HERO ============ -->
 <section
-x-data="{
-    currentSlide: 1,
-    transitioning: false,
-    slides: [
-        '/images/home/shaqab.png',
-        '/images/home/mosque.webp',
-        '/images/home/villa.jpg', 
-         '/images/home/compound.jpg', 
-        '/images/home/lexus.webp',
-        '/images/home/home1.jpeg',
-        '/images/home/lulu.webp',
-        
-
-    ],
-    intervalId: null,
-
-    get track() {
-        return [this.slides[this.slides.length - 1], ...this.slides, this.slides[0]]
-    },
-
-    get realIndex() {
-        if (this.currentSlide === 0) return this.slides.length - 1
-        if (this.currentSlide === this.track.length - 1) return 0
-        return this.currentSlide - 1
-    },
-
-  next() {
-    if (this.transitioning) return
-    this.resetTimer()
-    this.transitioning = true
-    this.currentSlide++
-},
-
-    prev() {
-    if (this.transitioning) return
-    this.resetTimer()
-    this.transitioning = true
-    this.currentSlide--
-},
-
-goTo(index) {
-    if (this.transitioning) return
-    this.resetTimer()
-    this.transitioning = true
-    this.currentSlide = index + 1
-},
-
-start() {
-    this.intervalId = setInterval(() => this.next(), 5000)
-},
-
-resetTimer() {
-    clearInterval(this.intervalId)
-    this.start()
-},
-
-    onTransitionEnd() {
-        this.transitioning = false
-        if (this.currentSlide === 0) {
-            this.currentSlide = this.slides.length
-        } else if (this.currentSlide === this.track.length - 1) {
-            this.currentSlide = 1
+    x-data="{
+        slides: @js($heroUrls),
+        current: 0,
+        loaded: [0, 1],
+        duration: 6500,
+        timer: null,
+        paused: false,
+        go(i) {
+            const n = this.slides.length;
+            this.current = (i + n) % n;
+            const ahead = (this.current + 1) % n;
+            if (!this.loaded.includes(ahead)) this.loaded.push(ahead);
+            this.restart();
+        },
+        next() { this.go(this.current + 1) },
+        prev() { this.go(this.current - 1) },
+        restart() {
+            clearTimeout(this.timer);
+            if (!this.paused) this.timer = setTimeout(() => this.next(), this.duration);
+        },
+        init() {
+            this.restart();
+            document.addEventListener('visibilitychange', () => {
+                this.paused = document.hidden;
+                this.restart();
+            });
         }
-    },
-
-
-    init() {
-        this.start()
-    }
-}"
-x-init="init"
-class="relative min-h-screen flex items-center justify-center text-white overflow-hidden bg-black"
+    }"
+    @keydown.left.window="prev()" @keydown.right.window="next()"
+    class="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-ink-900 text-white"
+    aria-roledescription="carousel" aria-label="Featured projects"
 >
-
-    {{-- Sliding Track --}}
-    <div class="absolute inset-0 overflow-hidden">
-        <div
-            class="flex h-full"
-            :style="`
-                width: ${track.length * 100}%;
-                transform: translateX(-${currentSlide * (100 / track.length)}%);
-                transition: ${transitioning ? 'transform 500ms ease-in-out' : 'none'};
-            `"
-            @transitionend="onTransitionEnd"
-        >
-            <template x-for="(slide, index) in track" :key="index">
-                <div
-                    class="relative h-full flex-shrink-0 bg-cover bg-center"
-                    :style="`width: ${100 / track.length}%; background-image: url(${slide})`"
-                >
-                    <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.05) 100%);"></div>
-                </div>
-            </template>
-        </div>
+    <!-- Slides -->
+    <div class="absolute inset-0 -z-20">
+        <template x-for="(slide, i) in slides" :key="i">
+            <div class="absolute inset-0 transition-opacity duration-[1400ms] ease-out"
+                 :class="current === i ? 'opacity-100' : 'opacity-0'" :aria-hidden="current !== i">
+                <img :src="loaded.includes(i) ? slide.src : null"
+                     :srcset="loaded.includes(i) ? slide.srcset : null"
+                     sizes="100vw" alt="" decoding="async"
+                     :fetchpriority="i === 0 ? 'high' : 'low'"
+                     class="h-full w-full object-cover"
+                     :class="current === i && 'animate-ken-burns'">
+            </div>
+        </template>
+        {{-- First slide is server rendered so it paints before Alpine boots --}}
+        <img src="{{ $heroUrls[0]['src'] }}" srcset="{{ $heroUrls[0]['srcset'] }}" sizes="100vw" alt=""
+             fetchpriority="high" class="absolute inset-0 -z-10 h-full w-full object-cover">
     </div>
-{{-- Content --}}
-<div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen px-6 md:px-14" style="
-    margin-left: 0px;
-">
 
-        <p class="text-xs uppercase tracking-[0.2em] text-yellow-400 font-semibold mb-4">
-            Qatar's Trusted Contractor
-        </p>
+    <!-- Overlays -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink-900/90 via-ink-900/55 to-ink-900/10"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink-900 via-transparent to-ink-900/40"></div>
+    <div class="absolute inset-0 -z-10 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_left,black,transparent_65%)]"></div>
 
-        <h1
-            class="font-normal leading-tight mb-5"
-            style="font-size: clamp(40px, 6vw, 68px);"
-        >
-            <span class="text-red-500">S</span>uccess<br>
-            <span class="text-red-500">E</span>xcellence<br>
-            <span class="text-red-500">C</span>ommitment
+    <!-- Content -->
+    <div class="mx-auto w-full max-w-7xl px-5 pb-40 pt-36 sm:px-6 lg:px-8">
+        <p class="eyebrow animate-fade-up text-yellow-400 [animation-delay:.1s]">Qatar's Trusted Contractor</p>
+
+        <h1 class="mt-6 font-display font-bold leading-[0.95] text-white" style="font-size: clamp(3rem, 8vw, 6.75rem);">
+            <span class="block overflow-hidden pb-2"><span class="block animate-rise [animation-delay:.2s]"><span class="text-red-500">S</span>uccess</span></span>
+            <span class="block overflow-hidden pb-2"><span class="block animate-rise [animation-delay:.35s]"><span class="text-red-500">E</span>xcellence</span></span>
+            <span class="block overflow-hidden pb-2"><span class="block animate-rise [animation-delay:.5s]"><span class="text-red-500">C</span>ommitment</span></span>
         </h1>
 
-        <p class="text-base md:text-lg font-medium text-white/70 max-w-lg leading-relaxed mb-10">
+        <p class="mt-8 max-w-lg animate-fade-up text-lg font-medium leading-relaxed text-white/75 [animation-delay:.7s] md:text-xl">
             Grade A Construction Company Operating in Qatar
         </p>
 
-        <a href="{{ route('projects') }}"
-            class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-semibold text-sm tracking-widest uppercase transition w-fit">
-            Explore Our Projects
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-        </a>
-
+        <div class="mt-10 flex flex-wrap gap-4 animate-fade-up [animation-delay:.85s]">
+            <a href="{{ route('projects') }}" class="btn-primary px-8 py-4 uppercase tracking-widest">
+                Explore Our Projects
+                <svg class="btn-arrow h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="{{ route('about') }}" class="btn-ghost px-8 py-4 uppercase tracking-widest">
+                About Us
+            </a>
+        </div>
     </div>
 
-    {{-- Dot Indicators --}}
-    <div class="absolute bottom-10 right-14 flex gap-2 z-20">
-        <template x-for="(slide, i) in slides" :key="i">
-            <button
-                @click="goTo(i)"
-                class="rounded-full transition-all duration-300"
-                :class="realIndex === i
-                    ? 'w-5 h-1.5 bg-yellow-400'
-                    : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'"
-            ></button>
-        </template>
+    <!-- Controls -->
+    <div class="absolute inset-x-0 bottom-0">
+        <div class="mx-auto flex max-w-7xl items-end justify-between gap-6 px-5 pb-8 sm:px-6 md:pb-10 lg:px-8">
+            <div class="flex items-center gap-5">
+                <div class="flex gap-2">
+                    <button type="button" @click="prev()" aria-label="Previous slide"
+                            class="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur transition hover:border-white hover:bg-white hover:text-gray-900">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button type="button" @click="next()" aria-label="Next slide"
+                            class="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur transition hover:border-white hover:bg-white hover:text-gray-900">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+                <p class="hidden font-display text-sm tabular-nums text-white/60 sm:block">
+                    <span class="text-2xl font-semibold text-white" x-text="String(current + 1).padStart(2, '0')">01</span>
+                    / <span x-text="String(slides.length).padStart(2, '0')">07</span>
+                </p>
+            </div>
+
+            <!-- Progress segments -->
+            <div class="flex max-w-xs flex-1 gap-1.5 sm:max-w-sm">
+                <template x-for="(slide, i) in slides" :key="'bar' + i">
+                    <button type="button" @click="go(i)" :aria-label="'Go to slide ' + (i + 1)"
+                            class="group relative h-6 flex-1">
+                        <span class="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 overflow-hidden rounded-full bg-white/20 transition group-hover:bg-white/40">
+                            <span class="absolute inset-y-0 left-0 rounded-full bg-yellow-400"
+                                  :style="current === i
+                                      ? `width:100%; transition: width ${duration}ms linear`
+                                      : (i < current ? 'width:100%; transition:none' : 'width:0; transition:none')"></span>
+                        </span>
+                    </button>
+                </template>
+            </div>
+
+            <!-- Scroll cue -->
+            <a href="#about" class="hidden flex-col items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60 transition hover:text-white lg:flex">
+                <span class="flex h-10 w-6 justify-center rounded-full border-2 border-white/40 pt-2">
+                    <span class="h-2 w-1 animate-scroll-dot rounded-full bg-white"></span>
+                </span>
+                Scroll
+            </a>
+        </div>
     </div>
-
-    {{-- PREV button --}}
-    <button
-        @click="prev"
-        class="absolute left-5 bottom-10 z-20 w-12 h-12 rounded-full
-               flex items-center justify-center
-               bg-white/10 border border-white/20
-               hover:bg-white/20 hover:border-white/50 transition">
-        <svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-        </svg>
-    </button>
-
-    {{-- NEXT button --}}
-    <button
-        @click="next"
-        class="absolute left-20 bottom-10 z-20 w-12 h-12 rounded-full
-               flex items-center justify-center
-               bg-white/10 border border-white/20
-               hover:bg-white/20 hover:border-white/50 transition">
-        <svg class="w-5 h-5" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-        </svg>
-    </button>
-
 </section>
-<!-- About Shannon Engineering -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 text-justify lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 section-title">
-                    About Shannon Engineering
-                </h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    Shannon Engineering Company (SEC) is a Grade A Construction Company operating in the GCC and Middle East. </p>
-                <p class="text-lg text-gray-600 mb-8">
+
+<!-- ============ STATS ============ -->
+<section class="relative z-10 -mt-px bg-ink-900 pb-16 text-white md:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/10 md:grid-cols-5" data-reveal-stagger>
+            @foreach($stats as $stat)
+                <div class="bg-ink-900 px-6 py-8 text-center md:py-10 {{ $loop->last ? 'col-span-2 md:col-span-1' : '' }}" data-reveal>
+                    <p class="font-display text-4xl font-bold tabular-nums text-white md:text-5xl">
+                        <span data-count="{{ $stat['value'] }}">{{ $stat['value'] }}</span><span class="text-red-500">{{ $stat['suffix'] }}</span>
+                    </p>
+                    <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">{{ $stat['label'] }}</p>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="relative overflow-hidden bg-white py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div data-reveal="left">
+                <p class="eyebrow">Who we are</p>
+                <h2 class="section-heading">About Shannon Engineering</h2>
+                <p class="mt-6 text-lg leading-relaxed text-gray-600">
+                    Shannon Engineering Company (SEC) is a Grade A Construction Company operating in the GCC and Middle East.
+                </p>
+                <p class="mt-4 text-lg leading-relaxed text-gray-600">
                     With a commitment to quality, innovation, and client satisfaction, we have established ourselves as a trusted partner in Qatar's development journey.
                 </p>
-                <a href="{{ route('about') }}" class="btn-primary bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold inline-block">
+                <a href="{{ route('about') }}" class="btn-primary mt-10">
                     Learn More About Us
+                    <svg class="btn-arrow h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
             </div>
-            <div class="relative">
-                <img src="{{asset('/images/home/cap.png')}}"
-                    alt="Modern construction site"
-                    class="rounded-lg shadow-xl w-full h-96 object-cover">
+
+            <div class="relative" data-reveal="right">
+                <div class="absolute -right-6 -top-6 h-full w-full rounded-[2rem] border-2 border-red-100"></div>
+                <div class="relative overflow-hidden rounded-[2rem] shadow-2xl">
+                    <img src="{{ asset('images/optimized/cap-1091.webp') }}" alt="Modern construction site"
+                         width="1091" height="780" loading="lazy" decoding="async"
+                         class="h-[420px] w-full object-cover transition-transform duration-[1.5s] hover:scale-105">
+                </div>
+                <div class="absolute -bottom-8 left-6 flex items-center gap-4 rounded-2xl bg-white p-5 shadow-[0_24px_60px_-20px_rgba(16,24,40,.35)] ring-1 ring-gray-100 md:-left-8">
+                    <span class="font-display text-5xl font-bold text-red-600">25</span>
+                    <span class="text-sm font-semibold leading-tight text-gray-700">Years of<br>experience</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Company Statistics -->
-<section class="py-20 bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Our Achievements</h2>
-            <p class="text-gray-300 text-lg">Numbers that reflect our commitment and excellence</p>
+<!-- ============ SERVICES ============ -->
+<section class="relative bg-gray-50 py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto mb-16 max-w-3xl text-center" data-reveal>
+            <p class="eyebrow justify-center">What we do</p>
+            <h2 class="section-heading">Our Services</h2>
+            <p class="section-lead">We provide comprehensive construction and engineering solutions across various sectors</p>
         </div>
 
-        <div
-            x-data="counterSection()"
-            x-init="startCounting()"
-            class="grid grid-cols-2 md:grid-cols-5 gap-5 text-center">
-
-            <!-- Projects Completed: Blueprint/grid icon -->
-            <div class="space-y-3">
-                <div class="text-red-500 flex justify-center">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-width="2" d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
-                    </svg>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5" data-reveal-stagger>
+            @foreach($services as $service)
+                <div class="group relative overflow-hidden card card-hover p-7" data-reveal>
+                    <span class="absolute right-5 top-4 font-display text-5xl font-bold text-gray-100 transition-colors duration-500 group-hover:text-red-50">
+                        {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+                    </span>
+                    <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-600 transition-all duration-500 group-hover:rotate-[-6deg] group-hover:bg-red-600 group-hover:text-white">
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">{!! $service['icon'] !!}</svg>
+                    </div>
+                    <h3 class="relative mt-6 text-lg font-semibold text-gray-900">{{ $service['title'] }}</h3>
+                    <p class="relative mt-2 text-sm leading-relaxed text-gray-500">{{ $service['text'] }}</p>
+                    <span class="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-red-600 to-orange-400 transition-transform duration-500 group-hover:scale-x-100"></span>
                 </div>
-                <div class="text-5xl font-bold">
-                    <span x-text="projects"></span>
-                </div>
-                <div class="text-gray-300 text-lg">Projects Completed</div>
-            </div>
-
-            <!-- Years Experience: Calendar icon -->
-            <div class="space-y-3">
-                <div class="text-red-500 flex justify-center">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="14" x2="8" y2="14" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="12" y1="14" x2="12" y2="14" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="16" y1="14" x2="16" y2="14" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="8" y1="18" x2="8" y2="18" stroke-width="3" stroke-linecap="round"/>
-                        <line x1="12" y1="18" x2="12" y2="18" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="text-5xl font-bold">
-                    <span x-text="years"></span>
-                </div>
-                <div class="text-gray-300 text-lg">Years Experience</div>
-            </div>
-
-       
-
-          <!-- Happy Clients: Smiley face icon -->
-<div class="space-y-3">
-    <div class="text-red-500 flex justify-center">
-        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Face circle -->
-            <circle cx="12" cy="12" r="10"/>
-            <!-- Eyes -->
-            <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
-            <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
-            <!-- Smile -->
-            <path d="M8 14 C9 17 15 17 16 14"/>
-        </svg>
-    </div>
-    <div class="text-5xl font-bold">
-        <span x-text="clients"></span>+
-    </div>
-    <div class="text-gray-300 text-lg">Happy Clients</div>
-</div>
-
-<!-- Engineers & Staff: Construction hard hat -->
-<div class="space-y-3">
-    <div class="text-red-500 flex justify-center">
-        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Hat dome -->
-            <path d="M12 4 C7 4 4 8 4 12 L20 12 C20 8 17 4 12 4 Z"/>
-            <!-- Center ridge stripe -->
-            <line x1="12" y1="4" x2="12" y2="12"/>
-            <!-- Brim -->
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <!-- Brim underside curve -->
-            <path d="M2 12 Q2 15 5 15 L19 15 Q22 15 22 12"/>
-        </svg>
-    </div>
-    <div class="text-5xl font-bold">
-        <span x-text="engineers"></span>+
-    </div>
-    <div class="text-gray-300 text-lg">Engineers & Staff</div>
-</div>
-
-<!-- Labours: Worker avatar -->
-<div class="space-y-3">
-    <div class="text-red-500 flex justify-center">
-        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Head -->
-            <circle cx="12" cy="6" r="3"/>
-            <!-- Neck + torso -->
-            <path d="M9 9 C9 9 7 10 7 13 L7 17 L17 17 L17 13 C17 10 15 9 15 9 Z"/>
-            <!-- Left arm holding shovel -->
-            <line x1="7" y1="12" x2="4" y2="16"/>
-            <!-- Shovel blade -->
-            <path d="M2 15 L4 16 L5 18 L3 19 Z"/>
-            <!-- Right arm out -->
-            <line x1="17" y1="12" x2="20" y2="14"/>
-            <!-- Legs -->
-            <line x1="10" y1="17" x2="9" y2="22"/>
-            <line x1="14" y1="17" x2="15" y2="22"/>
-        </svg>
-    </div>
-    <div class="text-5xl font-bold">
-        <span x-text="labours"></span>+
-    </div>
-    <div class="text-gray-300 text-lg">Labours</div>
-</div>
-    </div>
-</section>
-<!-- Our Services -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
-                Our Services
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                We provide comprehensive construction and engineering solutions across various sectors
-            </p>
+            @endforeach
         </div>
-
-       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-
-    <!-- General Contracting -->
-    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fa-solid fa-helmet-safety text-red-600 text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">General Contracting</h3>
-        <p class="text-gray-500 text-sm">
-            Complete construction solutions from planning to execution.
-        </p>
-    </div>
-
-    <!-- Construction -->
-    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fa-solid fa-building text-red-600 text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">Construction</h3>
-        <p class="text-gray-500 text-sm">
-            Residential and commercial buildings built with precision.
-        </p>
-    </div>
-
-    <!-- Design & Build -->
-    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fa-solid fa-drafting-compass text-red-600 text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">Design & Build</h3>
-        <p class="text-gray-500 text-sm">
-            Smart design combined with efficient project execution.
-        </p>
-    </div>
-
-    <!-- Facilities Management -->
-    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-            <i class="fa-solid fa-screwdriver-wrench text-red-600 text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">Facilities Management</h3>
-        <p class="text-gray-500 text-sm">
-            Ongoing maintenance and support for building performance.
-        </p>
-    </div>
-        <!-- Facilities Management -->
-    <div class="group bg-white p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
-        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
-   <i class="fa-solid fa-kitchen-set text-red-600 text-xl"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-2">Interior Design</h3>
-        <p class="text-gray-500 text-sm">
-            ⁠Custom interior solutions that blend style and functionality.
-⁠Transforming spaces with creative, modern interior solutions.
-
-        </p>
-    </div>
-
-</div>
     </div>
 </section>
 
-<!-- Featured Projects -->
-<section class="py-10 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-800 mb-4">Ongoing Projects</h2>
-
-<p class="text-lg text-gray-600 max-w-3xl mx-auto">
-Our ongoing projects reflect Shannon Engineering’s continuous growth and trusted reputation in Qatar’s construction sector, delivering through Success, Excellence and Commitment.
-</p> </div>
+<!-- ============ ONGOING PROJECTS ============ -->
+<section class="overflow-hidden bg-white py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end" data-reveal>
+            <div class="max-w-3xl">
+                <p class="eyebrow">Under construction</p>
+                <h2 class="section-heading">Ongoing Projects</h2>
+                <p class="section-lead">
+                    Our ongoing projects reflect Shannon Engineering’s continuous growth and trusted reputation in Qatar’s construction sector, delivering through Success, Excellence and Commitment.
+                </p>
+            </div>
+            @if(count($featuredprojects) > 1)
+                <div class="hidden shrink-0 gap-2 md:flex">
+                    <button type="button" onclick="document.getElementById('ongoing-track').scrollBy({ left: -380, behavior: 'smooth' })" aria-label="Scroll left"
+                            class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button type="button" onclick="document.getElementById('ongoing-track').scrollBy({ left: 380, behavior: 'smooth' })" aria-label="Scroll right"
+                            class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            @endif
+        </div>
 
         @if(count($featuredprojects) === 0)
-        <div class="text-center text-gray-500 text-lg py-20">
-            No featured projects available at the moment. Please check back later.
-        </div>
+            <div class="rounded-3xl border border-dashed border-gray-300 py-20 text-center text-lg text-gray-500">
+                No featured projects available at the moment. Please check back later.
+            </div>
         @else
-        <!-- Scrollable Container -->
-        <div
-            x-data="{ scroll: $refs.projects }"
-            class="relative">
-
-            <!-- Arrow Left -->
-            @if(count($featuredprojects) > 3)
-            <button @click="scroll.scrollBy({ left: -300, behavior: 'smooth' })"
-                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
-                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            @endif
-
-            <!-- Cards -->
-            <div
-                x-ref="projects"
-                class="flex overflow-x-auto space-x-6 pb-4 scroll-smooth snap-x snap-mandatory md:scrollbar-hide 
-                {{ count($featuredprojects) === 1 ? 'justify-center' : '' }}">
-
-
+            <div id="ongoing-track"
+                 class="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-10 pt-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+                 data-reveal-stagger>
                 @foreach($featuredprojects as $project)
-                <div class="min-w-[300px] snap-center bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="{{ 'storage/'.$project['card_img'] }}" alt="{{ $project['title'] }}" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">{{ $project['title'] }}</h3>
-                        <p class="text-gray-600 mb-4">{{ Str::words($project['description'], 25, '...') }}</p>
-                        <a href="{{ route('ongoingdetails', $project->id) }}" class="inline-block text-red-600 hover:text-red-700 font-semibold">
-                                        View Project →
-                                    </a>
-                    </div>
-                </div>
+                    <x-project-card :project="$project" :href="route('ongoingdetails', $project->id)"
+                                    class="w-[85%] shrink-0 snap-start sm:w-[360px]" data-reveal />
                 @endforeach
             </div>
 
-            <!-- Arrow Right -->
-            @if(count($featuredprojects) > 3)
-            <button @click="scroll.scrollBy({ left: 300, behavior: 'smooth' })"
-                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-300 rounded-full p-2 shadow hover:bg-gray-100 hidden md:block">
-                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-            @endif
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="{{ route('ongoingProjects') }}"
-                class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold inline-block transition-all duration-300">
-                View All Projects
-            </a>
-        </div>
+            <div class="mt-4 text-center">
+                <a href="{{ route('ongoingProjects') }}" class="btn-dark">
+                    View All Projects
+                    <svg class="btn-arrow h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
         @endif
     </div>
 </section>
 
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="relative overflow-hidden bg-ink-900 py-24 text-white md:py-32">
+    <div class="pointer-events-none absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
+    <div class="pointer-events-none absolute -left-40 top-1/3 h-96 w-96 rounded-full bg-red-600/25 blur-3xl"></div>
 
-
-<!-- Why Choose Us -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="relative">
-                    <iframe  class="rounded-lg shadow-xl w-full h-full object-cover" width="560" height="315" src="https://www.youtube-nocookie.com/embed/qpmrD94lSqk?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div class="relative" data-reveal="left">
+                <div class="relative aspect-video overflow-hidden rounded-[2rem] bg-black shadow-2xl ring-1 ring-white/10">
+                    <button type="button" data-youtube="qpmrD94lSqk" aria-label="Play Shannon Engineering video"
+                            class="group absolute inset-0 h-full w-full">
+                        <img src="https://i.ytimg.com/vi/qpmrD94lSqk/hqdefault.jpg" alt="" loading="lazy" decoding="async"
+                             class="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105 group-hover:opacity-100">
+                        <span class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></span>
+                        <span class="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-red-600 text-white shadow-2xl shadow-red-600/50 transition duration-300 group-hover:scale-110">
+                            <span class="absolute inset-0 animate-ping rounded-full bg-red-600/40"></span>
+                            <svg class="relative ml-1 h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                    </button>
+                </div>
             </div>
-            <div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-8 section-title">
-                    Why Choose Us
-                </h2>
 
-                <div class="space-y-8 text-justify">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Expertise & Experience</h3>
-                        <p class="text-gray-600">
-                            Decades of proven experience in the construction industry, our highly skilled team delievers knowledge and hands on experties to every project we undertake.
-                        </p>
-                    </div>
+            <div data-reveal="right">
+                <p class="eyebrow text-red-400">Why SEC</p>
+                <h2 class="section-heading text-white">Why Choose Us</h2>
 
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Quality & Precision</h3>
-                        <p class="text-gray-600">
-                            We maintain the highest standards of quality and precision in all our construction and engineering work. Ensuring every detail reflect the trust placed in us.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Timely Delivery</h3>
-                        <p class="text-gray-600">
-                            We understand the importance of timelines and ensure that all our projects are guaranteed for on-schedule delivery.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Client Satisfaction</h3>
-                        <p class="text-gray-600">
-                            Our client-centric approach ensures that we not only meet but also exceed expectations by listening, understanding, and anticipating their needs. We consistently deliver beyond expectations and build long-term partnerships based on trust.
-                        </p>
-                    </div>
+                <div class="mt-10 space-y-3" x-data="{ active: 0 }">
+                    @foreach($reasons as $reason)
+                        <div class="rounded-2xl border transition-all duration-300"
+                             :class="active === {{ $loop->index }} ? 'border-white/15 bg-white/[.06]' : 'border-transparent hover:bg-white/[.03]'">
+                            <button type="button" @click="active = active === {{ $loop->index }} ? null : {{ $loop->index }}"
+                                    class="flex w-full items-center gap-5 px-5 py-4 text-left" :aria-expanded="active === {{ $loop->index }}">
+                                <span class="font-display text-sm font-bold tabular-nums transition-colors"
+                                      :class="active === {{ $loop->index }} ? 'text-red-500' : 'text-white/40'">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                                <span class="flex-1 font-display text-lg font-semibold text-white md:text-xl">{{ $reason['title'] }}</span>
+                                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 transition-transform duration-300"
+                                      :class="active === {{ $loop->index }} && 'rotate-45 bg-red-600'">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                                </span>
+                            </button>
+                            <div x-show="active === {{ $loop->index }}" x-collapse @if(!$loop->first) x-cloak @endif>
+                                <p class="px-5 pb-5 pl-[3.75rem] leading-relaxed text-white/65">{{ $reason['text'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Call to Action -->
-<section class="py-20 bg-red-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold mb-6">
-            Ready to Start Your Next Project?
-        </h2>
-        <p class="text-xl mb-8 max-w-3xl mx-auto">
-            Contact us today to discuss how Shannon Engineering Company can bring your vision to life.
-        </p>
-        <a href="{{ route('contact') }}" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
-            Contact Us
-        </a>
-    </div>
-</section>
 @endsection
-<script>
-
-function counterSection(){
-
-return{
-
-projects:0,
-years:0,
-clients:0,
-engineers:0,
-labours:0,
-
-targetProjects:90,
-targetYears:25,
-targetClients:85,
-targetEngineers:60,
-targetLabours:500,
-
-startCounting(){
-
-this.animateValue('projects',this.targetProjects)
-this.animateValue('years',this.targetYears)
-this.animateValue('clients',this.targetClients)
-this.animateValue('engineers',this.targetEngineers)
-this.animateValue('labours',this.targetLabours)
-
-},
-
-animateValue(field,target){
-
-let duration=2000
-
-let stepTime=Math.abs(Math.floor(duration/target))
-
-let interval=setInterval(()=>{
-
-if(this[field]<target){
-
-this[field]++
-
-}else{
-
-clearInterval(interval)
-
-}
-
-},stepTime)
-
-}
-
-}
-
-}
-
-</script>

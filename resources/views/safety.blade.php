@@ -19,37 +19,8 @@
 
 @section('content')
 
-<!-- Hero Section -->
-<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
-         aria-label="Our Projects hero"
-         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
+<x-page-hero title="Safety, Health &" highlight="Environment" subtitle="Driving a culture of safety and sustainability across every stage of delivery." :crumbs="['Safety, Health & Environment' => null]" />
 
-  <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
-  <div class="absolute inset-0">
-    <!-- subtle white glow behind center/bottom area -->
-    <div class="absolute inset-0"
-         style="background:
-           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
-           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
-    </div>
-    <!-- light vignette to keep edges rich -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
-  </div>
-
-  <!-- Text Content: glass card, bottom-left -->
-  <div class="absolute bottom-8 left-6 right-6  md:left-6 md:right-auto">
-    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
-        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200"> Safety, <span class="text-red-500">Health</span> & Environment</span>
-      
-      </h1>
-       <p class="mt-2 text-sm md:text-lg text-white/90">
-       Driving a culture of safety and sustainability across every stage of delivery.
-      </p>
-      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
-    </div>
-  </div>
-</section>
 
 <!-- KPI Band (with count-up animation) -->
 <section class="py-12 bg-white">

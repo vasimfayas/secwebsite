@@ -3,40 +3,10 @@
 @section('title', 'Our Projects - Shannon Engineering Company')
 
 @section('content')
-<!-- Hero Section -->
-<section class="relative text-white h-[300px] md:h-[280px] bg-cover bg-center bg-no-repeat"
-         aria-label="Our Projects hero"
-         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
-  <!-- Overlays: soft white lift + gentle vignette (better on dark images) -->
-  <div class="absolute inset-0">
-    <!-- subtle white glow behind center/bottom area -->
-    <div class="absolute inset-0"
-         style="background:
-           radial-gradient(60% 45% at 35% 70%, rgba(255,255,255,0.12), transparent 60%),
-           radial-gradient(70% 55% at 65% 80%, rgba(255,255,255,0.08), transparent 65%);">
-    </div>
-    <!-- light vignette to keep edges rich -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
-  </div>
+<x-page-hero title="Our" highlight="Projects" subtitle="Reflected SEC success through diverse, high quality engineering achievements." :crumbs="['Projects' => null]" />
 
-  <!-- Text Content: glass card, bottom-left -->
-  <div class="absolute bottom-10 left-6 right-6  md:left-6 md:right-auto">
-    <div class="inline-block rounded-2xl backdrop-blur-md bg-white/10 ring-1 ring-white/20 px-5 py-4 shadow-lg">
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow">
-        <span class="bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200">Our</span>
-        <span class="text-red-500">Projects</span>
-      </h1>
-      <p class="mt-1 text-sm md:text-lg text-white/90">
-       Reflected SEC success through diverse, high quality engineering achievements.
-      </p>
-      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Featured Projects
+{{-- Featured Projects (disabled)
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
@@ -148,53 +118,64 @@
             </div>
         </div>
     </div>
-</section> -->
+</section> --}}
 
-<!-- Project Categories -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4 section-title inline-block">
-                Project Categories
-            </h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                We deliver excellence across multiple sectors
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Residential -->
-            @foreach($categories as $cat)
-            <div class="bg-white rounded-2xl overflow-hidden shadow group transition-all duration-300 hover:shadow-lg">
-                <img src="{{asset('storage/' .$cat->card_img) }}"
-                    alt="Residential Projects"
-                    class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">{{$cat->category}}</h3>
-                    <p class="text-gray-600 mb-4">
-                        {{$cat->description}}
-                    </p>
-                    <div class="text-red-600 font-semibold"><a href="{{route('listprojects',$cat->id)}}">View more--></a></div>
-                </div>
-            </div>
-            @endforeach
-
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section class="py-20 bg-red-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold mb-6">
-            Have a Project in Mind?
-        </h2>
-        <p class="text-xl mb-8 max-w-3xl mx-auto">
-            Let's discuss how we can bring your construction vision to life with our expertise and commitment to excellence.
-        </p>
-        <a href="{{ route('contact') }}" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all duration-300">
-            Start Your Project
+<!-- Ongoing highlight -->
+<section class="relative bg-white py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <a href="{{ route('ongoingProjects') }}" data-reveal
+           class="group relative isolate flex min-h-[320px] flex-col justify-end overflow-hidden rounded-[2rem] bg-ink-900 p-8 text-white md:p-12">
+            <img src="{{ asset('images/optimized/lulu-1920.webp') }}"
+                 srcset="{{ asset('images/optimized/lulu-960.webp') }} 960w, {{ asset('images/optimized/lulu-1920.webp') }} 1920w"
+                 sizes="(min-width: 1280px) 1216px, 100vw" alt="" loading="lazy" decoding="async"
+                 class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink-900/95 via-ink-900/60 to-transparent"></div>
+            <span class="inline-flex w-fit items-center gap-2 rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gray-900">
+                <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-gray-900"></span> Live sites
+            </span>
+            <h2 class="mt-4 max-w-xl font-display text-3xl font-bold text-white md:text-5xl">Ongoing Projects</h2>
+            <p class="mt-3 max-w-lg text-white/70">See what we are building across Qatar right now.</p>
+            <span class="btn-ghost mt-8 w-fit">
+                Explore ongoing
+                <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </span>
         </a>
     </div>
 </section>
+
+<!-- Project Categories -->
+<section class="bg-gray-50 py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto mb-16 max-w-2xl text-center" data-reveal>
+            <p class="eyebrow justify-center">Delivered projects</p>
+            <h2 class="section-heading">Project Categories</h2>
+            <p class="section-lead">We deliver excellence across multiple sectors</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+            @foreach($categories as $cat)
+            <a href="{{ route('listprojects', $cat->id) }}" data-reveal
+               class="group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl bg-ink-900 p-7 text-white shadow-[0_24px_48px_-24px_rgba(16,24,40,.45)]">
+                <img src="{{ asset('storage/' . $cat->card_img) }}" alt="{{ $cat->category }} Projects" loading="lazy" decoding="async"
+                     class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
+                <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/40 to-black/0 transition-colors duration-500 group-hover:from-red-950/95"></div>
+
+                <h3 class="font-display text-2xl font-semibold text-white">{{ $cat->category }}</h3>
+                <div class="grid grid-rows-[1fr] transition-all duration-500 md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr]">
+                    <p class="overflow-hidden text-sm leading-relaxed text-white/75">
+                        <span class="block pt-3">{{ $cat->description }}</span>
+                    </p>
+                </div>
+                <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                    View projects
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 backdrop-blur transition-colors duration-300 group-hover:bg-red-600">
+                        <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </span>
+            </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 @endsection

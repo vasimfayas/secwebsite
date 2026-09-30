@@ -1,601 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0f17">
     <title>@yield('title', 'Shannon Engineering Company - Building Qatar\'s Future')</title>
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
-    <link rel="preload" href="{{ asset('/images/home/lexus.webp') }}" as="image">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-   
-    <!-- Tailwind CSS -->
+
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    @stack('preload')
+    @stack('meta')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-
-
-    <!-- Custom CSS -->
-    <style>
-        [x-cloak]{ display:none !important; }
-        .hero-bg {
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .nav-link{
-    position: relative;
-    padding-bottom: .25rem; /* space for underline */
-  }
-  .nav-link::after{
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -2px;
-    height: 2px;
-    background: linear-gradient(90deg, #ef4444, #f87171, #ef4444); /* red gradient */
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .28s ease;
-  }
-  /* show underline on hover */
-  .nav-link:hover::after{
-    transform: scaleX(1);
-  }
-  /* keep underline visible for the active route */
-  .nav-link.is-active::after{
-    transform: scaleX(1);
-  }
-  /* optional: make active text red too */
-  .nav-link.is-active{
-    color: #dc2626; /* Tailwind red-600 */
-  }
-
-        .btn-primary {
-            background-color: #dc2626;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #b91c1c;
-            transform: translateY(-2px);
-        }
-
-        .section-title {
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background-color: #dc2626;
-        }
-
-        .service-card {
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .project-card {
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            transform: scale(1.05);
-        }
-
-        .project-card img {
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.1);
-        }
-    </style>
+    @stack('styles')
 </head>
 
-<body class="bg-white">
-    <!-- Navigation -->
-    <nav 
-x-data="{ scrolled:false }"
-@scroll.window="scrolled = (window.scrollY > 50)"
-:class="scrolled ? 'bg-white shadow-lg' : 'bg-white/10 backdrop-blur-sm'"
-class="fixed w-full top-0 z-50 transition-all duration-300"
->
-        <div>
-            <div class="flex justify-between items-center h-16 px-3 md:px-6" style="
-            height: fit-content;
-        ">
-                <!-- Logo -->
-                <div class="flex-shrink-0 mr-10">
-                    <a href="{{ route('home') }}" class="flex items-center py-2">
-                        <img src="{{asset('images/logo/nobgseclogo.png')}}" alt="Comapny Logo" style="width: 100px;">
-                    </a>
-                </div>
-                @php
-                $projectCategories = App\Models\ProjectCategory::all();
-                @endphp <!-- Desktop Navigation -->
-                <div class="hidden md:flex flex-grow justify-end ml-10">
-                    <div class="ml-10 flex items-baseline space-x-2 relative group">
-                        <a href="{{ route('home') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('home') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->HOME</a>
-                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('about') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide  {{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->ABOUT US</a>
+@php
+    $projectCategories = \App\Models\ProjectCategory::orderBy('id')->get(['id', 'category']);
+    // Pages without a dark hero at the top get a solid header from the start.
+    $solidNav = $__env->hasSection('solid-nav');
 
-                            <!-- Dropdown Menu -->
-                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
+    $aboutLinks = [
+        ['route' => 'about', 'label' => 'Message from CEO'],
+        ['route' => 'about.vision', 'label' => 'Vision, Mission & Values'],
+        ['route' => 'about.team', 'label' => 'Meet Our Team'],
+        ['route' => 'about.culture', 'label' => 'Our Culture'],
+    ];
+    $partnerLinks = [
+        ['href' => route('clients') . '#clients', 'label' => 'Our Clients'],
+        ['href' => route('clients') . '#consultants', 'label' => 'Consultants'],
+    ];
+@endphp
 
-                                <a href="{{route('about')}}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    Message from CEO
-                                </a>
-                                <a href="{{route('about.vision')}}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                  Vision, Mission & Values
-                                </a>
-                                <a href="{{route('about.team')}}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                Meet Our Team
-                            </a>
-                                <a href="{{route('about.culture')}}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                Our Culture
-                            </a>
-                            </div>
-                        </div>
+<body class="bg-white antialiased {{ $solidNav ? 'pt-20' : '' }}">
 
-                        <!-- Projects with Dropdown -->
-                  <div x-data="{ open: false, subOpen: false }"
-     @mouseenter="open = true"
-     @mouseleave="open = false"
-     class="relative">
-
-    <!-- Main Link -->
-    <a href="{{ route('projects') }}"
-       class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('projects') ? 'is-active' : '' }}"
-       :class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'">
-        PROJECTS
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow-lg">
+        Skip to content
     </a>
 
-    <!-- Dropdown -->
-    <div x-show="open" x-cloak x-transition
-         class="absolute left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-md z-50">
+    <!-- ============ HEADER ============ -->
+    <header
+        x-data="{
+            scrolled: false,
+            hidden: false,
+            lastY: 0,
+            progress: 0,
+            mobileOpen: false,
+            solid: {{ $solidNav ? 'true' : 'false' }},
+            onScroll() {
+                const y = window.scrollY;
+                this.scrolled = y > 40;
+                this.hidden = y > 400 && y > this.lastY && !this.mobileOpen;
+                this.lastY = y;
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                this.progress = h > 0 ? (y / h) * 100 : 0;
+            },
+            toggleMobile(state) {
+                this.mobileOpen = typeof state === 'boolean' ? state : !this.mobileOpen;
+                document.documentElement.classList.toggle('overflow-hidden', this.mobileOpen);
+            }
+        }"
+        x-init="onScroll()"
+        @scroll.window.passive="onScroll()"
+        @keydown.escape.window="toggleMobile(false)"
+        :class="{ '-translate-y-full': hidden }"
+        class="group/header fixed inset-x-0 top-0 z-50 transition-transform duration-500"
+    >
+        <div
+            :class="(scrolled || solid)
+                ? 'bg-white/90 shadow-[0_8px_30px_-12px_rgba(0,0,0,.18)] backdrop-blur-xl border-b border-gray-100'
+                : 'bg-gradient-to-b from-black/60 via-black/25 to-transparent'"
+            class="transition-all duration-500"
+        >
+            <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-4 md:px-8"
+                 :class="(scrolled || solid) ? 'h-20' : 'h-24'">
 
-        <!-- Ongoing -->
-        <a href="{{route('ongoingProjects')}}"
-           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-            Ongoing Projects
-        </a>
-
-        <!-- Delivered (with submenu) -->
-        <div class="relative"
-             @mouseenter="subOpen = true"
-             @mouseleave="subOpen = false">
-
-            <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600 cursor-pointer">
-                Delivered Projects
-                <a href=""></a>
-                <span>▶</span>
-            </div>
-
-            <!-- Submenu -->
-            <div x-show="subOpen" x-transition
-                 class="absolute top-0 left-full ml-1 w-56 bg-white border border-gray-200 shadow-lg rounded-md">
-
-                @foreach($projectCategories as $category)
-                <a href="{{ route('listprojects', $category->id) }}"
-                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                    {{ $category->category }}
+                <!-- Logo -->
+                <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Shannon Engineering Company – Home">
+                    <span class="rounded-2xl transition-all duration-500"
+                          :class="(scrolled || solid) ? 'bg-transparent p-0' : 'bg-white/95 p-2 shadow-lg'">
+                        <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company"
+                             width="100" height="64" class="h-auto transition-all duration-500"
+                             :class="(scrolled || solid) ? 'w-[88px]' : 'w-[92px]'">
+                    </span>
                 </a>
-                @endforeach
 
-            </div>
-        </div>
+                <!-- Desktop navigation -->
+                <nav class="hidden xl:flex items-center gap-1" aria-label="Main">
+                    @php
+                        $linkClass = "nav-link";
+                        $linkColor = "(scrolled || solid) ? 'text-gray-800 hover:text-red-600' : 'text-white/90 hover:text-white'";
+                        $chevron = '<svg class="h-3.5 w-3.5 transition-transform duration-300" :class="open && \'rotate-180\'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>';
+                    @endphp
 
-    </div>
-</div>
-                        <a href="{{ route('safety') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('safety') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->SAFETY, HEALTH & ENVIRONMENT</a>
-                        <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" class="relative">
-                            <a href="{{ route('clients') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('clients') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->STRATEGIC PARTNERS</a>
+                    <a href="{{ route('home') }}" class="{{ $linkClass }} {{ request()->routeIs('home') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Home</a>
 
-                            <!-- Dropdown Menu -->
-                            <div x-show="open" x-cloak x-transition class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-md z-50">
-
-                                <a href="{{route('clients')}}#clients"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    Our clients
+                    <!-- About -->
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
+                        <a href="{{ route('about') }}" class="{{ $linkClass }} {{ request()->routeIs('about*') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                            About Us {!! $chevron !!}
+                        </a>
+                        <div x-show="open" x-cloak
+                             x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                             class="dropdown-panel w-64">
+                            @foreach($aboutLinks as $link)
+                                <a href="{{ route($link['route']) }}" class="dropdown-item {{ request()->routeIs($link['route']) ? 'bg-red-50 text-red-600' : '' }}">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>{{ $link['label'] }}
                                 </a>
-                                <a href="{{route('clients')}}#consultants"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    Consultants
-                                </a>
+                            @endforeach
+                        </div>
+                    </div>
 
+                    <!-- Projects (mega menu) -->
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
+                        <a href="{{ route('projects') }}" class="{{ $linkClass }} {{ request()->routeIs('projects', 'listprojects', 'detailprojects', 'ongoingProjects', 'ongoingdetails') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                            Projects {!! $chevron !!}
+                        </a>
+                        <div x-show="open" x-cloak
+                             x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                             class="dropdown-panel w-[560px] p-3">
+                            <div class="grid grid-cols-5 gap-3">
+                                <div class="col-span-2 flex flex-col gap-2">
+                                    <a href="{{ route('ongoingProjects') }}"
+                                       class="group relative flex flex-1 flex-col justify-end overflow-hidden rounded-xl bg-gray-900 p-4 text-white">
+                                        <img src="{{ asset('images/optimized/lulu-960.webp') }}" alt="" loading="lazy" decoding="async"
+                                             class="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-500 group-hover:scale-105 group-hover:opacity-60">
+                                        <span class="relative inline-flex w-fit items-center gap-1.5 rounded-full bg-yellow-400/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-900">
+                                            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-gray-900"></span> Live
+                                        </span>
+                                        <span class="relative mt-2 font-display text-lg font-semibold">Ongoing Projects</span>
+                                        <span class="relative text-xs text-white/70">Currently under construction</span>
+                                    </a>
+                                    <a href="{{ route('projects') }}" class="dropdown-item justify-between bg-gray-50">
+                                        All Projects
+                                        <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    </a>
+                                </div>
+                                <div class="col-span-3">
+                                    <p class="px-4 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Delivered Projects</p>
+                                    @foreach($projectCategories as $category)
+                                        <a href="{{ route('listprojects', $category->id) }}" class="dropdown-item py-2 {{ request()->is('projects/cat/'.$category->id) ? 'bg-red-50 text-red-600' : '' }}">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>{{ $category->category }}
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-
-                        <a href="{{ route('sister-companies') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->SEC GROUP</a>
-                        <a href="{{ route('careers') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('careers') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->CAREERS</a>
-                        <a href="{{ route('contact') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('contact') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
->CONTACT US</a>
                     </div>
-                    
-                </div>
 
+                    <a href="{{ route('safety') }}" class="{{ $linkClass }} {{ request()->routeIs('safety') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Safety, Health &amp; Environment</a>
 
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" class="mobile-menu-button bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                    <!-- Partners -->
+                    <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
+                        <a href="{{ route('clients') }}" class="{{ $linkClass }} {{ request()->routeIs('clients') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                            Strategic Partners {!! $chevron !!}
+                        </a>
+                        <div x-show="open" x-cloak
+                             x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                             class="dropdown-panel w-56">
+                            @foreach($partnerLinks as $link)
+                                <a href="{{ $link['href'] }}" class="dropdown-item">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>{{ $link['label'] }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <a href="{{ route('sister-companies') }}" class="{{ $linkClass }} {{ request()->routeIs('sister-companies') ? 'is-active' : '' }}" :class="{{ $linkColor }}">SEC Group</a>
+                    <a href="{{ route('careers') }}" class="{{ $linkClass }} {{ request()->routeIs('careers') ? 'is-active' : '' }}" :class="{{ $linkColor }}">Careers</a>
+
+                    <a href="{{ route('contact') }}" class="btn-primary ml-3 px-5 py-2.5 text-[13px] uppercase tracking-wider">
+                        Contact Us
+                        <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </nav>
+
+                <!-- Mobile toggle -->
+                <button type="button" @click="toggleMobile()"
+                        class="xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-full transition"
+                        :class="(scrolled || solid) ? 'bg-gray-900 text-white' : 'bg-white/15 text-white ring-1 ring-white/30 backdrop-blur'"
+                        :aria-expanded="mobileOpen" aria-controls="mobile-menu" aria-label="Open menu">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M10 17h10" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Scroll progress -->
+            <div class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-red-600 to-orange-400 transition-[width] duration-150"
+                 :style="`width: ${progress}%`"></div>
+        </div>
+
+        <!-- ============ MOBILE DRAWER ============ -->
+        <div x-show="mobileOpen" x-cloak class="xl:hidden" id="mobile-menu">
+            <div x-show="mobileOpen" x-transition.opacity.duration.300ms @click="toggleMobile(false)"
+                 class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"></div>
+
+            <aside x-show="mobileOpen"
+                   x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                   x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
+                   x-data="{ section: null }"
+                   class="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-white shadow-2xl">
+
+                <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+                    <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company" class="w-20" width="80" height="51">
+                    <button type="button" @click="toggleMobile(false)" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-red-50 hover:text-red-600" aria-label="Close menu">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
-            </div>
-        </div>
 
-        <!-- Mobile Navigation -->
-       {{-- Mobile Menu (collapsible) --}}
-<div class="mobile-menu hidden md:hidden" x-data="{ aboutOpen:false, projectsOpen:false }">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-  
-      {{-- Home --}}
-      <a href="{{ route('home') }}"
-         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
-                {{ request()->routeIs('home') ? 'text-red-600' : '' }}">
-        Home
-      </a>
-  
-      {{-- About us (parent + dropdown) --}}
-      <div class="border-t border-gray-100 pt-2">
-        <button type="button"
-                @click="aboutOpen = !aboutOpen"
-                :aria-expanded="aboutOpen.toString()"
-                class="w-full flex items-center justify-between px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600">
-          <span class="flex-1 text-left">About us</span>
-          <!-- chevron -->
-          <svg class="h-5 w-5 transform transition" :class="aboutOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-          </svg>
-        </button>
-  
-        <div x-cloak x-show="aboutOpen" x-transition.origin.top class="pl-5 space-y-1 pb-2">
-          <a href="{{ route('about') }}"
-             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
-                    {{ request()->routeIs('about') ? 'text-red-600' : '' }}">
-            Message from CEO
-          </a>
-          <a href="{{ route('about.vision') }}"
-             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
-                    {{ request()->routeIs('about.vision') ? 'text-red-600' : '' }}">
-            Mission, Vision & Values
-          </a>
-          <a href="{{ route('about.team') }}"
-             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
-                    {{ request()->routeIs('about.team') ? 'text-red-600' : '' }}">
-            Meet our team
-          </a>
-        </div>
-      </div>
-  
-      {{-- Projects (parent + dropdown) --}}
-      @php
-        // Ensure categories are available (fallback if not passed from controller)
-        $projectCategories = $projectCategories ?? \App\Models\ProjectCategory::all();
-      @endphp
-      <div class="border-t border-gray-100 pt-2">
-        <button type="button"
-                @click="projectsOpen = !projectsOpen"
-                :aria-expanded="projectsOpen.toString()"
-                class="w-full flex items-center justify-between px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600">
-          <span class="flex-1 text-left">Projects</span>
-          <svg class="h-5 w-5 transform transition" :class="projectsOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
-          </svg>
-        </button>
-  
-        <div x-cloak x-show="projectsOpen" x-transition.origin.top class="pl-5 space-y-1 pb-2">
-          <a href="{{ route('projects') }}"
-             class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
-                    {{ request()->routeIs('projects') ? 'text-red-600' : '' }}">
-            All Projects
-          </a>
-          @foreach($projectCategories as $category)
-            <a href="{{ route('listprojects', $category->id) }}"
-               class="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600
-                      {{ request()->is('projects/category/'.$category->id) ? 'text-red-600' : '' }}">
-              {{ $category->category }}
-            </a>
-          @endforeach
-        </div>
-      </div>
-  
-      {{-- Other links --}}
-      <a href="{{ route('sister-companies') }}"
-         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
-                {{ request()->routeIs('sister-companies') ? 'text-red-600' : '' }}">
-        SEC Group
-      </a>
-  
-      <a href="{{ route('clients') }}"
-         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
-                {{ request()->routeIs('clients') ? 'text-red-600' : '' }}">
-        Strategic Partners
-      </a>
-  
-      <a href="{{ route('careers') }}"
-         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
-                {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">
-        Careers
-      </a>
-  
-      <a href="{{ route('contact') }}"
-         class="nav-link block px-3 py-2 text-base font-medium text-gray-800 hover:text-red-600
-                {{ request()->routeIs('contact') ? 'text-red-600' : '' }}">
-        Contact
-      </a>
-      
-    </div>
-  </div>
-  
-    </nav>
+                @php
+                    $mLink = 'flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50';
+                    $mSub = 'block rounded-lg px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-red-50 hover:text-red-600';
+                    $mChevron = '<svg class="h-4 w-4 text-gray-400 transition-transform duration-300" :class="section === \'%s\' && \'rotate-180 text-red-600\'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7"/></svg>';
+                @endphp
 
-    <!-- Main Content -->
-    <main>
+                <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
+                    <a href="{{ route('home') }}" class="{{ $mLink }} {{ request()->routeIs('home') ? 'text-red-600' : '' }}">Home</a>
+
+                    <div>
+                        <button type="button" @click="section = section === 'about' ? null : 'about'" class="{{ $mLink }} w-full" :aria-expanded="section === 'about'">
+                            About Us {!! sprintf($mChevron, 'about') !!}
+                        </button>
+                        <div x-show="section === 'about'" x-collapse x-cloak class="ml-4 border-l-2 border-red-100 pl-2">
+                            @foreach($aboutLinks as $link)
+                                <a href="{{ route($link['route']) }}" class="{{ $mSub }} {{ request()->routeIs($link['route']) ? 'text-red-600' : '' }}">{{ $link['label'] }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" @click="section = section === 'projects' ? null : 'projects'" class="{{ $mLink }} w-full" :aria-expanded="section === 'projects'">
+                            Projects {!! sprintf($mChevron, 'projects') !!}
+                        </button>
+                        <div x-show="section === 'projects'" x-collapse x-cloak class="ml-4 border-l-2 border-red-100 pl-2">
+                            <a href="{{ route('projects') }}" class="{{ $mSub }}">All Projects</a>
+                            <a href="{{ route('ongoingProjects') }}" class="{{ $mSub }}">Ongoing Projects</a>
+                            <p class="px-4 pb-1 pt-3 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Delivered</p>
+                            @foreach($projectCategories as $category)
+                                <a href="{{ route('listprojects', $category->id) }}" class="{{ $mSub }} {{ request()->is('projects/cat/'.$category->id) ? 'text-red-600' : '' }}">{{ $category->category }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <a href="{{ route('safety') }}" class="{{ $mLink }} {{ request()->routeIs('safety') ? 'text-red-600' : '' }}">Safety, Health &amp; Environment</a>
+
+                    <div>
+                        <button type="button" @click="section = section === 'partners' ? null : 'partners'" class="{{ $mLink }} w-full" :aria-expanded="section === 'partners'">
+                            Strategic Partners {!! sprintf($mChevron, 'partners') !!}
+                        </button>
+                        <div x-show="section === 'partners'" x-collapse x-cloak class="ml-4 border-l-2 border-red-100 pl-2">
+                            @foreach($partnerLinks as $link)
+                                <a href="{{ $link['href'] }}" @click="toggleMobile(false)" class="{{ $mSub }}">{{ $link['label'] }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <a href="{{ route('sister-companies') }}" class="{{ $mLink }} {{ request()->routeIs('sister-companies') ? 'text-red-600' : '' }}">SEC Group</a>
+                    <a href="{{ route('careers') }}" class="{{ $mLink }} {{ request()->routeIs('careers') ? 'text-red-600' : '' }}">Careers</a>
+                </nav>
+
+                <div class="space-y-3 border-t border-gray-100 p-5">
+                    <a href="{{ route('contact') }}" class="btn-primary w-full">Contact Us</a>
+                    <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
+                        <a href="tel:+97444355656" class="hover:text-red-600">+974 4435 5656</a>
+                        <span class="h-1 w-1 rounded-full bg-gray-300"></span>
+                        <a href="mailto:info@shannoneng.com" class="hover:text-red-600">info@shannoneng.com</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </header>
+
+    <!-- ============ MAIN ============ -->
+    <main id="main">
         @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div class="col-span-1">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-white text-white px-2 py-2 rounded font-bold text-xl">
-                            <img src="{{asset('images/logo/secLOGO.jpeg')}}" alt="Comapny Logo" style="width: 50px;">
-                        </div>
-                        
-                    </div>
-                    <span class=" text-white font-semibold text-lg">Shannon Engineering</span>
-                    <p class="text-gray-300 text-sm text-justify">
-                        A premier construction and contracting company in Qatar, delivering exceptional projects across various sectors.
-                    </p>
+    <!-- ============ FOOTER ============ -->
+    <footer class="relative overflow-hidden bg-ink-900 text-gray-400">
+        <div class="pointer-events-none absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]"></div>
+        <div class="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-red-600/20 blur-3xl"></div>
+
+        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- CTA strip -->
+            <div class="flex flex-col items-start justify-between gap-6 border-b border-white/10 py-14 md:flex-row md:items-center">
+                <div>
+                    <p class="eyebrow text-red-500">Let's build together</p>
+                    <h2 class="mt-3 max-w-xl font-display text-3xl font-bold text-white md:text-4xl">Ready to start your next project?</h2>
+                    <p class="mt-3 max-w-xl text-gray-400">Contact us today to discuss how Shannon Engineering Company can bring your vision to life.</p>
                 </div>
-
-                <!-- Quick Links -->
-            
-
-                <!-- Our Services -->
-              <!-- Map -->
-<div class="col-span-2">
-    <h3 class="text-lg font-semibold mb-4 text-white">Find Us</h3>
-    <div class="w-full h-64 md:h-60 rounded-xl overflow-hidden ring-1 ring-white/10 shadow">
-      <iframe
-        title="Shannon Engineering Location Map"
-        src="https://www.google.com/maps?q=Al+Gassar+Tower,+Doha,+Qatar&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="w-full h-full border-0"
-      ></iframe>
-    </div>
-  </div>
-  
-  <!-- Contact Us -->
-  <div class="col-span-1">
-    <h3 class="text-lg font-semibold mb-4 text-white">Contact Us</h3>
-    <div class="text-gray-300 text-sm space-y-3">
-      <p>Al Gassar Tower, 19th Floor, West Bay</p>
-      <p>P.O. Box: 24041</p>
-      <p>Doha, Qatar</p>
-  
-      <div class="pt-1 space-y-1">
-        <a href="tel:+97444355656" class="block hover:text-white transition">+974 4435 5656</a>
-        <a href="mailto:info@shannoneng.com" class="block hover:text-white transition">info@shannoneng.com</a>
-      </div>
-  
-      <!-- Socials -->
-      <div class="pt-3">
-        <p class="mb-2 text-gray-400">Follow us</p>
-        <div class="flex items-center gap-3">
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/company/shannon-engineering" target="_blank" rel="noopener"
-             aria-label="LinkedIn"
-             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-7.3c0-1.74-.03-3.98-2.43-3.98-2.44 0-2.81 1.9-2.81 3.86V23h-4V8z"/>
-            </svg>
-          </a>
-          <!-- Facebook -->
-          <a href="https:www.facebook.com/ShannonEngineering" target="_blank" rel="noopener"
-             aria-label="Facebook"
-             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/>
-            </svg>
-          </a>
-          <!-- YouTube -->
-          <a href="https://youtube.com/@shannonengineering8110?si=_4jo1PEImon7J0Hn" target="_blank" rel="noopener"
-             aria-label="YouTube"
-             class="p-2 rounded-lg bg-white/5 hover:bg-white/10 ring-1 ring-white/10 transition text-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.5 15.5v-7l6 3.5-6 3.5z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+                <a href="{{ route('contact') }}" class="btn-primary shrink-0">
+                    Get in touch
+                    <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
             </div>
 
-            <div class="border-t border-gray-700 mt-8 pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                  
-                  <!-- Left: Copyright -->
-                  <p class="text-gray-300 text-sm text-center md:text-left">
-                    © {{ date('Y') }} Shannon Engineering Company. All rights reserved.
-                  </p>
-              
-                  <!-- Right: ISO Logos -->
-                  <div class="grid grid-cols-2 lg:grid-cols-4  gap-2">
-                    <img src="{{ asset('images/iso/iso_1.png') }}" alt="ISO Certification 1" class="h-16 w-auto">
-                    <img src="{{ asset('images/iso/iso_2.png') }}" alt="ISO Certification 2" class="h-16 w-auto">
-                    <img src="{{ asset('images/iso/iso_3.png') }}" alt="ISO Certification 3" class="h-16 w-auto">
-                    <img src="{{ asset('images/iso/icv.jpg') }}" alt="ICV Certification" class="h-16 w-auto">
-                  </div>
-              
+            <div class="grid grid-cols-1 gap-12 py-14 sm:grid-cols-2 lg:grid-cols-12">
+                <!-- Brand -->
+                <div class="lg:col-span-4">
+                    <a href="{{ route('home') }}" class="inline-block rounded-2xl bg-white p-3">
+                        <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company" class="w-24" width="96" height="61" loading="lazy">
+                    </a>
+                    <p class="mt-6 max-w-sm text-sm leading-relaxed">
+                        A premier construction and contracting company in Qatar, delivering exceptional projects across various sectors.
+                    </p>
+                    <div class="mt-6 flex items-center gap-3">
+                        <a href="https://www.linkedin.com/company/shannon-engineering" target="_blank" rel="noopener" aria-label="LinkedIn"
+                           class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-300 ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-[#0a66c2] hover:text-white">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-7.3c0-1.74-.03-3.98-2.43-3.98-2.44 0-2.81 1.9-2.81 3.86V23h-4V8z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/ShannonEngineering" target="_blank" rel="noopener" aria-label="Facebook"
+                           class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-300 ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-[#1877f2] hover:text-white">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>
+                        </a>
+                        <a href="https://youtube.com/@shannonengineering8110?si=_4jo1PEImon7J0Hn" target="_blank" rel="noopener" aria-label="YouTube"
+                           class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-300 ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-[#ff0000] hover:text-white">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2C0 8 0 12 0 12s0 4 .5 5.8a3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.5 15.5v-7l6 3.5-6 3.5z"/></svg>
+                        </a>
+                    </div>
                 </div>
-              </div>
-              
+
+                <!-- Company -->
+                <div class="lg:col-span-2">
+                    <h3 class="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white">Company</h3>
+                    <ul class="mt-5 space-y-3 text-sm">
+                        @foreach($aboutLinks as $link)
+                            <li><a href="{{ route($link['route']) }}" class="transition hover:text-white">{{ $link['label'] }}</a></li>
+                        @endforeach
+                        <li><a href="{{ route('safety') }}" class="transition hover:text-white">Safety, Health &amp; Environment</a></li>
+                        <li><a href="{{ route('sister-companies') }}" class="transition hover:text-white">SEC Group</a></li>
+                        <li><a href="{{ route('careers') }}" class="transition hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="lg:col-span-2">
+                    <h3 class="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white">Projects</h3>
+                    <ul class="mt-5 space-y-3 text-sm">
+                        <li><a href="{{ route('ongoingProjects') }}" class="transition hover:text-white">Ongoing Projects</a></li>
+                        @foreach($projectCategories as $category)
+                            <li><a href="{{ route('listprojects', $category->id) }}" class="transition hover:text-white">{{ $category->category }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="lg:col-span-4">
+                    <h3 class="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white">Contact Us</h3>
+                    <ul class="mt-5 space-y-4 text-sm">
+                        <li class="flex gap-3">
+                            <svg class="mt-0.5 h-5 w-5 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                            <span>Al Gassar Tower, 19th Floor, West Bay<br>P.O. Box: 24041<br>Doha, Qatar</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <svg class="h-5 w-5 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+                            <a href="tel:+97444355656" class="transition hover:text-white">+974 4435 5656</a>
+                        </li>
+                        <li class="flex gap-3">
+                            <svg class="h-5 w-5 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                            <a href="mailto:info@shannoneng.com" class="transition hover:text-white">info@shannoneng.com</a>
+                        </li>
+                    </ul>
+                    <div class="mt-6 h-40 overflow-hidden rounded-2xl ring-1 ring-white/10">
+                        <iframe
+                            title="Shannon Engineering Location Map"
+                            src="https://www.google.com/maps?q=Al+Gassar+Tower,+Doha,+Qatar&output=embed"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="h-full w-full border-0 grayscale-[60%] transition duration-500 hover:grayscale-0"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="flex flex-col items-center justify-between gap-6 border-t border-white/10 py-8 md:flex-row">
+                <p class="text-center text-sm md:text-left">
+                    © {{ date('Y') }} Shannon Engineering Company. All rights reserved.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <img src="{{ asset('images/iso/iso_1.png') }}" alt="ISO Certification 1" class="h-14 w-auto rounded-lg bg-white p-1" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/iso/iso_2.png') }}" alt="ISO Certification 2" class="h-14 w-auto rounded-lg bg-white p-1" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/iso/iso_3.png') }}" alt="ISO Certification 3" class="h-14 w-auto rounded-lg bg-white p-1" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/iso/icv.jpg') }}" alt="ICV Certification" class="h-14 w-auto rounded-lg bg-white p-1" loading="lazy" decoding="async">
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Mobile Menu JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const mobileMenu = document.querySelector('.mobile-menu');
+    <!-- ============ FLOATING ACTIONS ============ -->
+    <div x-data="{ show: false }" @scroll.window.passive="show = window.scrollY > 600"
+         class="fixed bottom-5 right-5 z-40 flex flex-col items-center gap-3 md:bottom-8 md:right-8">
+        <a href="https://youtube.com/@shannonengineering8110" target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel"
+           class="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white shadow-xl shadow-red-600/30 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:bg-red-700">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/ShannonEngineering" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+           class="flex h-12 w-12 items-center justify-center rounded-full bg-[#1877f2] text-white shadow-xl shadow-blue-600/30 ring-1 ring-black/5 transition hover:-translate-y-0.5">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <button type="button" x-show="show" x-cloak x-transition @click="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to top"
+                class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-xl ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-black">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+        </button>
+    </div>
 
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-        });
-    </script>
     @yield('component')
     @livewireScripts
     @stack('scripts')
-    {{-- Floating Updates (FAB + Panel) --}}
-    
-<div 
-
-class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
->
-{{-- <button 
-  
-
->
-<a href="https://www.linkedin.com/company/shannon-engineering"      target="_blank"
-        rel="noopener noreferrer"
-             aria-label="LinkedIn"
-             class="h-12 w-12 rounded-full flex items-center justify-center
-               bg-blue-400 hover:bg-blue-600 text-white
-               shadow-xl ring-1 ring-black/10 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-7.3c0-1.74-.03-3.98-2.43-3.98-2.44 0-2.81 1.9-2.81 3.86V23h-4V8z"/>
-            </svg>
-</a>
-</button> --}}
-{{-- <button 
-  
-
->
-<a 
-   href="https://wa.me/97451785656"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="h-12 w-12 rounded-full flex items-center justify-center
-               bg-green-500 hover:bg-green-600 text-white
-               shadow-xl ring-1 ring-black/10 transition"
-        aria-label="Chat on WhatsApp"
-    >
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.847L.057 23.571a.75.75 0 0 0 .925.926l5.783-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.725 9.725 0 0 1-4.95-1.355l-.355-.211-3.68.929.957-3.595-.231-.368A9.725 9.725 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-        </svg>
-    </a>
-
-</button> --}}
-<button>
-<a 
-   href="https://youtube.com/@shannonengineering8110"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="h-12 w-12 rounded-full flex items-center justify-center
-               bg-red-600 hover:bg-red-700 text-white
-               shadow-xl ring-1 ring-black/10 transition"
-        aria-label="Visit our YouTube channel"
-    >
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-    </a>
-
-</button>
-<button>
- <a href="https:www.facebook.com/ShannonEngineering"  target="_blank"
-        rel="noopener noreferrer"
-             aria-label="Facebook"
-             class="h-12 w-12 rounded-full flex items-center justify-center
-               bg-blue-600 hover:bg-blue-700 text-white
-               shadow-xl ring-1 ring-black/10 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-              <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12z"/>
-            </svg>
-          </a>
-
-</button>
-
-
-</div>
-
-<script>
-
-function updatesWidget(){
-
-return {
-
-open:false,
-
-unread:2,
-
-init(){
-
-let saved = Number(
-localStorage.getItem('updates_unread')
-);
-
-if(saved){
-this.unread=saved;
-}
-
-},
-
-toggle(state){
-
-this.open =
-typeof state==='boolean'
-? state
-: !this.open;
-
-document.body.classList.toggle(
-'overflow-hidden',
-this.open
-);
-
-}
-
-}
-
-}
-
-</script>
-
 </body>
 
 </html>

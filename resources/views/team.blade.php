@@ -3,25 +3,9 @@
 @section('title', 'Meet Our Team')
 
 @section('content')
-<!-- Hero Section -->
-<section class="relative text-white h-[420px] md:h-[340px] bg-cover bg-center bg-no-repeat"
-         style="background-image: url('{{ asset('images/home/skyline.jpg') }}');">
 
-  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+<x-page-hero title="Meet Our" highlight="Team" subtitle="Our dedicated professionals are here to support your projects." :crumbs="['About Us' => route('about'), 'Meet Our Team' => null]" />
 
-  <!-- Hero Text -->
-  <div class="absolute bottom-8 left-6 right-6 md:left-6 md:right-auto">
-    <div class="inline-block rounded-2xl backdrop-blur-md bg-black/20 ring-1 ring-white/20 px-5 py-4 shadow-lg">
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]">
-        Meet Our <span class="text-red-400">Team</span>
-      </h1>
-      <p class="mt-1 text-sm md:text-lg text-white/90">
-        Our dedicated professionals are here to support your projects.
-      </p>
-      <div class="mt-3 h-[3px] w-20 rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500"></div>
-    </div>
-  </div>
-</section>
 
 <section class="bg-white border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-600 flex items-center gap-2">

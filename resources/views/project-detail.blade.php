@@ -2,6 +2,8 @@
 
 @section('title', $project->title.' Project - Shannon Engineering Company')
 
+@section('solid-nav', '1')
+
 @section('content')
 
 <section
@@ -131,18 +133,30 @@ x-init="init()"
                     </div>
 
                     <div class="lux-card">
+                        @if($project->client?->img)
+                        <div class="logo-box">
+                            <img src="{{ asset('storage/'.$project->client->img) }}" alt="{{ $project->client->name }} logo">
+                        </div>
+                        @else
                         <div class="icon-box">🏢</div>
+                        @endif
                         <p class="card-label">Client</p>
                         <h3 class="card-title">
-                            {{$project->client ?? 'N/A'}}
+                            {{ $project->client?->name ?? 'N/A' }}
                         </h3>
                     </div>
 
                     <div class="lux-card">
+                        @if($project->consultant?->img)
+                        <div class="logo-box">
+                            <img src="{{ asset('storage/'.$project->consultant->img) }}" alt="{{ $project->consultant->name }} logo">
+                        </div>
+                        @else
                         <div class="icon-box">👷</div>
+                        @endif
                         <p class="card-label">Consultant</p>
                         <h3 class="card-title">
-                            {{$project->consultant ?? 'N/A'}}
+                            {{ $project->consultant?->name ?? 'N/A' }}
                         </h3>
                     </div>
 
@@ -325,6 +339,20 @@ function projectGallery(){
     font-size:18px;
     margin-bottom:14px;
     color:#fff;
+}
+
+.logo-box{
+    height: 56px;
+    max-width: 140px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+}
+
+.logo-box img{
+    max-height:100%;
+    max-width:100%;
+    object-fit:contain;
 }
 
 .card-label{

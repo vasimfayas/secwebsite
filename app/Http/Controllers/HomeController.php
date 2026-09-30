@@ -110,7 +110,10 @@ class HomeController extends Controller
      */
     public function careers()
     {
-        $careers = Career::all();
+        $careers = Career::open()
+            ->orderByRaw('deadline IS NULL, deadline')
+            ->latest()
+            ->get();
         return view('careers', compact('careers'));
     }
 
