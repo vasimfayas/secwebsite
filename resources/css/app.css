@@ -9,6 +9,7 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+        scroll-padding-top: 7rem; /* anchors land below the fixed header / sticky bars */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -168,6 +169,30 @@
     @apply float-left mr-3 font-display text-6xl font-bold leading-[0.9] text-red-600;
 }
 
+/* ---------- Page-to-page transitions ----------
+   Cross-document View Transitions (Chrome/Edge 126+, Safari 18.2+): the old page fades out
+   and the new one fades/slides in instead of a hard cut. The header stays put.
+   Other browsers simply navigate as normal. */
+@view-transition {
+    navigation: auto;
+}
+#site-header { view-transition-name: site-header; }
+#floating-actions { view-transition-name: floating-actions; }
+::view-transition-group(site-header),
+::view-transition-group(floating-actions) { animation-duration: 0s; }
+::view-transition-old(site-header), ::view-transition-new(site-header),
+::view-transition-old(floating-actions), ::view-transition-new(floating-actions) { animation: none; }
+::view-transition-old(root) { animation: vt-out .22s cubic-bezier(.4, 0, 1, 1) both; }
+::view-transition-new(root) { animation: vt-in .45s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(14px); } }
+
+/* Browsers without view transitions still get a soft fade-in instead of a flash. */
+@supports not (view-transition-name: none) {
+    main { animation: page-in .5s cubic-bezier(.2, .7, .2, 1) both; }
+    @keyframes page-in { from { opacity: 0; transform: translateY(12px); } }
+}
+
 /* ---------- Scroll reveal ---------- */
 [data-reveal] {
     opacity: 0;
@@ -192,6 +217,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
     *, *::before, *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;

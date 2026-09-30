@@ -50,7 +50,34 @@ class HomeController extends Controller
      */
     public function projects(Request $request)
     {
-        return $this->projectListing($request, $request->query('category'), $request->query('status'));
+        $category = $request->query('category');
+        $status = $request->query('status');
+
+        // With a filter: list projects. Without one: the overview of categories (no project list).
+        if ($category || in_array($status, ['ongoing', 'delivered'], true)) {
+            return $this->projectListing($request, $category, $status);
+        }
+
+        $categories = ProjectCategory::orderBy('category')
+            ->withCount([
+                'projects',
+                'projects as ongoing_count' => fn ($q) => $q->ongoing(),
+                'projects as delivered_count' => fn ($q) => $q->delivered(),
+            ])
+            ->get();
+
+        $covers = [
+            'ongoing' => Project::ongoingCoverUrl(),
+            'delivered' => ($img = Project::delivered()->whereNotNull('card_img')->where('card_img', '!=', '')->displayOrder()->value('card_img'))
+                ? asset('storage/' . $img)
+                : asset('images/optimized/compound-960.webp'),
+        ];
+        $statusCounts = [
+            'ongoing' => Project::ongoing()->count(),
+            'delivered' => Project::delivered()->count(),
+        ];
+
+        return view('projects-overview', compact('categories', 'covers', 'statusCounts'));
     }
 
     public function listprojects(Request $request, $cat)

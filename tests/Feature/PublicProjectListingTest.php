@@ -39,11 +39,15 @@ class PublicProjectListingTest extends TestCase
         ]);
     }
 
-    public function test_all_projects(): void
+    public function test_projects_page_shows_category_cards_not_projects(): void
     {
         $this->get(route('projects'))->assertOk()
-            ->assertSee('Villa Ongoing')->assertSee('Villa Delivered')
-            ->assertSee('Clinic Ongoing')->assertSee('Uncategorised Delivered');
+            ->assertSee('Project Categories')
+            ->assertSee('Housing')->assertSee('Healthcare')
+            ->assertSee('1 ongoing')->assertSee('1 delivered')      // Housing card counts
+            ->assertSee('Ongoing Projects')->assertSee('Delivered Projects')
+            ->assertDontSee('Villa Ongoing')->assertDontSee('Villa Delivered')
+            ->assertDontSee('Clinic Ongoing')->assertDontSee('Uncategorised Delivered');
     }
 
     public function test_ongoing_is_a_filter_not_a_category(): void
@@ -76,7 +80,11 @@ class PublicProjectListingTest extends TestCase
 
     public function test_invalid_status_is_ignored_and_unknown_category_404s(): void
     {
-        $this->get(route('projects', ['status' => 'banana']))->assertOk()->assertSee('Villa Ongoing')->assertSee('Villa Delivered');
+        // Unknown status: falls back to the categories overview
+        $this->get(route('projects', ['status' => 'banana']))->assertOk()->assertSee('Project Categories')->assertDontSee('Villa Ongoing');
+        // On a category listing an unknown status is ignored (all statuses shown)
+        $this->get(route('listprojects', ['cat' => $this->housing->id, 'status' => 'banana']))->assertOk()
+            ->assertSee('Villa Ongoing')->assertSee('Villa Delivered');
         $this->get(route('listprojects', 999))->assertNotFound();
     }
 

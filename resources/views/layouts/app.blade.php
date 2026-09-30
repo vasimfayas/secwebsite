@@ -148,6 +148,7 @@
         x-init="onScroll()"
         @scroll.window.passive="onScroll()"
         @keydown.escape.window="toggleMobile(false)"
+        id="site-header"
         class="fixed inset-x-0 top-0 z-50"
     >
         <div
@@ -484,7 +485,7 @@
     </footer>
 
     <!-- ============ FLOATING ACTIONS ============ -->
-    <div x-data="{ show: false }" @scroll.window.passive="show = window.scrollY > 600"
+    <div id="floating-actions" x-data="{ show: false }" @scroll.window.passive="show = window.scrollY > 600"
          class="fixed bottom-5 right-5 z-40 flex flex-col items-center gap-3 md:bottom-8 md:right-8">
         <a href="https://youtube.com/@shannonengineering8110" target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel"
            class="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white shadow-xl shadow-red-600/30 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:bg-red-700">
@@ -499,6 +500,26 @@
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
         </button>
     </div>
+
+    {{-- Instant navigation: prefetch same-site pages when a link is hovered or touched (Chromium; ignored elsewhere). --}}
+    <script type="speculationrules">
+    {
+        "prefetch": [{
+            "where": {
+                "and": [
+                    { "href_matches": "/*" },
+                    { "not": { "href_matches": "/admin/*" } },
+                    { "not": { "href_matches": "/login" } },
+                    { "not": { "href_matches": "/logout" } },
+                    { "not": { "href_matches": "/livewire/*" } },
+                    { "not": { "href_matches": "/storage/*" } },
+                    { "not": { "selector_matches": "[target=_blank], [download], [data-no-prefetch]" } }
+                ]
+            },
+            "eagerness": "moderate"
+        }]
+    }
+    </script>
 
     @yield('component')
     @livewireScripts
