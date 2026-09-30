@@ -286,7 +286,7 @@
                  class="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-10 pt-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
                  data-reveal-stagger>
                 @foreach($featuredprojects as $project)
-                    <x-project-card :project="$project" :href="route('ongoingdetails', $project->id)"
+                    <x-project-card :project="$project" :href="route('detailprojects', $project->id)"
                                     class="w-[85%] shrink-0 snap-start sm:w-[360px]" data-reveal />
                 @endforeach
             </div>

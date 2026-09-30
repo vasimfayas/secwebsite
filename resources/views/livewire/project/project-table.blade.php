@@ -18,7 +18,7 @@
         <div>
             <h1 class="h3 mb-1 text-gray-800">Projects</h1>
             <p class="mb-0 small text-muted">
-                {{ $counts['all'] }} total · {{ $counts['ongoing'] }} ongoing · {{ $counts['completed'] }} completed
+                {{ $counts['all'] }} total · {{ $counts['ongoing'] }} ongoing · {{ $counts['completed'] }} delivered
             </p>
         </div>
         <a href="{{ route('admin.project') }}" class="btn btn-primary shadow-sm mt-3 mt-sm-0">
@@ -48,9 +48,9 @@
                 </div>
                 <div class="col-6 col-lg-2 mb-2">
                     <select class="custom-select" wire:model.live="status">
-                        <option value="">All statuses</option>
-                        <option value="ongoing">Ongoing</option>
-                        <option value="completed">Completed</option>
+                        <option value="">Ongoing: any</option>
+                        <option value="ongoing">Ongoing: yes</option>
+                        <option value="completed">Ongoing: no (delivered)</option>
                     </select>
                 </div>
                 <div class="col-6 col-lg-2 mb-2">
@@ -147,7 +147,7 @@
             <div class="row">
                 @foreach ($projects as $project)
                     @php
-                        $publicUrl = $project->status === 'ongoing' ? route('ongoingdetails', $project->id) : route('detailprojects', $project->id);
+                        $publicUrl = route('detailprojects', $project->id);
                     @endphp
                     <div class="col-md-6 col-xl-4 mb-4" wire:key="grid-{{ $project->id }}">
                         <div class="card h-100 shadow-sm pt-card {{ $project->visible ? '' : 'border-left-secondary' }}">
@@ -157,7 +157,7 @@
                                      style="{{ $project->visible ? '' : 'filter: grayscale(1); opacity:.6' }}">
                                 <div class="pt-badges">
                                     <span class="badge badge-{{ $project->status === 'ongoing' ? 'warning' : 'success' }} shadow-sm">
-                                        {{ $project->status === 'ongoing' ? 'Ongoing' : 'Completed' }}
+                                        {{ $project->is_ongoing ? 'Ongoing' : 'Delivered' }}
                                     </span>
                                     @if ($project->featured)
                                         <span class="badge badge-info shadow-sm"><i class="fas fa-star fa-xs"></i> Featured</span>
@@ -232,7 +232,7 @@
                             <tr>
                                 <th></th>
                                 <th>Project</th>
-                                <th>Status</th>
+                                <th>Ongoing</th>
                                 <th>Category</th>
                                 <th>Client</th>
                                 <th>Consultant</th>
@@ -244,7 +244,7 @@
                         <tbody>
                             @foreach ($projects as $project)
                                 @php
-                                    $publicUrl = $project->status === 'ongoing' ? route('ongoingdetails', $project->id) : route('detailprojects', $project->id);
+                                    $publicUrl = route('detailprojects', $project->id);
                                 @endphp
                                 <tr wire:key="row-{{ $project->id }}" class="{{ $project->visible ? '' : 'text-muted' }}">
                                     <td class="align-middle">
@@ -260,7 +260,7 @@
                                         </div>
                                     </td>
                                     <td class="align-middle">
-                                        <span class="badge badge-{{ $project->status === 'ongoing' ? 'warning' : 'success' }}">{{ ucfirst($project->status) }}</span>
+                                        <span class="badge badge-{{ $project->is_ongoing ? 'warning' : 'success' }}">{{ $project->is_ongoing ? 'Ongoing' : 'Delivered' }}</span>
                                     </td>
                                     <td class="align-middle small">{{ $project->category?->category ?? '—' }}</td>
                                     <td class="align-middle small {{ $project->client ? '' : 'pt-missing' }}">{{ $project->client?->name ?? 'Missing' }}</td>

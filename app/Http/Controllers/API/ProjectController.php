@@ -12,8 +12,8 @@ class ProjectController extends Controller
     public function index()
     {
         return response()->json(
-            Project::with('category')->where('status', "ongoing")->get()
-                ->each->append(['description_html', 'description_text'])
+            Project::with('category')->ongoing()->get()
+                ->each->append(['is_ongoing', 'description_html', 'description_text'])
         );
     }
     public function categories()
@@ -26,14 +26,14 @@ class ProjectController extends Controller
     {
         return response()->json(
             Project::with(['category', 'client', 'consultant', 'images'])->findOrFail($id)
-                ->append(['description_html', 'description_text'])
+                ->append(['is_ongoing', 'description_html', 'description_text'])
         );
     }
     public function projects()
     {
         return response()->json(
             Project::with(['category', 'client', 'consultant', 'images'])->get()
-                ->each->append(['description_html', 'description_text'])
+                ->each->append(['is_ongoing', 'description_html', 'description_text'])
         );
     }
 }

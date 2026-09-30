@@ -4,20 +4,30 @@
     'subtitle' => null,
     'eyebrow' => null,
     'image' => 'skyline',
+    'imageUrl' => null,   // any image URL (e.g. an uploaded category photo) instead of a bundled one
     'crumbs' => [],
 ])
 
 @push('preload')
-    <link rel="preload" as="image" href="{{ asset("images/optimized/{$image}-1920.webp") }}"
-          imagesrcset="{{ asset("images/optimized/{$image}-960.webp") }} 960w, {{ asset("images/optimized/{$image}-1920.webp") }} 1920w"
-          imagesizes="100vw" fetchpriority="high">
+    @if($imageUrl)
+        <link rel="preload" as="image" href="{{ $imageUrl }}" fetchpriority="high">
+    @else
+        <link rel="preload" as="image" href="{{ asset("images/optimized/{$image}-1920.webp") }}"
+              imagesrcset="{{ asset("images/optimized/{$image}-960.webp") }} 960w, {{ asset("images/optimized/{$image}-1920.webp") }} 1920w"
+              imagesizes="100vw" fetchpriority="high">
+    @endif
 @endpush
 
 <section class="relative isolate flex min-h-[420px] items-end overflow-hidden bg-ink-900 pb-14 pt-36 text-white md:min-h-[480px] md:pb-20">
-    <img src="{{ asset("images/optimized/{$image}-1920.webp") }}"
-         srcset="{{ asset("images/optimized/{$image}-960.webp") }} 960w, {{ asset("images/optimized/{$image}-1920.webp") }} 1920w"
-         sizes="100vw" alt="" fetchpriority="high" decoding="async"
-         class="absolute inset-0 -z-20 h-full w-full animate-ken-burns object-cover">
+    @if($imageUrl)
+        <img src="{{ $imageUrl }}" alt="" fetchpriority="high" decoding="async"
+             class="absolute inset-0 -z-20 h-full w-full animate-ken-burns object-cover">
+    @else
+        <img src="{{ asset("images/optimized/{$image}-1920.webp") }}"
+             srcset="{{ asset("images/optimized/{$image}-960.webp") }} 960w, {{ asset("images/optimized/{$image}-1920.webp") }} 1920w"
+             sizes="100vw" alt="" fetchpriority="high" decoding="async"
+             class="absolute inset-0 -z-20 h-full w-full animate-ken-burns object-cover">
+    @endif
     <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink-900 via-ink-900/70 to-ink-900/30"></div>
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink-900/80 via-transparent to-transparent"></div>
     <div class="absolute inset-0 -z-10 bg-grid opacity-30 [mask-image:linear-gradient(to_top,black,transparent)]"></div>

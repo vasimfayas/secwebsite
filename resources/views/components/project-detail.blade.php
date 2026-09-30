@@ -11,7 +11,7 @@
 ])
 
 @php
-    $ongoing = strtolower($project->status) === 'ongoing';
+    $ongoing = $project->is_ongoing;
     $cover = $project->card_img ? asset('storage/' . $project->card_img) : asset('images/optimized/skyline-1920.webp');
 
     $gallery = collect($project->card_img ? [asset('storage/' . $project->card_img)] : [])

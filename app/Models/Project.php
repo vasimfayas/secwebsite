@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Support\RichText;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,6 +49,46 @@ class Project extends Model
         return $this->belongsTo(Consultant::class, 'consultant_id');
     }
 
+    public const STATUS_ONGOING = 'ongoing';
+    public const STATUS_DELIVERED = 'completed';
+
+    /**
+     * "Ongoing" is a yes/no flag on every project (stored in the `status` column),
+     * independent of the project's category.
+     */
+    protected function isOngoing(): Attribute
+    {
+        return Attribute::get(fn () => $this->status === self::STATUS_ONGOING);
+    }
+
+    public function scopeOngoing(Builder $query): Builder
+    {
+        return $query->where('status', self::STATUS_ONGOING);
+    }
+
+    public function scopeDelivered(Builder $query): Builder
+    {
+        return $query->where('status', '!=', self::STATUS_ONGOING);
+    }
+
+    /**
+     * Filter by the public "status" filter value: 'ongoing', 'delivered' or null (all).
+     */
+    public function scopeWithPublicStatus(Builder $query, ?string $status): Builder
+    {
+        return match ($status) {
+            'ongoing' => $query->ongoing(),
+            'delivered' => $query->delivered(),
+            default => $query,
+        };
+    }
+
+    /** Admin-defined display order first (lower = earlier), newest after that. */
+    public function scopeDisplayOrder(Builder $query): Builder
+    {
+        return $query->orderByRaw('sequence IS NULL, sequence')->latest('id');
+    }
+
     /**
      * Description as safe HTML (formatted text from the admin editor, or legacy plain text with line breaks).
      */
@@ -72,7 +113,7 @@ class Project extends Model
     {
         static $url;
 
-        return $url ??= ($img = static::where('status', 'ongoing')
+        return $url ??= ($img = static::ongoing()
             ->whereNotNull('card_img')
             ->where('card_img', '!=', '')
             ->latest('id')

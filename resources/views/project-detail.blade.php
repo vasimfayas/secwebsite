@@ -2,6 +2,22 @@
 
 @section('title', $project->title.' Project - Shannon Engineering Company')
 
+@php
+    $statusKey = $project->is_ongoing ? 'ongoing' : 'delivered';
+    $statusLabel = $project->is_ongoing ? 'Ongoing' : 'Delivered';
+
+    // Back goes to the listing this project belongs to: its category (with its status), or its status.
+    $backUrl = $project->category_id
+        ? route('listprojects', ['cat' => $project->category_id, 'status' => $statusKey])
+        : ($project->is_ongoing ? route('ongoingProjects') : route('projects', ['status' => 'delivered']));
+
+    $crumbs = ['Projects' => route('projects')];
+    if ($project->category) {
+        $crumbs[$project->category->category] = route('listprojects', $project->category_id);
+    }
+    $crumbs[$statusLabel] = $backUrl;
+@endphp
+
 @section('content')
 <x-project-detail
     :project="$project"
@@ -10,11 +26,8 @@
     :next="$next"
     :related="$related"
     detail-route="detailprojects"
-    :back-url="$project->category_id ? route('listprojects', $project->category_id) : route('projects')"
+    :back-url="$backUrl"
     back-label="Back"
-    :crumbs="array_filter([
-        'Projects' => route('projects'),
-        ($project->category?->category ?? '') => $project->category ? route('listprojects', $project->category_id) : null,
-    ])"
+    :crumbs="$crumbs"
 />
 @endsection

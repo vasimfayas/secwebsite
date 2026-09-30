@@ -198,7 +198,7 @@
 
                     <!-- Projects (mega menu) -->
                     <div x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false" @focusin="open = true" @focusout="open = $el.contains($event.relatedTarget)" class="relative">
-                        <a href="{{ route('projects') }}" class="{{ $linkClass }} {{ request()->routeIs('projects', 'listprojects', 'detailprojects', 'ongoingProjects', 'ongoingdetails') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
+                        <a href="{{ route('projects') }}" class="{{ $linkClass }} {{ request()->routeIs('projects', 'listprojects', 'detailprojects', 'ongoingProjects') ? 'is-active' : '' }}" :class="{{ $linkColor }}" :aria-expanded="open">
                             Projects {!! $chevron !!}
                         </a>
                         <div x-show="open" x-cloak
@@ -217,13 +217,17 @@
                                         <span class="relative mt-2 font-display text-lg font-semibold">Ongoing Projects</span>
                                         <span class="relative text-xs text-white/70">Currently under construction</span>
                                     </a>
+                                    <a href="{{ route('projects', ['status' => 'delivered']) }}" class="dropdown-item justify-between bg-gray-50">
+                                        <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-500"></span>Delivered Projects</span>
+                                        <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                                    </a>
                                     <a href="{{ route('projects') }}" class="dropdown-item justify-between bg-gray-50">
                                         All Projects
                                         <svg class="btn-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                                     </a>
                                 </div>
                                 <div class="col-span-3">
-                                    <p class="px-4 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Delivered Projects</p>
+                                    <p class="px-4 pb-1 pt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Browse by sector</p>
                                     @foreach($projectCategories as $category)
                                         <a href="{{ route('listprojects', $category->id) }}" class="dropdown-item py-2 {{ request()->is('projects/cat/'.$category->id) ? 'bg-red-50 text-red-600' : '' }}">
                                             <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>{{ $category->category }}
@@ -323,7 +327,8 @@
                         <div x-show="section === 'projects'" x-collapse x-cloak class="ml-4 border-l-2 border-red-100 pl-2">
                             <a href="{{ route('projects') }}" class="{{ $mSub }}">All Projects</a>
                             <a href="{{ route('ongoingProjects') }}" class="{{ $mSub }}">Ongoing Projects</a>
-                            <p class="px-4 pb-1 pt-3 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Delivered</p>
+                            <a href="{{ route('projects', ['status' => 'delivered']) }}" class="{{ $mSub }}">Delivered Projects</a>
+                            <p class="px-4 pb-1 pt-3 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">By sector</p>
                             @foreach($projectCategories as $category)
                                 <a href="{{ route('listprojects', $category->id) }}" class="{{ $mSub }} {{ request()->is('projects/cat/'.$category->id) ? 'text-red-600' : '' }}">{{ $category->category }}</a>
                             @endforeach
@@ -426,6 +431,7 @@
                     <h3 class="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white">Projects</h3>
                     <ul class="mt-5 space-y-3 text-sm">
                         <li><a href="{{ route('ongoingProjects') }}" class="transition hover:text-white">Ongoing Projects</a></li>
+                        <li><a href="{{ route('projects', ['status' => 'delivered']) }}" class="transition hover:text-white">Delivered Projects</a></li>
                         @foreach($projectCategories as $category)
                             <li><a href="{{ route('listprojects', $category->id) }}" class="transition hover:text-white">{{ $category->category }}</a></li>
                         @endforeach

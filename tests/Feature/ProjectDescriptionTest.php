@@ -96,7 +96,7 @@ class ProjectDescriptionTest extends TestCase
             'description' => '<p>Intro</p><ol><li>Step <strong>one</strong></li></ol>',
         ]);
 
-        $this->get(route('ongoingdetails', $project->id))
+        $this->get(route('detailprojects', $project->id))
             ->assertOk()
             ->assertSee('<ol><li>Step <strong>one</strong></li></ol>', false);
     }

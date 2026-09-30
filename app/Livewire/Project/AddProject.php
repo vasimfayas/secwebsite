@@ -24,6 +24,9 @@ class AddProject extends Component
     public $clients = [];
     public $consultants = [];
 
+    /** "Ongoing" yes/no switch; stored in the `status` column (ongoing | completed). */
+    public bool $ongoing = true;
+
     public function updatedDataTitle($value)
     {
         $this->data['slug'] = Str::slug($value);
@@ -59,6 +62,8 @@ class AddProject extends Component
                 'card_img' => null,
             ];
         }
+
+        $this->ongoing = ($this->data['status'] ?? Project::STATUS_ONGOING) === Project::STATUS_ONGOING;
 
         $this->clients = Client::orderBy('name')->get(['id', 'name']);
         $this->consultants = Consultant::orderBy('name')->get(['id', 'name']);
@@ -107,6 +112,11 @@ class AddProject extends Component
         'card_img' => 'cover image',
     ];
 
+    public function updatedOngoing($value)
+    {
+        $this->data['status'] = $value ? Project::STATUS_ONGOING : Project::STATUS_DELIVERED;
+    }
+
     public function updatedCardImg()
     {
         $this->validateOnly('card_img');
@@ -145,6 +155,8 @@ class AddProject extends Component
 
     public function save()
     {
+        $this->data['status'] = $this->ongoing ? Project::STATUS_ONGOING : Project::STATUS_DELIVERED;
+
         // Empty selects / inputs become NULL (foreign keys and integer columns reject '').
         foreach (['category_id', 'client_id', 'consultant_id', 'completed_year', 'duration', 'sequence', 'project_code'] as $key) {
             if (($this->data[$key] ?? null) === '') {

@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featuredprojects = Project::with('category')->where('status', "ongoing")->get();
+        $featuredprojects = Project::with('category')->ongoing()->displayOrder()->get();
         return view('home', compact('featuredprojects'));
     }
 
@@ -43,41 +43,69 @@ class HomeController extends Controller
         return view('team');
     }
     /**
-     * Display the projects page
+     * Projects listing. "Ongoing" (yes/no) and category are two independent filters:
+     *   /projects                     all projects        (?status=ongoing|delivered)
+     *   /projects/cat/{cat}           one category        (?status=ongoing|delivered)
+     *   /projects/status/ongoing      ongoing projects    (?category={id})
      */
-    public function projects()
+    public function projects(Request $request)
     {
-        $categories = ProjectCategory::get();
-        return view('projects', compact('categories'));
+        return $this->projectListing($request, $request->query('category'), $request->query('status'));
     }
 
-    public function listprojects($cat)
+    public function listprojects(Request $request, $cat)
     {
-        $categories = ProjectCategory::get();
-        $category = ProjectCategory::findorfail($cat);
-        $projects = Project::where('category_id', $cat)->get();
-        return view('project-list', compact('category', 'projects', 'categories'));
+        return $this->projectListing($request, $cat, $request->query('status'));
+    }
+
+    public function ongoing(Request $request)
+    {
+        return $this->projectListing($request, $request->query('category'), 'ongoing');
+    }
+
+    private function projectListing(Request $request, $categoryId, $status)
+    {
+        $status = in_array($status, ['ongoing', 'delivered'], true) ? $status : null;
+        $category = $categoryId ? ProjectCategory::findOrFail($categoryId) : null;
+
+        $projects = Project::with('category')
+            ->when($category, fn ($q) => $q->where('category_id', $category->id))
+            ->withPublicStatus($status)
+            ->displayOrder()
+            ->get();
+
+        // Counts for the filter controls: status counts within the current category,
+        // category counts within the current status.
+        $statusCounts = [
+            'all' => Project::when($category, fn ($q) => $q->where('category_id', $category->id))->count(),
+            'ongoing' => Project::when($category, fn ($q) => $q->where('category_id', $category->id))->ongoing()->count(),
+            'delivered' => Project::when($category, fn ($q) => $q->where('category_id', $category->id))->delivered()->count(),
+        ];
+        $categories = ProjectCategory::orderBy('category')
+            ->withCount(['projects' => fn ($q) => $q->withPublicStatus($status)])
+            ->get();
+        $allCount = Project::withPublicStatus($status)->count();
+
+        return view('projects', compact('projects', 'category', 'status', 'statusCounts', 'categories', 'allCount'));
     }
 
     public function detailprojects($id)
     {
         $project = Project::with(['client', 'consultant', 'category'])->findOrFail($id);
         $images = ProjectImage::where('project_id', $id)->orderBy('position')->orderBy('id')->get();
-        $next = Project::where('category_id', $project->category_id)
-            ->where('id', '>', $project->id)
-            ->orderBy('id', 'asc')
-            ->first();
 
-        $prev = Project::where('category_id', $project->category_id)
-            ->where('id', '<', $project->id)
-            ->orderBy('id', 'desc')
-            ->first();
+        // Neighbours and related projects come from the same category when there is one,
+        // otherwise from projects with the same ongoing / delivered state.
+        $siblings = fn () => Project::query()
+            ->when(
+                $project->category_id,
+                fn ($q) => $q->where('category_id', $project->category_id),
+                fn ($q) => $q->withPublicStatus($project->is_ongoing ? 'ongoing' : 'delivered')
+            );
 
-        $related = Project::where('category_id', $project->category_id)
-            ->where('id', '!=', $project->id)
-            ->inRandomOrder()
-            ->take(3)
-            ->get();
+        $next = $siblings()->where('id', '>', $project->id)->orderBy('id')->first();
+        $prev = $siblings()->where('id', '<', $project->id)->orderByDesc('id')->first();
+        $related = $siblings()->where('id', '!=', $project->id)->inRandomOrder()->take(3)->get();
 
         return view('project-detail', compact('project', 'images', 'next', 'prev', 'related'));
     }
@@ -89,35 +117,13 @@ class HomeController extends Controller
         return view('sister-companies');
     }
 
-    public function ongoing()
-    {
-        $projects = Project::where('status', 'ongoing')->get();
-
-        return view('ongoing', compact('projects'));
-    }
+    /**
+     * Old ongoing-project URL: there is now a single project page for every project.
+     */
     public function ongoingdetails($id)
     {
-        $project = Project::with(['client', 'consultant', 'category'])->findOrFail($id);
-        $images = ProjectImage::where('project_id', $id)->orderBy('position')->orderBy('id')->get();
-        $next = Project::where('status', 'ongoing')
-            ->where('id', '>', $project->id)
-            ->orderBy('id', 'asc')
-            ->first();
-
-        $prev = Project::where('status', 'ongoing')
-            ->where('id', '<', $project->id)
-            ->orderBy('id', 'desc')
-            ->first();
-
-        $related = Project::where('status', 'ongoing')
-            ->where('id', '!=', $project->id)
-            ->inRandomOrder()
-            ->take(3)
-            ->get();
-
-        return view('ongoingdetails', compact('project', 'images', 'next', 'prev', 'related'));
+        return redirect()->route('detailprojects', $id, 301);
     }
-
 
     /**
      * Display the careers page

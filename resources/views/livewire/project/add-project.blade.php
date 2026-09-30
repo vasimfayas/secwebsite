@@ -27,7 +27,7 @@
             <h1 class="h3 mb-0 mt-1 text-gray-800">{{ $projectId ? 'Edit project' : 'Add project' }}</h1>
         </div>
         @if ($projectId)
-            <a href="{{ ($data['status'] ?? '') === 'ongoing' ? route('ongoingdetails', $projectId) : route('detailprojects', $projectId) }}"
+            <a href="{{ route('detailprojects', $projectId) }}"
                target="_blank" class="btn btn-sm btn-outline-secondary mt-3 mt-sm-0">
                 View on website <i class="fas fa-external-link-alt fa-sm ml-1"></i>
             </a>
@@ -69,15 +69,14 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label class="pf-label">Status</label>
-                                <div class="btn-group btn-group-toggle d-flex">
-                                    <label class="btn btn-sm flex-fill {{ ($data['status'] ?? '') === 'ongoing' ? 'btn-warning' : 'btn-outline-secondary' }}">
-                                        <input type="radio" value="ongoing" wire:model.live="data.status"> Ongoing
-                                    </label>
-                                    <label class="btn btn-sm flex-fill {{ ($data['status'] ?? '') === 'completed' ? 'btn-success' : 'btn-outline-secondary' }}">
-                                        <input type="radio" value="completed" wire:model.live="data.status"> Completed
+                                <label class="pf-label">Ongoing project?</label>
+                                <div class="custom-control custom-switch mt-1">
+                                    <input type="checkbox" class="custom-control-input" id="pf-ongoing" wire:model.live="ongoing">
+                                    <label class="custom-control-label font-weight-bold {{ $ongoing ? 'text-warning' : 'text-success' }}" for="pf-ongoing">
+                                        {{ $ongoing ? 'Yes — under construction' : 'No — delivered' }}
                                     </label>
                                 </div>
+                                <small class="form-text text-muted">Independent of the category.</small>
                             </div>
                             <div class="form-group col-md-5">
                                 <label class="pf-label">Category</label>
