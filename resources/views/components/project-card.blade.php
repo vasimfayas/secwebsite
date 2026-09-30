@@ -37,8 +37,8 @@
             {!! $project->size && preg_replace('/[^0-9]/', '', $project->size) !== '' ? formatIndianNumber($project->size) . ' m<sup>2</sup>' : 'N/A' !!}
         </p>
 
-        @if($project->description)
-            <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-gray-500">{{ $project->description }}</p>
+        @if($project->description_text)
+            <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-gray-500">{{ $project->description_text }}</p>
         @endif
 
         <div class="mt-auto pt-6">

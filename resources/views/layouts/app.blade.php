@@ -9,6 +9,86 @@
     <meta name="description" content="@yield('description', 'Shannon Engineering Company (SEC) is a premier construction and contracting company in Qatar, delivering exceptional projects across residential, commercial, industrial, medical, and religious sectors.')">
     <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png">
 
+    {{-- First-visit launcher: decide before first paint so it never flashes --}}
+    <script>
+        (function () {
+            // Show once per visit: not again on this device for 6 hours (also across new tabs).
+            try {
+                var last = Number(localStorage.getItem('sec-intro-seen') || 0);
+                if (Date.now() - last > 6 * 60 * 60 * 1000) {
+                    document.documentElement.classList.add('intro-active');
+                    localStorage.setItem('sec-intro-seen', String(Date.now()));
+                }
+            } catch (e) { /* storage blocked: skip the intro */ }
+        })();
+    </script>
+    <link rel="preload" as="image" href="{{ asset('images/optimized/logo-light-320.webp') }}">
+    <style>
+        #intro { display: none; }
+        .intro-active, .intro-leaving { overflow: hidden; }
+        .intro-active #intro, .intro-leaving #intro {
+            position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+            background: #0b0f17; color: #fff;
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 1s cubic-bezier(.77, 0, .18, 1);
+        }
+        .intro-leaving #intro { clip-path: inset(0 0 100% 0); }
+        .intro-leaving .intro-inner { opacity: 0; transform: translateY(-40px); transition: all .6s cubic-bezier(.77, 0, .18, 1); }
+        /* Hold page animations (hero text, zoom) until the curtain lifts */
+        .intro-active main *, .intro-active main *::before { animation-play-state: paused !important; }
+
+        .intro-glow {
+            position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%;
+            background: radial-gradient(circle, rgba(220, 38, 38, .28), transparent 60%);
+            animation: intro-glow 3s ease-in-out infinite alternate;
+        }
+        .intro-inner { position: relative; display: flex; flex-direction: column; align-items: center; }
+        .intro-logo-wrap { position: relative; width: 220px; }
+        .intro-logo {
+            display: block; width: 100%; height: auto;
+            clip-path: inset(0 100% 0 0); filter: blur(8px); transform: scale(.9);
+            animation: intro-logo 1.1s cubic-bezier(.2, .7, .2, 1) .15s forwards;
+        }
+        .intro-shine {
+            position: absolute; inset: 0; pointer-events: none;
+            -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            -webkit-mask-position: center; mask-position: center;
+            background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .95) 50%, transparent 65%);
+            background-size: 250% 100%; background-position: 150% 0; opacity: 0;
+            animation: intro-shine 1.1s ease-in-out 1.05s forwards;
+        }
+        .intro-tagline {
+            margin-top: 28px; display: flex; align-items: center; gap: 14px;
+            font: 600 11px/1 'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing: .5em; text-transform: uppercase;
+            color: rgba(255, 255, 255, .7);
+        }
+        .intro-tagline span { opacity: 0; transform: translateY(10px); animation: intro-up .7s cubic-bezier(.2, .7, .2, 1) forwards; }
+        .intro-tagline span:nth-of-type(1) { animation-delay: .9s; }
+        .intro-tagline span:nth-of-type(2) { animation-delay: 1.05s; }
+        .intro-tagline span:nth-of-type(3) { animation-delay: 1.2s; }
+        .intro-tagline i { width: 4px; height: 4px; border-radius: 50%; background: #ef4444; opacity: 0; animation: intro-up .5s ease forwards 1.1s; }
+        .intro-bar { margin-top: 36px; width: 160px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+        .intro-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #dc2626, #fb923c); animation: intro-bar 1.8s cubic-bezier(.4, 0, .2, 1) .2s forwards; }
+        .intro-leaving .intro-bar span { width: 100%; animation: none; }
+
+        @keyframes intro-logo { to { clip-path: inset(0 0 0 0); filter: blur(0); transform: scale(1); } }
+        @keyframes intro-shine { 0% { opacity: 1; background-position: 150% 0; } 100% { opacity: 1; background-position: -50% 0; } }
+        @keyframes intro-up { to { opacity: 1; transform: none; } }
+        @keyframes intro-bar { to { width: 85%; } }
+        @keyframes intro-glow { from { transform: scale(.85); opacity: .7; } to { transform: scale(1.1); opacity: 1; } }
+
+        @media (max-width: 480px) {
+            .intro-logo-wrap { width: 170px; }
+            .intro-tagline { letter-spacing: .3em; font-size: 10px; gap: 10px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .intro-logo, .intro-tagline span, .intro-tagline i { animation: none; clip-path: none; filter: none; transform: none; opacity: 1; }
+            .intro-shine, .intro-glow { display: none; }
+            .intro-active #intro, .intro-leaving #intro { transition: opacity .25s; }
+            .intro-leaving #intro { clip-path: none; opacity: 0; }
+        }
+    </style>
+
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +120,8 @@
 @endphp
 
 <body class="bg-white antialiased {{ $solidNav ? 'pt-20' : '' }}">
+
+    @include('partials.intro')
 
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow-lg">
         Skip to content

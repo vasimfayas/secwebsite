@@ -122,11 +122,8 @@
                     <p class="eyebrow">Project overview</p>
                     <h2 class="section-heading">About this project</h2>
                     @if($project->description)
-                        <div @class([
-                            'mt-8 text-lg leading-8 text-gray-600',
-                            'first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.9] first-letter:text-red-600' => mb_strlen($project->description) > 220,
-                        ])>
-                            {!! nl2br(e($project->description)) !!}
+                        <div @class(['rich-text mt-8', 'has-dropcap' => mb_strlen($project->description_text) > 220])>
+                            {!! $project->description_html !!}
                         </div>
                     @else
                         <p class="mt-8 text-lg text-gray-500">Details for this project will be available soon.</p>

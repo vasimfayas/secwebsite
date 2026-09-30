@@ -141,6 +141,33 @@
     }
 }
 
+/* ---------- Rich text (project descriptions from the admin editor) ---------- */
+.rich-text {
+    @apply text-lg leading-8 text-gray-600;
+}
+.rich-text > * + * { @apply mt-5; }
+.rich-text > :first-child { @apply mt-0; }
+.rich-text h2 { @apply mt-10 font-display text-2xl font-bold text-gray-900 md:text-3xl; }
+.rich-text h3 { @apply mt-8 font-display text-xl font-semibold text-gray-900 md:text-2xl; }
+.rich-text h4 { @apply mt-6 font-display text-lg font-semibold text-gray-900; }
+.rich-text h2 + *, .rich-text h3 + *, .rich-text h4 + * { @apply mt-3; }
+.rich-text strong, .rich-text b { @apply font-semibold text-gray-900; }
+.rich-text a { @apply font-medium text-red-600 underline decoration-red-200 underline-offset-4 hover:decoration-red-600; }
+.rich-text ul, .rich-text ol { @apply space-y-2 pl-6; }
+.rich-text ul { list-style-type: disc; }
+.rich-text ol { list-style-type: decimal; }
+.rich-text ul ul { list-style-type: circle; }
+.rich-text ul ul ul { list-style-type: square; }
+.rich-text ol ol { list-style-type: lower-alpha; }
+.rich-text ol ol ol { list-style-type: lower-roman; }
+.rich-text li { @apply pl-1.5; }
+.rich-text li::marker { @apply font-semibold text-red-600; }
+.rich-text li > ul, .rich-text li > ol { @apply mt-2; }
+.rich-text blockquote { @apply border-l-4 border-red-600 bg-red-50/50 py-3 pl-5 pr-4 italic text-gray-700; }
+.rich-text.has-dropcap > p:first-child::first-letter {
+    @apply float-left mr-3 font-display text-6xl font-bold leading-[0.9] text-red-600;
+}
+
 /* ---------- Scroll reveal ---------- */
 [data-reveal] {
     opacity: 0;

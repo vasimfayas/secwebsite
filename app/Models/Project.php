@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Support\RichText;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -44,6 +46,22 @@ class Project extends Model
     public function consultant()
     {
         return $this->belongsTo(Consultant::class, 'consultant_id');
+    }
+
+    /**
+     * Description as safe HTML (formatted text from the admin editor, or legacy plain text with line breaks).
+     */
+    protected function descriptionHtml(): Attribute
+    {
+        return Attribute::get(fn () => RichText::toHtml($this->description));
+    }
+
+    /**
+     * Description as plain text, for excerpts on cards.
+     */
+    protected function descriptionText(): Attribute
+    {
+        return Attribute::get(fn () => RichText::toText($this->description));
     }
 
     /**
