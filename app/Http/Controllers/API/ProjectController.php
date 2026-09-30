@@ -24,13 +24,13 @@ class ProjectController extends Controller
     public function project($id)
     {
         return response()->json(
-            Project::with(['category', 'client', 'consultant'])->findOrFail($id)
+            Project::with(['category', 'client', 'consultant', 'images'])->findOrFail($id)
         );
     }
     public function projects()
     {
         return response()->json(
-            Project::with(['category', 'client', 'consultant'])->get()
+            Project::with(['category', 'client', 'consultant', 'images'])->get()
         );
     }
 }

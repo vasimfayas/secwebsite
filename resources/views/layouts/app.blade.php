@@ -142,7 +142,7 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
                                 </a>
                                 <a href="{{route('about.vision')}}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
-                                    Mission, Vision & Values
+                                  Vision, Mission & Values
                                 </a>
                                 <a href="{{route('about.team')}}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600">
@@ -232,162 +232,6 @@ class="fixed w-full top-0 z-50 transition-all duration-300"
 >CAREERS</a>
                         <a href="{{ route('contact') }}" class="nav-link px-3 py-2 text-[15px] font-semibold tracking-wide {{ request()->routeIs('contact') ? 'is-active' : '' }}":class="scrolled ? 'text-gray-800 hover:text-red-600' : 'text-gray-800 hover:text-red-300'"
 >CONTACT US</a>
-<div x-data="updatesWidget()" x-init="init()" class="relative">
-
-<!-- NAVBAR BUTTON -->
-<button 
-  @click="toggle()"
-  @keydown.escape.window="toggle(false)" 
-  :aria-expanded="open.toString()" 
-  aria-controls="updates-panel"
-
-  class="relative h-10 w-10 rounded-full bg-red-600 text-gray-800 shadow-lg
-         hover:bg-red-700 transition flex items-center justify-center"
->
-
-<!-- ICON -->
-<svg xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 24 24"
-fill="none" 
-stroke="currentColor"
-stroke-width="1.8"
-class="w-5 h-5">
-
-<path d="M3 11a3 3 0 0 1 3-3h4v8H6a3 3 0 0 1-3-3v-2z"/>
-<path d="M10 16.5v3a1.5 1.5 0 0 1-3 0v-3"/>
-<path d="M14 8l6-3v14l-6-3V8z"/>
-<path d="M21 10l1.5-.5M21 12h1.5M21 14l1.5.5"/>
-
-</svg>
-
-<!-- BADGE -->
-<span 
-x-show="unread>0"
-x-transition
-class="absolute -top-1 -right-1 flex items-center justify-center
-h-5 min-w-5 px-1 rounded-full
-bg-white text-red-600 text-[11px]
-font-semibold ring-2 ring-red-600">
-
-<span x-text="unread"></span>
-
-</span>
-    {{-- Example dynamic list; replace with your data --}}
-    @php
-      $updates = $updates ?? [
-        ['type' => 'project', 'title' => 'New project awarded: Qatar Logistics Hub', 'meta' => 'Kickoff next week • West Bay'],
-       
-        ['type' => 'job',     'title' => 'We’re hiring: HSE Officer', 'meta' => 'Apply now', 'url' => route('careers')],
-      ];
-    @endphp
-</button>
-
-
-<!-- OVERLAY -->
-<div 
-x-cloak
-x-show="open"
-@click="toggle(false)"
-class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
-</div>
-
-
-<!-- PANEL -->
-<div 
-
-x-cloak
-x-show="open"
-
-@click.stop
-
-x-transition.origin.top.right
-
-class="fixed
-top-20
-right-6
-w-[92vw]
-max-w-sm
-bg-white
-shadow-2xl
-ring-1 ring-black/5
-rounded-2xl
-overflow-hidden
-z-50"
-
-id="updates-panel"
-role="dialog"
->
-
-<div class="px-4 py-3 border-b flex justify-between">
-
-<div class="text-sm font-semibold">
-News
-</div>
-
-<button 
-@click="toggle(false)"
-class="text-gray-400 hover:text-gray-700">
-
-✕
-
-</button>
-
-</div>
-
-
-<ul class="max-h-96 overflow-auto divide-y">
-
-@foreach($updates as $u)
-
-<li class="p-4 hover:bg-gray-50 flex gap-3">
-
-<div class="text-sm">
-
-<div class="font-medium text-gray-900">
-
-@if(isset($u['url']))
-
-<a href="{{ $u['url'] }}" class="hover:underline">
-
-@endif
-
-{{ $u['title'] }}
-
-@if(isset($u['url']))
-</a>
-@endif
-
-</div>
-
-@if(!empty($u['meta']))
-
-<div class="text-gray-500">
-
-{{ $u['meta'] }}
-
-</div>
-
-@endif
-
-</div>
-
-</li>
-
-@endforeach
-
-</ul>
-
-
-<a href="#"
-class="block text-center text-sm font-medium text-red-600 py-3 hover:bg-gray-50">
-
-View all updates
-
-</a>
-
-</div>
-
-</div>
                     </div>
                     
                 </div>
@@ -642,7 +486,7 @@ View all updates
 
 class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
 >
-<button 
+{{-- <button 
   
 
 >
@@ -656,8 +500,8 @@ class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
               <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.15V23h-4v-7.3c0-1.74-.03-3.98-2.43-3.98-2.44 0-2.81 1.9-2.81 3.86V23h-4V8z"/>
             </svg>
 </a>
-</button>
-<button 
+</button> --}}
+{{-- <button 
   
 
 >
@@ -676,7 +520,7 @@ class="fixed z-[60] bottom-5 right-5 md:bottom-8 md:right-8"
         </svg>
     </a>
 
-</button>
+</button> --}}
 <button>
 <a 
    href="https://youtube.com/@shannonengineering8110"
