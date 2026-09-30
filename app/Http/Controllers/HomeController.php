@@ -61,8 +61,8 @@ class HomeController extends Controller
 
     public function detailprojects($id)
     {
-        $project = Project::findorfail($id);
-        $images = ProjectImage::where('project_id', $id)->get();
+        $project = Project::with(['client', 'consultant', 'category'])->findOrFail($id);
+        $images = ProjectImage::where('project_id', $id)->orderBy('position')->orderBy('id')->get();
         $next = Project::where('category_id', $project->category_id)
             ->where('id', '>', $project->id)
             ->orderBy('id', 'asc')
@@ -72,7 +72,14 @@ class HomeController extends Controller
             ->where('id', '<', $project->id)
             ->orderBy('id', 'desc')
             ->first();
-        return view('project-detail', compact('project', 'images', 'next', 'prev'));
+
+        $related = Project::where('category_id', $project->category_id)
+            ->where('id', '!=', $project->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('project-detail', compact('project', 'images', 'next', 'prev', 'related'));
     }
     /**
      * Display the sister companies page
@@ -90,8 +97,8 @@ class HomeController extends Controller
     }
     public function ongoingdetails($id)
     {
-        $project = Project::findorfail($id);
-        $images = ProjectImage::where('project_id', $id)->get();
+        $project = Project::with(['client', 'consultant', 'category'])->findOrFail($id);
+        $images = ProjectImage::where('project_id', $id)->orderBy('position')->orderBy('id')->get();
         $next = Project::where('status', 'ongoing')
             ->where('id', '>', $project->id)
             ->orderBy('id', 'asc')
@@ -101,7 +108,14 @@ class HomeController extends Controller
             ->where('id', '<', $project->id)
             ->orderBy('id', 'desc')
             ->first();
-        return view('ongoingdetails', compact('project', 'images', 'next', 'prev'));
+
+        $related = Project::where('status', 'ongoing')
+            ->where('id', '!=', $project->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('ongoingdetails', compact('project', 'images', 'next', 'prev', 'related'));
     }
 
 

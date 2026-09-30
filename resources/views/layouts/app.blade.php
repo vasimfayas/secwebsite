@@ -49,16 +49,12 @@
     <header
         x-data="{
             scrolled: false,
-            hidden: false,
-            lastY: 0,
             progress: 0,
             mobileOpen: false,
             solid: {{ $solidNav ? 'true' : 'false' }},
             onScroll() {
                 const y = window.scrollY;
                 this.scrolled = y > 40;
-                this.hidden = y > 400 && y > this.lastY && !this.mobileOpen;
-                this.lastY = y;
                 const h = document.documentElement.scrollHeight - window.innerHeight;
                 this.progress = h > 0 ? (y / h) * 100 : 0;
             },
@@ -70,8 +66,7 @@
         x-init="onScroll()"
         @scroll.window.passive="onScroll()"
         @keydown.escape.window="toggleMobile(false)"
-        :class="{ '-translate-y-full': hidden }"
-        class="group/header fixed inset-x-0 top-0 z-50 transition-transform duration-500"
+        class="fixed inset-x-0 top-0 z-50"
     >
         <div
             :class="(scrolled || solid)
@@ -84,12 +79,12 @@
 
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Shannon Engineering Company – Home">
-                    <span class="rounded-2xl transition-all duration-500"
-                          :class="(scrolled || solid) ? 'bg-transparent p-0' : 'bg-white/95 p-2 shadow-lg'">
-                        <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company"
-                             width="100" height="64" class="h-auto transition-all duration-500"
-                             :class="(scrolled || solid) ? 'w-[88px]' : 'w-[92px]'">
-                    </span>
+                    {{-- Light logo over dark hero, original logo once the header turns white --}}
+                    <img src="{{ asset($solidNav ? 'images/optimized/logo-320.webp' : 'images/optimized/logo-light-320.webp') }}"
+                         :src="(scrolled || solid) ? '{{ asset('images/optimized/logo-320.webp') }}' : '{{ asset('images/optimized/logo-light-320.webp') }}'"
+                         alt="Shannon Engineering Company" width="100" height="64"
+                         class="h-auto w-[92px] transition-all duration-500 drop-shadow-[0_2px_8px_rgba(0,0,0,.35)]"
+                         :class="(scrolled || solid) ? 'w-[88px] drop-shadow-none' : 'w-[100px]'">
                 </a>
 
                 <!-- Desktop navigation -->
@@ -132,7 +127,7 @@
                                 <div class="col-span-2 flex flex-col gap-2">
                                     <a href="{{ route('ongoingProjects') }}"
                                        class="group relative flex flex-1 flex-col justify-end overflow-hidden rounded-xl bg-gray-900 p-4 text-white">
-                                        <img src="{{ asset('images/optimized/lulu-960.webp') }}" alt="" loading="lazy" decoding="async"
+                                        <img src="{{ \App\Models\Project::ongoingCoverUrl() }}" alt="" loading="lazy" decoding="async"
                                              class="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-500 group-hover:scale-105 group-hover:opacity-60">
                                         <span class="relative inline-flex w-fit items-center gap-1.5 rounded-full bg-yellow-400/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-900">
                                             <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-gray-900"></span> Live
@@ -309,8 +304,8 @@
             <div class="grid grid-cols-1 gap-12 py-14 sm:grid-cols-2 lg:grid-cols-12">
                 <!-- Brand -->
                 <div class="lg:col-span-4">
-                    <a href="{{ route('home') }}" class="inline-block rounded-2xl bg-white p-3">
-                        <img src="{{ asset('images/optimized/logo-320.webp') }}" alt="Shannon Engineering Company" class="w-24" width="96" height="61" loading="lazy">
+                    <a href="{{ route('home') }}" class="inline-block">
+                        <img src="{{ asset('images/optimized/logo-light-320.webp') }}" alt="Shannon Engineering Company" class="w-28" width="112" height="72" loading="lazy">
                     </a>
                     <p class="mt-6 max-w-sm text-sm leading-relaxed">
                         A premier construction and contracting company in Qatar, delivering exceptional projects across various sectors.

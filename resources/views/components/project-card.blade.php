@@ -32,11 +32,10 @@
             <a href="{{ $href }}">{{ $project->title }}</a>
         </h3>
 
-        @if($project->size)
-            <p class="mt-2 text-sm text-gray-500">
-                <span class="font-semibold text-gray-700">Size:</span> {!! formatIndianNumber($project->size) . ' m<sup>2</sup>' !!}
-            </p>
-        @endif
+        <p class="mt-2 text-sm text-gray-500">
+            <span class="font-semibold text-gray-700">Size:</span>
+            {!! $project->size && preg_replace('/[^0-9]/', '', $project->size) !== '' ? formatIndianNumber($project->size) . ' m<sup>2</sup>' : 'N/A' !!}
+        </p>
 
         @if($project->description)
             <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-gray-500">{{ $project->description }}</p>

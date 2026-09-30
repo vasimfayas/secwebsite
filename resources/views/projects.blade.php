@@ -125,9 +125,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <a href="{{ route('ongoingProjects') }}" data-reveal
            class="group relative isolate flex min-h-[320px] flex-col justify-end overflow-hidden rounded-[2rem] bg-ink-900 p-8 text-white md:p-12">
-            <img src="{{ asset('images/optimized/lulu-1920.webp') }}"
-                 srcset="{{ asset('images/optimized/lulu-960.webp') }} 960w, {{ asset('images/optimized/lulu-1920.webp') }} 1920w"
-                 sizes="(min-width: 1280px) 1216px, 100vw" alt="" loading="lazy" decoding="async"
+            <img src="{{ \App\Models\Project::ongoingCoverUrl() }}" alt="" loading="lazy" decoding="async"
                  class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
             <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink-900/95 via-ink-900/60 to-transparent"></div>
             <span class="inline-flex w-fit items-center gap-2 rounded-full bg-yellow-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-gray-900">

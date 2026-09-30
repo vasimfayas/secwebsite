@@ -45,4 +45,21 @@ class Project extends Model
     {
         return $this->belongsTo(Consultant::class, 'consultant_id');
     }
+
+    /**
+     * Public URL of the card image of the latest ongoing project, used as the
+     * cover for "Ongoing Projects" teasers. Falls back to a static photo.
+     */
+    public static function ongoingCoverUrl(): string
+    {
+        static $url;
+
+        return $url ??= ($img = static::where('status', 'ongoing')
+            ->whereNotNull('card_img')
+            ->where('card_img', '!=', '')
+            ->latest('id')
+            ->value('card_img'))
+            ? asset('storage/' . $img)
+            : asset('images/optimized/lulu-960.webp');
+    }
 }
