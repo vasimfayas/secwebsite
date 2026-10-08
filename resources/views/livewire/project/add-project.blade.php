@@ -104,7 +104,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label class="pf-label pf-req">Client</label>
+                                <label class="pf-label">Client</label>
                                 <select class="custom-select @error('data.client_id') is-invalid @enderror" wire:model="data.client_id">
                                     <option value="">— Select client —</option>
                                     @foreach ($clients as $client)
@@ -115,7 +115,7 @@
                                 <small class="form-text text-muted">Not listed? <a href="{{ route('admin.client') }}" target="_blank">Add a client</a></small>
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="pf-label pf-req">Consultant</label>
+                                <label class="pf-label">Consultant</label>
                                 <select class="custom-select @error('data.consultant_id') is-invalid @enderror" wire:model="data.consultant_id">
                                     <option value="">— Select consultant —</option>
                                     @foreach ($consultants as $consultant)
@@ -137,7 +137,7 @@
                                 @error('data.location') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="pf-label pf-req">Project size</label>
+                                <label class="pf-label">Project size</label>
                                 <div class="input-group">
                                     <input type="text" inputmode="numeric" class="form-control @error('data.size') is-invalid @enderror" wire:model="data.size" placeholder="e.g. 25000">
                                     <div class="input-group-append"><span class="input-group-text">m²</span></div>

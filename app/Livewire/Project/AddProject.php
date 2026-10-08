@@ -75,10 +75,10 @@ class AddProject extends Component
             'data.title' => 'required|string|max:255',
             'data.project_code' => 'nullable|string|max:100',
             'data.category_id' => 'nullable|exists:project_categories,id',
-            'data.client_id' => 'required|exists:clients,id',
-            'data.consultant_id' => 'required|exists:consultants,id',
+            'data.client_id' => 'nullable|exists:clients,id',
+            'data.consultant_id' => 'nullable|exists:consultants,id',
             'data.location' => 'nullable|string|max:255',
-            'data.size' => 'required|string|max:255',
+            'data.size' => 'nullable|string|max:255',
             'data.status' => 'required|in:completed,ongoing',
             'data.completed_year' => 'nullable|integer|between:1950,' . (date('Y') + 5),
             'data.duration' => 'nullable|integer|min:1|max:100000',
@@ -92,9 +92,6 @@ class AddProject extends Component
     }
 
     protected $messages = [
-        'data.client_id.required' => 'Please select the client.',
-        'data.consultant_id.required' => 'Please select the consultant.',
-        'data.size.required' => 'Please enter the project size.',
         'data.description.required' => 'A project description is required.',
         'card_img.required' => 'Please upload a cover image.',
         'newgallery.*.image' => 'Gallery files must be images.',
@@ -158,7 +155,7 @@ class AddProject extends Component
         $this->data['status'] = $this->ongoing ? Project::STATUS_ONGOING : Project::STATUS_DELIVERED;
 
         // Empty selects / inputs become NULL (foreign keys and integer columns reject '').
-        foreach (['category_id', 'client_id', 'consultant_id', 'completed_year', 'duration', 'sequence', 'project_code'] as $key) {
+        foreach (['category_id', 'client_id', 'consultant_id', 'completed_year', 'duration', 'sequence', 'project_code', 'size'] as $key) {
             if (($this->data[$key] ?? null) === '') {
                 $this->data[$key] = null;
             }
